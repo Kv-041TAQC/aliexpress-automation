@@ -1,15 +1,16 @@
-﻿<Properties>
+﻿<Properties StartupConfiguration="{B392271C-0092-4E14-BDEC-F9A2EADAECC3}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Pages/SuperPage.cs">
     <Files>
-      <File FileName="Test/RegistrationTests/FirstRegistrationTest.cs" Line="14" Column="13" />
-      <File FileName="Test/RegistrationTests/BasicTest.cs" Line="12" Column="42" />
-      <File FileName="Pages/SuperPage.cs" Line="29" Column="47" />
+      <File FileName="Pages/EvgenPages/SearchStringPage.cs" Line="23" Column="37" />
+      <File FileName="Pages/SuperPage.cs" Line="5" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Tests PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Pages PreferredExecutionTarget="MonoDevelop.Default" />
   <MultiItemStartupConfigurations />
 </Properties>
