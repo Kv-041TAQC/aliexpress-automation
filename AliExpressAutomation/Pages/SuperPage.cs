@@ -8,7 +8,6 @@ namespace Pages
 {
     public abstract class SuperPage
     {
-        protected 
         protected static IWebDriver driver;
         /// <summary>
         /// <para>Custome method for clicking on element</para>
