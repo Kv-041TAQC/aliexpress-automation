@@ -9,7 +9,7 @@ namespace Tests.RegistrationTests
         [SetUp]
         public void StartTestWith()
         {
-            SuperPage.InitializeJsonFile(10);
+            SuperPage.InitializeJsonFile();
         }
         [TearDown]
         public void TearDown()

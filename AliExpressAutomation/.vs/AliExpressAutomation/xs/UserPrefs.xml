@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/SuperPage.cs">
+    <Files>
+      <File FileName="Test/RegistrationTests/FirstRegistrationTest.cs" Line="14" Column="13" />
+      <File FileName="Test/RegistrationTests/BasicTest.cs" Line="12" Column="42" />
+      <File FileName="Pages/SuperPage.cs" Line="29" Column="47" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
