@@ -75,14 +75,17 @@ namespace Pages
                 FileStream filestream = file.Create();
                 filestream.Close();
             }
-            ///
-            //There shoud be logic for filling array
-            ///
+            for(int i = 0;i < 1;i++)
+            {
+                alijson = new JsonHandlerClass();
+                alijson.Login = "Valid_Login";
+                alijson.Password = "Valid_Password";
+                alijson.Wishes = new string[]{"Lol","Kek","Jeburek"};
+            }
             using (FileStream fileSt = new FileStream(filename,FileMode.Open))
             {
                 jsonSerializer.WriteObject(fileSt, alijson);
             }
-
         }
         /// <summary>
         /// <para>Custom method for taking screenshot</para>

@@ -14,6 +14,7 @@ namespace Test
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
             {
                 var searchtest = new SearchStringPage(dr);
+            
                 searchtest.RunPostiveTest();
                 searchtest.RunNegativeTest();
             }

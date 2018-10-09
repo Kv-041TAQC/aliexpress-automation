@@ -17,8 +17,21 @@ namespace Pages.HelpClasses
         {
             public JsonHandlerClass()
             {
-                //[DataMember]
+                
             }
+                [DataMember]
+                public string[] Countries{get;set;}
+                [DataMember]
+                public string[] Courencies{get;set;}
+                [DataMember]
+                public string[] Wishes{get;set;}
+                [DataMember]
+                public string Login{get;set;}
+                [DataMember]
+                public string Password{get;set;}
+                [DataMember]
+                public string Email{get;set;}
+
         }
         #endregion
     }
