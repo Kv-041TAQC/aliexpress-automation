@@ -81,6 +81,11 @@ namespace Pages
                 alijson.Login = "Valid_Login";
                 alijson.Password = "Valid_Password";
                 alijson.Wishes = new string[]{"Lol","Kek","Jeburek"};
+                alijson.Countries = new string[] { "Ukraine", "Uganda", "StranaAgressor" };
+                alijson.Сurrencies = new string[] { "USD", "GRN", "EUR" };
+                alijson.Email = "Valid_Email";
+                alijson.ValidData = new string[] { "IPhone 6s", "Samsung Galaxy" };
+                alijson.InvalidData = new string[] { "Invalid_Data_One", "Invalid_Data_Two" };
             }
             using (FileStream fileSt = new FileStream(filename,FileMode.Open))
             {
@@ -108,10 +113,7 @@ namespace Pages
             actionshandler = new Actions(driver);
             this.driver = driver;
             InitializeJsonFile();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
         }
-
-
-
     }
 }

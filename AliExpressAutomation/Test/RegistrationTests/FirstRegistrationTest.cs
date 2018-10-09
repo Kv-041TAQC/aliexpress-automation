@@ -9,14 +9,24 @@ namespace Test
     public class FirstAliTest
     {
         [Test]
-        public void FirstTest()
+        [Parallelizable]
+        public void SearchStringPositiveTest()
         {
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
             {
                 var searchtest = new SearchStringPage(dr);
-            
-                searchtest.RunPostiveTest();
-                searchtest.RunNegativeTest();
+                searchtest.RunPostiveTest(0);
+                searchtest.RunPostiveTest(1);
+            }
+        }
+        [Test]
+        [Parallelizable]
+        public void SearchStringNegativeTest()
+        {
+            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
+            {
+                var searchtest = new SearchStringPage(dr);
+                searchtest.RunNegativeTest(0);
             }
         }
     }

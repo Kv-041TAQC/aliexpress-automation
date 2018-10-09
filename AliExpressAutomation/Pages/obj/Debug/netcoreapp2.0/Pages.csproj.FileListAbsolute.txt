@@ -1,0 +1,13 @@
+/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/bin/Debug/netcoreapp2.0/NUnit3.TestAdapter.dll
+/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/bin/Debug/netcoreapp2.0/NUnit3.TestAdapter.pdb
+/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/bin/Debug/netcoreapp2.0/nunit.engine.netstandard.dll
+/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/bin/Debug/netcoreapp2.0/Mono.Cecil.dll
+/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/bin/Debug/netcoreapp2.0/Pages.deps.json
+/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/bin/Debug/netcoreapp2.0/Pages.dll
+/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/bin/Debug/netcoreapp2.0/Pages.pdb
+/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/obj/Debug/netcoreapp2.0/Pages.csprojAssemblyReference.cache
+/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/obj/Debug/netcoreapp2.0/Pages.csproj.CoreCompileInputs.cache
+/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/obj/Debug/netcoreapp2.0/Pages.AssemblyInfoInputs.cache
+/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/obj/Debug/netcoreapp2.0/Pages.AssemblyInfo.cs
+/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/obj/Debug/netcoreapp2.0/Pages.dll
+/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/obj/Debug/netcoreapp2.0/Pages.pdb

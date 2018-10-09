@@ -22,15 +22,19 @@ namespace Pages.HelpClasses
                 [DataMember]
                 public string[] Countries{get;set;}
                 [DataMember]
-                public string[] Courencies{get;set;}
+                public string[] Сurrencies { get;set;}
                 [DataMember]
-                public string[] Wishes{get;set;}
+                public string[] Wishes{get;set;}//For Ivan
                 [DataMember]
                 public string Login{get;set;}
                 [DataMember]
                 public string Password{get;set;}
                 [DataMember]
                 public string Email{get;set;}
+                [DataMember]
+                public string[] ValidData { get; set; }
+                [DataMember]
+                public string[] InvalidData { get; set; }
 
         }
         #endregion
