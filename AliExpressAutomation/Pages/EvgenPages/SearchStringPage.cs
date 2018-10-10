@@ -69,4 +69,3 @@ namespace Pages.EvgenPages
         #endregion
     }
 }
-//<input type="submit" class="search-button" value="">
