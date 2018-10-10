@@ -7,10 +7,9 @@ using System.Threading;
 namespace Test
 {
     [TestFixture]
+    [Parallelizable]
     public class FirstAliTest
     {
-        [Test]
-        [Parallelizable]
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(0)]
@@ -23,8 +22,6 @@ namespace Test
                 searchtest.RunPostiveTest(index);
             }
         }
-        [Test]
-        [Parallelizable]
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(0)]
