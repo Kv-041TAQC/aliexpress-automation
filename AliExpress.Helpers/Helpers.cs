@@ -25,8 +25,11 @@ namespace AliExpress.Helpers
         public IWebElement LoginSubmitButton => driver.FindElement(By.Id("fm-login-submit"));
 
         public IWebElement AdsCloseButton => driver.FindElement(By.XPath("//a[@data-role='layer-close']"));
-        // public IWebElement AdsCloseButton => driver.FindElement(By.XPath("/html/body/div[7]/div/div/a"));
+        
         public IWebElement GoToGlobalSiteLink => driver.FindElement(By.LinkText("Go to Global Site (English)"));
+
+        public IWebElement MyOrdersLink => driver.FindElement(By.LinkText("My Orders")); // TODO: change to click in the drop down menu
+        public IWebElement ShipmentAddressLink => driver.FindElement(By.LinkText("Shipping Address")); // TODO: change to something more adequate
 
 
 
@@ -64,15 +67,25 @@ namespace AliExpress.Helpers
             WaitForElement(SignInButton);
             SignInButton.Click();
             WaitForElement(driver.FindElement(By.Id(aliExpressLoginFormId)));
-            driver.SwitchTo().Frame(driver.FindElement(By.Id(aliExpressLoginFormId))); // change to lambda expression
+            driver.SwitchTo().Frame(driver.FindElement(By.Id(aliExpressLoginFormId))); // TODO: change to lambda expression or something cool
             WaitForElement(LoginField);
             LoginField.SendKeys(aliExpressLogin);
             WaitForElement(PasswordField);
             PasswordField.SendKeys(aliExpressPassword);
             WaitForElement(LoginSubmitButton);
             LoginSubmitButton.Click();
+            WaitForElement(MyOrdersLink);
+            MyOrdersLink.Click();
+            WaitForElement(ShipmentAddressLink);
+            ShipmentAddressLink.Click();
+
 
             // TODO: click my orders link
+            // <a href="//trade.aliexpress.com/orderList.htm?spm=2114.11010108.01010.4.16d4649bidxqVM" data-spm-anchor-id="2114.11010108.01010.4"><span class="order-icon entrance-icon" data-spm-anchor-id="2114.11010108.01010.i0.16d4649bidxqVM">&nbsp;</span> <span class="entrance-name flex-vertical middle-center">My Orders</span> </a>
+            // <a href="//trade.aliexpress.com/orderList.htm?spm=2114.11010108.01010.4.3503649b4YDP6z" data-spm-anchor-id="2114.11010108.01010.4"><span class="order-icon entrance-icon">&nbsp;</span> <span class="entrance-name flex-vertical middle-center" data-spm-anchor-id="2114.11010108.01010.i0.3503649b4YDP6z">My Orders</span> </a>
+            // <a href="http://ilogisticsaddress.aliexpress.com/addressList.htm">Shipping Address</a>
+
+
             // TODO: click shipping address menu
         }
 
