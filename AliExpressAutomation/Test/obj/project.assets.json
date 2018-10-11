@@ -5660,35 +5660,43 @@
     ]
   },
   "packageFolders": {
-    "/Users/llasapg/.nuget/packages/": {},
-    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "C:\\Users\\senin\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Test/Tests.csproj",
+      "projectUniqueName": "C:\\Users\\senin\\Desktop\\SoftServe\\aliexpress-automation\\AliExpressAutomation\\Test\\Tests.csproj",
       "projectName": "Tests",
-      "projectPath": "/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Test/Tests.csproj",
-      "packagesPath": "/Users/llasapg/.nuget/packages/",
-      "outputPath": "/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Test/obj",
+      "projectPath": "C:\\Users\\senin\\Desktop\\SoftServe\\aliexpress-automation\\AliExpressAutomation\\Test\\Tests.csproj",
+      "packagesPath": "C:\\Users\\senin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\senin\\Desktop\\SoftServe\\aliexpress-automation\\AliExpressAutomation\\Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/llasapg/.config/NuGet/NuGet.Config"
+        "C:\\Users\\senin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/Pages.csproj": {
-              "projectPath": "/Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/Pages.csproj"
+            "C:\\Users\\senin\\Desktop\\SoftServe\\aliexpress-automation\\AliExpressAutomation\\Pages\\Pages.csproj": {
+              "projectPath": "C:\\Users\\senin\\Desktop\\SoftServe\\aliexpress-automation\\AliExpressAutomation\\Pages\\Pages.csproj"
             }
           }
         }
@@ -5704,37 +5712,36 @@
         "dependencies": {
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
-            "version": "15.5.0"
+            "version": "[15.5.0, )"
+          },
+          "Microsoft.NETCore.App": {
+            "target": "Package",
+            "version": "[2.0.0, )",
+            "autoReferenced": true
           },
           "NUnit": {
             "target": "Package",
-            "version": "3.10.1"
+            "version": "[3.10.1, )"
           },
           "NUnit3TestAdapter": {
             "target": "Package",
-            "version": "3.10.0"
+            "version": "[3.10.0, )"
           },
           "Selenium.Chrome.WebDriver": {
             "target": "Package",
-            "version": "2.41.0"
+            "version": "[2.41.0, )"
           },
           "Selenium.Support": {
             "target": "Package",
-            "version": "3.14.0"
+            "version": "[3.14.0, )"
           },
           "Selenium.WebDriver": {
             "target": "Package",
-            "version": "3.14.0"
+            "version": "[3.14.0, )"
           },
           "Selenium.WebDriver.ChromeDriver": {
             "target": "Package",
-            "version": "2.42.0.1"
-          },
-          "Microsoft.NETCore.App": {
-            "suppressParent": "All",
-            "target": "Package",
-            "version": "2.0",
-            "autoReferenced": true
+            "version": "[2.42.0.1, )"
           }
         },
         "imports": [
