@@ -7,14 +7,13 @@ using System.Threading;
 namespace Test
 {
     [TestFixture]
-    [Parallelizable]
-    public class FirstAliTest
+    public class SearchStringPositiveTest
     {
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(0)]
         [TestCase(1)]
-        public void SearchStringPositiveTest(int index)
+        public void FirstSearchStringPositiveTest(int index)
         {
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
             {
@@ -22,11 +21,15 @@ namespace Test
                 searchtest.RunPostiveTest(index);
             }
         }
+    }
+    [TestFixture]
+    public class SearchStringNegativeTest
+    {
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(0)]
         [TestCase(1)]
-        public void SearchStringNegativeTest(int index)
+        public void FirstSearchStringNegativeTest(int index)
         {
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
             {
@@ -36,3 +39,4 @@ namespace Test
         }
     }
 }
+
