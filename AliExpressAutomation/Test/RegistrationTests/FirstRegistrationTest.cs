@@ -2,40 +2,43 @@ using NUnit.Framework;
 using System.IO;
 using OpenQA.Selenium.Chrome;
 using Pages.EvgenPages;
-using System.Threading;
 using OpenQA.Selenium;
 
 namespace Test
 {
     [TestFixture]
+    [Parallelizable]
     public class SearchStringPositiveTest
     {
         ChromeOptions options = new ChromeOptions();
-        [TestCase(0)]
-        public void FirstSearchStringPositiveTest(int index)
+        [Test]
+        public void FirstSearchStringPositiveTest()
         {
             options.PageLoadStrategy = PageLoadStrategy.None;
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(),options))
             {
                 var searchtest = new SearchStringPage(dr);
-                searchtest.RunPostiveTest(index);
+                searchtest.RunPostiveTest(0);
             }
         }
     }
     [TestFixture]
+    [Parallelizable]
     public class SearchStringNegativeTest
     {
         ChromeOptions options = new ChromeOptions();
-        [TestCase(0)]
-        public void FirstSearchStringNegativeTest(int index)
+        [Test]
+        public void FirstSearchStringNegativeTest()
         {
             options.PageLoadStrategy = PageLoadStrategy.None;
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(),options))
             {
                 var searchtest = new SearchStringPage(dr);
-                searchtest.RunNegativeTest(index);
+                searchtest.RunNegativeTest(0);
             }
         }
+
     }
+
 }
 
