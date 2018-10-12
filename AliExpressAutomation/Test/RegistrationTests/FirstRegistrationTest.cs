@@ -21,6 +21,16 @@ namespace Test
                 searchtest.RunPostiveTest(0);
             }
         }
+        [Test]
+        public void SecondSearchStringPositiveTest()
+        {
+            options.PageLoadStrategy = PageLoadStrategy.None;
+            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
+            {
+                var searchtest = new SearchStringPage(dr);
+                searchtest.RunPostiveTest(0);
+            }
+        }
     }
     [TestFixture]
     [Parallelizable]
@@ -37,6 +47,17 @@ namespace Test
                 searchtest.RunNegativeTest(0);
             }
         }
+        [Test]
+        public void SecondSearchStringNegativeTest()
+        {
+            options.PageLoadStrategy = PageLoadStrategy.None;
+            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
+            {
+                var searchtest = new SearchStringPage(dr);
+                searchtest.RunNegativeTest(1);
+            }
+        }
+
 
     }
 
