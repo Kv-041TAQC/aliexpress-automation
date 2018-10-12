@@ -1,5 +1,5 @@
-Pages/bin
-Pages/obj
-Test/bin
-Test/obj
-.vs
+**/Pages/bin
+**/Pages/obj
+**/Test/bin
+**/Test/obj
+**/.vs
