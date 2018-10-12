@@ -3,19 +3,19 @@ using System.IO;
 using OpenQA.Selenium.Chrome;
 using Pages.EvgenPages;
 using System.Threading;
+using OpenQA.Selenium;
 
 namespace Test
 {
     [TestFixture]
     public class SearchStringPositiveTest
     {
+        ChromeOptions options = new ChromeOptions();
         [TestCase(0)]
-        [TestCase(1)]
-        [TestCase(0)]
-        [TestCase(1)]
         public void FirstSearchStringPositiveTest(int index)
         {
-            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
+            options.PageLoadStrategy = PageLoadStrategy.None;
+            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(),options))
             {
                 var searchtest = new SearchStringPage(dr);
                 searchtest.RunPostiveTest(index);
@@ -25,13 +25,12 @@ namespace Test
     [TestFixture]
     public class SearchStringNegativeTest
     {
+        ChromeOptions options = new ChromeOptions();
         [TestCase(0)]
-        [TestCase(1)]
-        [TestCase(0)]
-        [TestCase(1)]
         public void FirstSearchStringNegativeTest(int index)
         {
-            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
+            options.PageLoadStrategy = PageLoadStrategy.None;
+            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(),options))
             {
                 var searchtest = new SearchStringPage(dr);
                 searchtest.RunNegativeTest(index);

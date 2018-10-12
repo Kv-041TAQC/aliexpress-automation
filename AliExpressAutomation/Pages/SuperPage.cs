@@ -84,8 +84,8 @@ namespace Pages
                 alijson.Countries = new string[] { "Ukraine", "Uganda", "StranaAgressor" };
                 alijson.Сurrencies = new string[] { "USD", "GRN", "EUR" };
                 alijson.Email = "Valid_Email";
-                alijson.ValidData = new string[] { "IPhone 6s", "Samsung Galaxy" };
-                alijson.InvalidData = new string[] { "Invalid_Data_One", "Invalid_Data_Two" };
+                alijson.ValidData = new string[] { "Iphone 7","Samsung Galaxy 8","MacBook Pro 13","JBL Go Mini","Xiaomi Redmi Note 5" };
+                alijson.InvalidData = new string[] { "iPhone 20XS Pro","Meizu Middle-14s","Samsung Galaxy-Useless","Asus ZinPone 3.14","Xiaomi mi Nein" };
             }
             using (FileStream fileSt = new FileStream(filename,FileMode.Open))
             {

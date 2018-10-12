@@ -36,7 +36,9 @@ namespace Pages.EvgenPages
         /// <param name="NumberOfTest">Number of test.</param>
         public void RunPostiveTest(int NumberOfTest)
         {
+            MaximizeWindow();
             NavigateToUrl("https://ru.aliexpress.com");
+            Thread.Sleep(1000);
             if(CloseAdvertising.Displayed)
                 Click(CloseAdvertising);
             InputCorrectData(NumberOfTest);
@@ -57,7 +59,9 @@ namespace Pages.EvgenPages
         /// <param name="NumberOfTest">Number of test.</param>
         public void RunNegativeTest(int NumberOfTest)
         {
+            MaximizeWindow();
             NavigateToUrl("https://ru.aliexpress.com");
+            Thread.Sleep(1000);
             if (CloseAdvertising.Displayed)
                 Click(CloseAdvertising);
             InputInvalidData(NumberOfTest);
