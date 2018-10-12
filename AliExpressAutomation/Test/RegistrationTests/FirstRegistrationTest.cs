@@ -11,54 +11,35 @@ namespace Test
     public class SearchStringPositiveTest
     {
         ChromeOptions options = new ChromeOptions();
-        [Test]
-        public void FirstSearchStringPositiveTest()
+        static int[] arr = new int[] { 1, 2, 3 };
+        [Test,TestCaseSource("arr")]
+        public void FirstSearchStringPositiveTest(int index)
         {
             options.PageLoadStrategy = PageLoadStrategy.None;
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(),options))
             {
                 var searchtest = new SearchStringPage(dr);
-                searchtest.RunPostiveTest(0);
+                searchtest.RunPostiveTest(index);
             }
         }
-        [Test]
-        public void SecondSearchStringPositiveTest()
-        {
-            options.PageLoadStrategy = PageLoadStrategy.None;
-            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
-            {
-                var searchtest = new SearchStringPage(dr);
-                searchtest.RunPostiveTest(0);
-            }
-        }
+
     }
     [TestFixture]
     [Parallelizable]
     public class SearchStringNegativeTest
     {
         ChromeOptions options = new ChromeOptions();
-        [Test]
-        public void FirstSearchStringNegativeTest()
+        static int[] arr = new int[] { 1, 2, 3 };
+        [Test, TestCaseSource("arr")]
+        public void FirstSearchStringNegativeTest(int index)
         {
             options.PageLoadStrategy = PageLoadStrategy.None;
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(),options))
             {
                 var searchtest = new SearchStringPage(dr);
-                searchtest.RunNegativeTest(0);
+                searchtest.RunNegativeTest(index);
             }
         }
-        [Test]
-        public void SecondSearchStringNegativeTest()
-        {
-            options.PageLoadStrategy = PageLoadStrategy.None;
-            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
-            {
-                var searchtest = new SearchStringPage(dr);
-                searchtest.RunNegativeTest(1);
-            }
-        }
-
-
     }
 
 }
