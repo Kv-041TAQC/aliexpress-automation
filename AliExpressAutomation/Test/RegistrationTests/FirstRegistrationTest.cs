@@ -11,7 +11,8 @@ namespace Test
     public class SearchStringPositiveTest
     {
         ChromeOptions options = new ChromeOptions();
-        static int[] arr = new int[] { 1, 2, 3 };
+        public static int[] arr = new int[] { 0, 1, 2 };
+
         [Test,TestCaseSource("arr")]
         public void FirstSearchStringPositiveTest(int index)
         {
@@ -29,7 +30,8 @@ namespace Test
     public class SearchStringNegativeTest
     {
         ChromeOptions options = new ChromeOptions();
-        static int[] arr = new int[] { 1, 2, 3 };
+        static int[] arr = new int[] { 0, 1, 2 };
+
         [Test, TestCaseSource("arr")]
         public void FirstSearchStringNegativeTest(int index)
         {
