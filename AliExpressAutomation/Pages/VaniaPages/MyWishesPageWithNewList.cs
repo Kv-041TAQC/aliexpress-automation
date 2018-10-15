@@ -9,17 +9,22 @@ namespace Pages.VaniaPages
 {
     public class MyWishesPageWithNewList : MyWishesPage
     {
+        #region ConstantAndButtonsAndFields
         protected readonly string buttonExit = "#userAccountInfo";
         protected readonly string chooseExit = "Выйти";
+        #endregion
 
-        public MyWishesPageWithNewList(IWebDriver driver) : base(driver)
-        {
-
-        }
-
+        #region FindWebElement
         protected IWebElement searchButtonExit
         {
             get { return driver.FindElement(By.CssSelector(iphoneCSSproduct1)); }
+        }
+        #endregion
+
+        #region Methods
+        public MyWishesPageWithNewList(IWebDriver driver) : base(driver)
+        {
+
         }
 
         public void MyWishesAddProductToList()
@@ -41,5 +46,6 @@ namespace Pages.VaniaPages
             SelectDropDown(searchButtonExit, chooseExit);
 
         }
+        #endregion
     }
 }

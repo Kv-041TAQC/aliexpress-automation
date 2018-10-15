@@ -9,12 +9,8 @@ namespace Pages.VaniaPages
 {
     public class SearchProductForWishes : SuperPage
     {
-        public SearchProductForWishes(IWebDriver driver) : base(driver)
-        {
 
-        }
-
-        #region ConstantIdButtonsAndFieldsForAddressPageEmployer
+        #region ConstantAndButtonsAndFields
         private readonly string iphoneCSSproduct1 = "#hs-list-items > li.list-item.list-item-first.util-clearfix.list-item-180 > div.right-block.util-clearfix > div > div.info.infoprice > div.add-to-wishlist > a";
         private readonly string iphoneCSSproduct2 = "#hs-list-items > li:nth-child(2) > div.right-block.util-clearfix > div > div.info.infoprice > div.add-to-wishlist > a";
         private readonly string iphoneCSSproduct3 = "#hs-list-items > li:nth-child(3) > div.right-block.util-clearfix > div > div.info.infoprice > div.add-to-wishlist > a";
@@ -22,7 +18,7 @@ namespace Pages.VaniaPages
 
         #endregion
 
-        #region FindWebElementFromIdForAddressPageEmployer
+        #region FindWebElement
         private IWebElement searchiphone6Sproduct1
         {
             get { return driver.FindElement(By.CssSelector(iphoneCSSproduct1)); }
@@ -44,7 +40,12 @@ namespace Pages.VaniaPages
         }
         #endregion
 
-        #region MethodOfAddressPageEmployer
+        #region Methods
+
+        public SearchProductForWishes(IWebDriver driver) : base(driver)
+        {
+
+        }
 
         public void EnterData()
         {

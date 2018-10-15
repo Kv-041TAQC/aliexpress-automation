@@ -8,6 +8,12 @@ namespace Pages.VaniaPages
 {
     public class MainPageAliexpressAutorized : MainPageAliexpress
     {
+        #region Methods
+        protected void InputCorrectData(int index)
+        {
+            SendText(SearchField, alijson.ValidData[index]);
+        }
+
         public MainPageAliexpressAutorized(IWebDriver dr) : base(dr)
         {
 
@@ -22,5 +28,6 @@ namespace Pages.VaniaPages
             Thread.Sleep(1000);
             return new SearchProductForWishes(driver);
         }
+        #endregion
     }
 }

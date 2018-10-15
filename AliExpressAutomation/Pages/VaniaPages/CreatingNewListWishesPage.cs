@@ -9,17 +9,12 @@ namespace Pages.VaniaPages
 {
     public class CreatingNewListWishesPage:SuperPage
     {
-        public CreatingNewListWishesPage(IWebDriver driver) : base(driver)
-        {
-
-        }
-
-        #region ConstantIdButtonsAndFieldsForAddressPageEmployer
+        #region ConstantButtonsAndFields
         private readonly string nameNewList = "#j-create-wishlist-dialog > div > div.ui-window-content > div > div.wish-list-name.js-tips > input";
         private readonly string buttonSave = "#j-create-wishlist-dialog > div > div.ui-window-btn > input.ui-button.ui-button-primary.ui-button-medium";
         #endregion
 
-        #region FindWebElementFromIdForAddressPageEmployer
+        #region FindWebElement
         private IWebElement searchNameNewList
         {
             get { return driver.FindElement(By.CssSelector(nameNewList)); }
@@ -32,7 +27,12 @@ namespace Pages.VaniaPages
 
         #endregion
 
-        #region MethodOfAddressPageEmployer
+        #region Method
+
+        public CreatingNewListWishesPage(IWebDriver driver) : base(driver)
+        {
+
+        }
 
         public void EnterDataTrue()
         {

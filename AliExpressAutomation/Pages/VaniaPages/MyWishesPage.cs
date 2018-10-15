@@ -10,7 +10,7 @@ namespace Pages.VaniaPages
     public class MyWishesPage : SuperPage
     {
 
-        #region ConstantIdButtonsAndFieldsForAddressPageEmployer
+        #region ConstantIdButtonsAndFields
         protected readonly string createNewListId = "switchWishListBtn";
         protected readonly string iphoneCSSproduct1 = "body > div.me-main.util-clearfix.wish-list > div.container > div.content > ul > li:nth-child(3) > div.action > a.me-icons.move.js-move";
         protected readonly string iphoneCSSproduct2 = "body > div.me-main.util-clearfix.wish-list > div.container > div.content > ul > li:nth-child(2) > div.action > a.me-icons.move.js-move";
@@ -20,12 +20,9 @@ namespace Pages.VaniaPages
         protected readonly string currentIphoneList = "body > div.me-main.util-clearfix.wish-list > div.me-left-nav-bar > div.left-nav-list > dl > dd:nth-child(2) > a > em";
         #endregion
 
-        public MyWishesPage(IWebDriver driver) : base(driver)
-        {
 
-        }
 
-        #region FindWebElementFromIdForAddressPageEmployer
+        #region FindWebElement
         protected IWebElement searchiphone6Sproduct1
         {
             get { return driver.FindElement(By.CssSelector(iphoneCSSproduct1)); }
@@ -52,6 +49,12 @@ namespace Pages.VaniaPages
         }
         #endregion
 
+        #region Methods
+        public MyWishesPage(IWebDriver driver) : base(driver)
+        {
+
+        }
+
         public CreatingNewListWishesPage MyWishesCreateList()
         {
             MaximizeWindow();
@@ -59,5 +62,6 @@ namespace Pages.VaniaPages
             Click(searchButtonCreateNewList);
             return new CreatingNewListWishesPage(driver);
         }
+        #endregion
     }
 }

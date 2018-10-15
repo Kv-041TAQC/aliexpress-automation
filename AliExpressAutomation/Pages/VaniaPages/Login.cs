@@ -10,13 +10,13 @@ namespace Pages.VaniaPages
 {
     public class Login : SuperPage
     {
-        #region ConstantIdButtonsAndFieldsForAddressPageEmployer
+        #region ConstantIdButtonsAndFields
         private readonly string emailLogin = "fm-login-id";
         private readonly string passwordLogin = "fm-login-password";
         private readonly string buttonSubmit = "fm-login-submit";
         #endregion
 
-        #region FindWebElementFromIdForAddressPageEmployer
+        #region FindWebElement
         private IWebElement searchEmailLogin
         {
             get { return driver.FindElement(By.Id(emailLogin)); }
@@ -33,7 +33,7 @@ namespace Pages.VaniaPages
         }
         #endregion
 
-        #region MethodOfAddressPageEmployer
+        #region Methods
 
         public Login(IWebDriver driver) : base(driver)
         {

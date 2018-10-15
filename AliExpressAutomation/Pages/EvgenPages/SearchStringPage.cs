@@ -15,18 +15,18 @@ namespace Pages.EvgenPages
         }
         #region Constants and WebElements
         private JsonHandlerClass currentjson;
-        protected IWebElement SearchField { get { return driver.FindElement(By.Id("search-key")); } }
-        protected IWebElement CloseAdvertising { get { return driver.FindElement(By.CssSelector("body > div.ui-window.ui-window-normal.ui-window-transition.ui-newuser-layer-dialog > div > div > a")); }}
-        protected IWebElement SearchButton{ get { return driver.FindElement(By.CssSelector("#form-searchbar > div.searchbar-operate-box > input")); }}
-        protected IWebElement WarningWindow{ get { return driver.FindElement(By.CssSelector("#main-wrap > p > span")); } }
+        private IWebElement SearchField { get { return driver.FindElement(By.Id("search-key")); } }
+        private IWebElement CloseAdvertising { get { return driver.FindElement(By.CssSelector("body > div.ui-window.ui-window-normal.ui-window-transition.ui-newuser-layer-dialog > div > div > a")); }}
+        private IWebElement SearchButton{ get { return driver.FindElement(By.CssSelector("#form-searchbar > div.searchbar-operate-box > input")); }}
+        private IWebElement WarningWindow{ get { return driver.FindElement(By.CssSelector("#main-wrap > p > span")); } }
         private bool result = false;
         #endregion
         #region Methods for test
-        protected void InputCorrectData(int index)
+        private void InputCorrectData(int index)
         {
             SendText(SearchField, currentjson.ValidData[index]);
         }
-        protected void InputInvalidData(int index)
+        private void InputInvalidData(int index)
         {
             SendText(SearchField, currentjson.InvalidData[index]);
         }
