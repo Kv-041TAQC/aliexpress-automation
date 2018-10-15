@@ -11,3 +11,16 @@
 /Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/obj/Debug/netcoreapp2.0/Pages.AssemblyInfo.cs
 /Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/obj/Debug/netcoreapp2.0/Pages.dll
 /Users/llasapg/Desktop/AliProject/aliexpress-automation/AliExpressAutomation/Pages/obj/Debug/netcoreapp2.0/Pages.pdb
+C:\Users\senin\Desktop\SoftServe\aliexpress-automation\AliExpressAutomation\Pages\bin\Debug\netcoreapp2.0\NUnit3.TestAdapter.dll
+C:\Users\senin\Desktop\SoftServe\aliexpress-automation\AliExpressAutomation\Pages\bin\Debug\netcoreapp2.0\NUnit3.TestAdapter.pdb
+C:\Users\senin\Desktop\SoftServe\aliexpress-automation\AliExpressAutomation\Pages\bin\Debug\netcoreapp2.0\nunit.engine.netstandard.dll
+C:\Users\senin\Desktop\SoftServe\aliexpress-automation\AliExpressAutomation\Pages\bin\Debug\netcoreapp2.0\Mono.Cecil.dll
+C:\Users\senin\Desktop\SoftServe\aliexpress-automation\AliExpressAutomation\Pages\bin\Debug\netcoreapp2.0\Pages.deps.json
+C:\Users\senin\Desktop\SoftServe\aliexpress-automation\AliExpressAutomation\Pages\bin\Debug\netcoreapp2.0\Pages.dll
+C:\Users\senin\Desktop\SoftServe\aliexpress-automation\AliExpressAutomation\Pages\bin\Debug\netcoreapp2.0\Pages.pdb
+C:\Users\senin\Desktop\SoftServe\aliexpress-automation\AliExpressAutomation\Pages\obj\Debug\netcoreapp2.0\Pages.csprojResolveAssemblyReference.cache
+C:\Users\senin\Desktop\SoftServe\aliexpress-automation\AliExpressAutomation\Pages\obj\Debug\netcoreapp2.0\Pages.csproj.CoreCompileInputs.cache
+C:\Users\senin\Desktop\SoftServe\aliexpress-automation\AliExpressAutomation\Pages\obj\Debug\netcoreapp2.0\Pages.AssemblyInfoInputs.cache
+C:\Users\senin\Desktop\SoftServe\aliexpress-automation\AliExpressAutomation\Pages\obj\Debug\netcoreapp2.0\Pages.AssemblyInfo.cs
+C:\Users\senin\Desktop\SoftServe\aliexpress-automation\AliExpressAutomation\Pages\obj\Debug\netcoreapp2.0\Pages.dll
+C:\Users\senin\Desktop\SoftServe\aliexpress-automation\AliExpressAutomation\Pages\obj\Debug\netcoreapp2.0\Pages.pdb

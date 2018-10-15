@@ -20,7 +20,6 @@
     <Folder Include="KostiaPages\" />
     <Folder Include="VasylPages\" />
     <Folder Include="VaniaPages\" />
-    <Folder Include="YuraPages\" />
     <Folder Include="HelpClasses\" />
   </ItemGroup>
 

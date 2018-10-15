@@ -51,10 +51,7 @@
           "System.Runtime.InteropServices.RuntimeInformation": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.3/Microsoft.DotNet.InternalAbstractions.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "lib/netstandard1.3/Microsoft.DotNet.InternalAbstractions.dll": {}
         }
       },
       "Microsoft.NETCore.Targets/1.1.0": {},
@@ -94,18 +91,12 @@
           "System.Xml.XmlDocument": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.3/Newtonsoft.Json.dll": {
-            "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.3.21018"
-          }
+          "lib/netstandard1.3/Newtonsoft.Json.dll": {}
         }
       },
       "NUnit/3.10.1": {
         "runtime": {
-          "lib/netstandard2.0/nunit.framework.dll": {
-            "assemblyVersion": "3.10.1.0",
-            "fileVersion": "3.10.1.0"
-          }
+          "lib/netstandard2.0/nunit.framework.dll": {}
         }
       },
       "NUnit3TestAdapter/3.10.0": {
@@ -132,10 +123,7 @@
           "Selenium.WebDriver": "3.14.0"
         },
         "runtime": {
-          "lib/netstandard2.0/WebDriver.Support.dll": {
-            "assemblyVersion": "3.14.0.0",
-            "fileVersion": "3.14.0.0"
-          }
+          "lib/netstandard2.0/WebDriver.Support.dll": {}
         }
       },
       "Selenium.WebDriver/3.14.0": {
@@ -143,10 +131,7 @@
           "Newtonsoft.Json": "10.0.3"
         },
         "runtime": {
-          "lib/netstandard2.0/WebDriver.dll": {
-            "assemblyVersion": "3.14.0.0",
-            "fileVersion": "3.14.0.0"
-          }
+          "lib/netstandard2.0/WebDriver.dll": {}
         }
       },
       "Selenium.WebDriver.ChromeDriver/2.42.0.1": {},
@@ -600,10 +585,7 @@
           "System.Xml.XmlDocument": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.6.24705.1"
-          }
+          "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       }
     }

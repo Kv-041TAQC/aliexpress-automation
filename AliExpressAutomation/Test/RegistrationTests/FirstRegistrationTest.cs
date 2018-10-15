@@ -1,38 +1,30 @@
+
 using NUnit.Framework;
 using System.IO;
 using OpenQA.Selenium.Chrome;
+using Pages.YuraPages;
 using Pages.EvgenPages;
-using System.Threading;
 
 namespace Test
 {
     [TestFixture]
-    [Parallelizable]
     public class FirstAliTest
     {
-        [TestCase(0)]
-        [TestCase(1)]
-        [TestCase(0)]
-        [TestCase(1)]
-        public void SearchStringPositiveTest(int index)
+        public class Test_Yura
         {
-            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
+            [Test]
+            public void DifferentCurrency()
             {
-                var searchtest = new SearchStringPage(dr);
-                searchtest.RunPostiveTest(index);
+                using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
+                {
+                    var mainPage = new MainPage(dr);
+                    var searchPage = mainPage.NextPage();
+                    var productinfo = searchPage.NextPage();
+                    var cartPage = productinfo.NextPage();
+                    cartPage.RemoveCart();
+                }
             }
-        }
-        [TestCase(0)]
-        [TestCase(1)]
-        [TestCase(0)]
-        [TestCase(1)]
-        public void SearchStringNegativeTest(int index)
-        {
-            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
-            {
-                var searchtest = new SearchStringPage(dr);
-                searchtest.RunNegativeTest(index);
-            }
+
         }
     }
 }
