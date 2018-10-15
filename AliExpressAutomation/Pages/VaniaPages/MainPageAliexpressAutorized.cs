@@ -15,6 +15,7 @@ namespace Pages.VaniaPages
 
         public SearchProductForWishes SearchProduct()
         {
+            MaximizeWindow();
             InputCorrectData(0);
             Thread.Sleep(1000);
             Click(SearchButton);

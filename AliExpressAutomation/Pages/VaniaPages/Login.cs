@@ -51,8 +51,8 @@ namespace Pages.VaniaPages
 
         public MainPageAliexpressAutorized LoginAccount()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(drv => drv.FindElement(By.Id(buttonSubmit)));
+            MaximizeWindow();
+            Thread.Sleep(2000);
             EnterData();
             Click(searchButtonSubmit);
             return new MainPageAliexpressAutorized(driver);

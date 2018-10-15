@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace Pages.VaniaPages
 {
@@ -47,8 +48,8 @@ namespace Pages.VaniaPages
 
         public MyWishesPageWithNewList CreateNewList(bool correctData)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(drv => drv.FindElement(By.CssSelector(buttonSave)));
+            MaximizeWindow();
+            Thread.Sleep(2000);
             if (correctData)
                 EnterDataTrue();
             else

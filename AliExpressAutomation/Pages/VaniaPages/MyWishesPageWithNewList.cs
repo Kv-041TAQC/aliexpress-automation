@@ -24,8 +24,8 @@ namespace Pages.VaniaPages
 
         public void MyWishesAddProductToList()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(drv => drv.FindElement(By.CssSelector(buttonMyWishesCSS)));
+            MaximizeWindow();
+            Thread.Sleep(2000);
             Click(searchiphone6Sproduct1);
             SelectDropDown(searchiphone6Sproduct1, newListName);
             Thread.Sleep(2000);

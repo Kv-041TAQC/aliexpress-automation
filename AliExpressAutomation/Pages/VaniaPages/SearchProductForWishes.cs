@@ -60,8 +60,8 @@ namespace Pages.VaniaPages
 
         public MyWishesPage AddProductToWishes()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(drv => drv.FindElement(By.Id(buttonMyWishesCSS)));
+            MaximizeWindow();
+            Thread.Sleep(2000);
             EnterData();
             Click(searchbuttonMyWishes);
             return new MyWishesPage(driver);

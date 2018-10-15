@@ -29,11 +29,12 @@ namespace Pages.VaniaPages
 
         public Login MainPageGoToLogin()
         {
+            MaximizeWindow();
             NavigateToUrl("https://ru.aliexpress.com");
+            Thread.Sleep(7000);
             if (CloseAdvertising.Displayed)
                 Click(CloseAdvertising);
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(drv => drv.FindElement(By.CssSelector(buttonLogin)));
+            Thread.Sleep(2000);
             Click(searchButtonLogin);
             return new Login(driver);
         }

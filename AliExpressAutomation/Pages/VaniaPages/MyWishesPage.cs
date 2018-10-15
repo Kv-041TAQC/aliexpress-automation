@@ -54,8 +54,8 @@ namespace Pages.VaniaPages
 
         public CreatingNewListWishesPage MyWishesCreateList()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(drv => drv.FindElement(By.CssSelector(buttonMyWishesCSS)));
+            MaximizeWindow();
+            Thread.Sleep(2000);
             Click(searchButtonCreateNewList);
             return new CreatingNewListWishesPage(driver);
         }
