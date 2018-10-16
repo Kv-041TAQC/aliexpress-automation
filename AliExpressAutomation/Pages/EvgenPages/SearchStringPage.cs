@@ -15,14 +15,14 @@ namespace Pages.EvgenPages
         }
         #region Constants and WebElements
         private JsonHandlerClass currentjson;
-        private IWebElement SearchField { get { return driver.FindElement(By.Id("search-key")); } }
+        protected IWebElement SearchField { get { return driver.FindElement(By.Id("search-key")); } }
         private IWebElement CloseAdvertising { get { return driver.FindElement(By.CssSelector("body > div.ui-window.ui-window-normal.ui-window-transition.ui-newuser-layer-dialog > div > div > a")); }}
-        private IWebElement SearchButton{ get { return driver.FindElement(By.CssSelector("#form-searchbar > div.searchbar-operate-box > input")); }}
+        protected IWebElement SearchButton{ get { return driver.FindElement(By.CssSelector("#form-searchbar > div.searchbar-operate-box > input")); }}
         private IWebElement WarningWindow{ get { return driver.FindElement(By.CssSelector("#main-wrap > p > span")); } }
         private bool result = false;
         #endregion
         #region Methods for test
-        private void InputCorrectData(int index)
+        protected void InputCorrectData(int index)
         {
             SendText(SearchField, currentjson.ValidData[index]);
         }
@@ -37,7 +37,8 @@ namespace Pages.EvgenPages
         public void RunPostiveTest(int NumberOfTest)
         {
             NavigateToUrl("https://ru.aliexpress.com");
-            if (CloseAdvertising.Displayed)
+            Thread.Sleep(2000);
+            if(CloseAdvertising.Displayed)
                 Click(CloseAdvertising);
             InputCorrectData(NumberOfTest);
             Thread.Sleep(1000);
@@ -58,6 +59,7 @@ namespace Pages.EvgenPages
         public void RunNegativeTest(int NumberOfTest)
         {
             NavigateToUrl("https://ru.aliexpress.com");
+            Thread.Sleep(2000);
             if (CloseAdvertising.Displayed)
                 Click(CloseAdvertising);
             InputInvalidData(NumberOfTest);
@@ -69,4 +71,3 @@ namespace Pages.EvgenPages
         #endregion
     }
 }
-//<input type="submit" class="search-button" value="">
