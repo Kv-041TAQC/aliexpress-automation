@@ -57,8 +57,7 @@ namespace Pages.VaniaPages
 
         public CreatingNewListWishesPage MyWishesCreateList()
         {
-            MaximizeWindow();
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             Click(searchButtonCreateNewList);
             return new CreatingNewListWishesPage(driver);
         }

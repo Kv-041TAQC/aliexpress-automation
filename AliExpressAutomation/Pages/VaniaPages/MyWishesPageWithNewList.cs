@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Pages.VaniaPages
     {
         #region ConstantAndButtonsAndFields
         protected readonly string buttonExit = "#userAccountInfo";
+        protected readonly string buttonNewList = "# otherWishList > li > a";
         protected readonly string chooseExit = "Выйти";
         #endregion
 
@@ -18,6 +20,11 @@ namespace Pages.VaniaPages
         protected IWebElement searchButtonExit
         {
             get { return driver.FindElement(By.CssSelector(iphoneCSSproduct1)); }
+        }
+
+        protected IWebElement searchAddToNewList
+        {
+            get { return driver.FindElement(By.CssSelector(buttonNewList)); }
         }
         #endregion
 
@@ -29,22 +36,23 @@ namespace Pages.VaniaPages
 
         public void MyWishesAddProductToList()
         {
-            MaximizeWindow();
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             Click(searchiphone6Sproduct1);
-            SelectDropDown(searchiphone6Sproduct1, newListName);
-            Thread.Sleep(2000);
-            Click(searchiphone6Sproduct2);
-            SelectDropDown(searchiphone6Sproduct2, newListName);
-            Thread.Sleep(2000);
-            Click(searchiphone6Sproduct3);
-            SelectDropDown(searchiphone6Sproduct3, newListName);
-            Thread.Sleep(2000);
-            Click(searchCurrentIphoneList);
+            Thread.Sleep(3000);
+            Click(searchAddToNewList);
+            //Thread.Sleep(5000);
+            //Click(searchiphone6Sproduct2);
+            //SelectDropDown(searchiphone6Sproduct2, newListName);
+            //Thread.Sleep(5000);
+            //Click(searchiphone6Sproduct3);
+            //SelectDropDown(searchiphone6Sproduct3, newListName);
+            //Thread.Sleep(5000);
+            //Click(searchCurrentIphoneList);
             Thread.Sleep(7000);
             Click(searchButtonExit);
+            Thread.Sleep(3000);
             SelectDropDown(searchButtonExit, chooseExit);
-
+            Assert.Pass();
         }
         #endregion
     }

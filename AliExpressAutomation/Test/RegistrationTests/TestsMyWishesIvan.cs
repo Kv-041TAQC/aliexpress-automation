@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Pages.VaniaPages;
 using System;
@@ -14,12 +15,12 @@ namespace Tests.RegistrationTests
         [Test]
         public void PositiveTestMyWishes()
         {
-            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
+            ChromeOptions options = new ChromeOptions();
+            options.PageLoadStrategy = PageLoadStrategy.None;
+            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(),options))
             {
                 var mainPageAliexpress = new MainPageAliexpress(dr);
-                var login = mainPageAliexpress.MainPageGoToLogin();
-                var mainPageAliexpressAutorized = login.LoginAccount();
-                var searchProductForWishes = mainPageAliexpressAutorized.SearchProduct();
+                var searchProductForWishes = mainPageAliexpress.MainPageGoToLogin();
                 var myWishesPage = searchProductForWishes.AddProductToWishes();
                 var creatingNewListWishesPage = myWishesPage.MyWishesCreateList();
                 var myWishesPageWithNewList = creatingNewListWishesPage.CreateNewList(true);

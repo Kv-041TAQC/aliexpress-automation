@@ -48,7 +48,6 @@ namespace Pages.VaniaPages
 
         public MyWishesPageWithNewList CreateNewList(bool correctData)
         {
-            MaximizeWindow();
             Thread.Sleep(2000);
             if (correctData)
                 EnterDataTrue();

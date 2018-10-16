@@ -47,23 +47,15 @@ namespace Pages.VaniaPages
 
         }
 
-        public void EnterData()
-        {
-            Click(searchiphone6Sproduct1);
-            Thread.Sleep(1000);
-            Click(searchiphone6Sproduct2);
-            Thread.Sleep(1000);
-            Click(searchiphone6Sproduct3);
-            Thread.Sleep(1000);
-
-        }
-
-
         public MyWishesPage AddProductToWishes()
         {
-            MaximizeWindow();
-            Thread.Sleep(2000);
-            EnterData();
+            Thread.Sleep(4000);
+            Click(searchiphone6Sproduct1);
+            //Thread.Sleep(4000);
+            //Click(searchiphone6Sproduct2);
+            //Thread.Sleep(4000);
+            //Click(searchiphone6Sproduct3);
+            Thread.Sleep(4000);
             Click(searchbuttonMyWishes);
             return new MyWishesPage(driver);
         }
