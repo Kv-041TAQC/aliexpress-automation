@@ -7,20 +7,21 @@ using System.Threading;
 
 namespace Pages.VaniaPages
 {
-    public class CreatingNewListWishesPage:SuperPage
+    public class CreatingNewListWishesPage : SuperPage
     {
         #region ConstantButtonsAndFields
         private readonly string nameNewList = "#j-create-wishlist-dialog > div > div.ui-window-content > div > div.wish-list-name.js-tips > input";
         private readonly string buttonSave = "#j-create-wishlist-dialog > div > div.ui-window-btn > input.ui-button.ui-button-primary.ui-button-medium";
+        protected readonly string newListName = "IPhone 6s";
         #endregion
 
         #region FindWebElement
-        private IWebElement searchNameNewList
+        private IWebElement NameNewList
         {
             get { return driver.FindElement(By.CssSelector(nameNewList)); }
         }
 
-        private IWebElement searchButtonSave
+        private IWebElement ButtonSave
         {
             get { return driver.FindElement(By.CssSelector(buttonSave)); }
         }
@@ -36,14 +37,14 @@ namespace Pages.VaniaPages
 
         public void EnterDataTrue()
         {
-            searchNameNewList.Clear();
-            SendText(searchNameNewList, alijson.Wishes[0]);          
+            NameNewList.Clear();
+            SendText(NameNewList, newListName);
         }
 
         public void EnterDataFalse()
         {
-            searchNameNewList.Clear();
-            SendText(searchNameNewList, alijson.Wishes[1]);
+            NameNewList.Clear();
+            SendText(NameNewList, alijson.Wishes[1]);
         }
 
         public MyWishesPageWithNewList CreateNewList(bool correctData)
@@ -53,7 +54,7 @@ namespace Pages.VaniaPages
                 EnterDataTrue();
             else
                 EnterDataFalse();
-            Click(searchButtonSave);
+            Click(ButtonSave);
             return new MyWishesPageWithNewList(driver);
         }
         #endregion

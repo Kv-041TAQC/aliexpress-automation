@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace Pages.VaniaPages
 {
-    public class MainPageAliexpress: SuperPage
+    public class MainPageAliexpress : SuperPage
     {
         #region ConstantIdButtonsAndFields
         private readonly string urlAliexpress = "https://ru.aliexpress.com";
@@ -16,41 +16,46 @@ namespace Pages.VaniaPages
         private readonly string emailLogin = "#fm-login-id";
         private readonly string passwordLogin = "#fm-login-password";
         private readonly string buttonSubmit = "#fm-login-submit";
+        private readonly string CssCloseAdvertising = "body > div.ui-window.ui-window-normal.ui-window-transition.ui-newuser-layer-dialog > div > div > a";
+        private readonly string CssSearchButton = "#search-key";
+        private readonly string CssSearchField = "#form-searchbar > div.searchbar-operate-box > input";
         private const string aliExpressLoginFormId = "alibaba-login-box";
+        private const string email = "i.v.zaichenko70@gmail.com";
+        private const string password = "dfyzdfyz70";
         #endregion
 
         #region SearchWebElement
-        protected IWebElement searchButtonLogin
+        protected IWebElement ButtonLogin
         {
             get { return driver.FindElement(By.CssSelector(buttonLogin)); }
         }
 
         protected IWebElement CloseAdvertising
         {
-            get { return driver.FindElement(By.CssSelector("body > div.ui-window.ui-window-normal.ui-window-transition.ui-newuser-layer-dialog > div > div > a")); }
+            get { return driver.FindElement(By.CssSelector(CssCloseAdvertising)); }
         }
 
         protected IWebElement SearchButton
         {
-            get { return driver.FindElement(By.CssSelector("#search-key")); }
+            get { return driver.FindElement(By.CssSelector(CssSearchButton)); }
         }
 
         protected IWebElement SearchField
         {
-            get { return driver.FindElement(By.CssSelector("#form-searchbar > div.searchbar-operate-box > input")); }
+            get { return driver.FindElement(By.CssSelector(CssSearchField)); }
         }
 
-        private IWebElement searchEmailLogin
+        private IWebElement EmailLogin
         {
             get { return driver.FindElement(By.CssSelector(emailLogin)); }
         }
 
-        private IWebElement searchPasswordLogin
+        private IWebElement PasswordLogin
         {
             get { return driver.FindElement(By.CssSelector(passwordLogin)); }
         }
 
-        private IWebElement searchButtonSubmit
+        private IWebElement ButtonSubmit
         {
             get { return driver.FindElement(By.CssSelector(buttonSubmit)); }
         }
@@ -66,33 +71,23 @@ namespace Pages.VaniaPages
         {
             MaximizeWindow();
             NavigateToUrl(urlAliexpress);
-            Thread.Sleep(30000);
-            try
-            {
-                if (CloseAdvertising.Displayed)
-                    Click(CloseAdvertising);
-            }
-            catch { }
+            Thread.Sleep(15000);
+            if (CloseAdvertising.Displayed)
+                Click(CloseAdvertising);
             Thread.Sleep(2000);
-            Click(searchButtonLogin);
-            Thread.Sleep(7000);
+            Click(ButtonLogin);
+            Thread.Sleep(5000);
             driver.SwitchTo().Frame(driver.FindElement(By.Id(aliExpressLoginFormId)));
-            searchEmailLogin.Clear();
-            searchEmailLogin.Click();
-            SendText(searchEmailLogin, "i.v.zaichenko70@gmail.com");
-            Thread.Sleep(3000);
-            searchPasswordLogin.Clear();
-            searchPasswordLogin.Click();
-            SendText(searchPasswordLogin, "dfyzdfyz70");
-            Thread.Sleep(3000);
-            Click(searchButtonSubmit);
-            Thread.Sleep(10000);
-            try
-            {
-                if (CloseAdvertising.Displayed)
-                    Click(CloseAdvertising);
-            }
-            catch { }
+            EmailLogin.Clear();
+            SendText(EmailLogin, email);
+            Thread.Sleep(1000);
+            PasswordLogin.Clear();
+            SendText(PasswordLogin, password);
+            Thread.Sleep(1000);
+            Click(ButtonSubmit);
+            Thread.Sleep(5000);
+            if (CloseAdvertising.Displayed)
+                Click(CloseAdvertising);
             Thread.Sleep(5000);
             SendText(SearchButton, alijson.ValidData[0]);
             Thread.Sleep(2000);

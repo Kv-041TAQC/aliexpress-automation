@@ -11,20 +11,26 @@ namespace Pages.VaniaPages
     public class MyWishesPageWithNewList : MyWishesPage
     {
         #region ConstantAndButtonsAndFields
-        protected readonly string buttonExit = "#userAccountInfo";
-        protected readonly string buttonNewList = "# otherWishList > li > a";
-        protected readonly string chooseExit = "Выйти";
+        protected readonly string buttonChoosingList = "#otherWishList > li > a";
+        protected readonly string addToSomeList = "body > div.me-main.util-clearfix.wish-list > div.container > div.content > ul > li > div.action > a.me-icons.move.js-move";
+        protected readonly string goToCreatedList = "body > div.me-main.util-clearfix.wish-list > div.me-left-nav-bar > div.left-nav-list > dl > dd:nth-child(2) > a > em";
         #endregion
 
         #region FindWebElement
-        protected IWebElement searchButtonExit
+
+        protected IWebElement ButtonAddToChoosingList
         {
-            get { return driver.FindElement(By.CssSelector(iphoneCSSproduct1)); }
+            get { return driver.FindElement(By.CssSelector(buttonChoosingList)); }
         }
 
-        protected IWebElement searchAddToNewList
+        protected IWebElement ButtonAddToSomeList
         {
-            get { return driver.FindElement(By.CssSelector(buttonNewList)); }
+            get { return driver.FindElement(By.CssSelector(addToSomeList)); }
+        }
+
+        protected IWebElement ButtonGoToCreatedList
+        {
+            get { return driver.FindElement(By.CssSelector(goToCreatedList)); }
         }
         #endregion
 
@@ -36,22 +42,13 @@ namespace Pages.VaniaPages
 
         public void MyWishesAddProductToList()
         {
-            Thread.Sleep(5000);
-            Click(searchiphone6Sproduct1);
             Thread.Sleep(3000);
-            Click(searchAddToNewList);
-            //Thread.Sleep(5000);
-            //Click(searchiphone6Sproduct2);
-            //SelectDropDown(searchiphone6Sproduct2, newListName);
-            //Thread.Sleep(5000);
-            //Click(searchiphone6Sproduct3);
-            //SelectDropDown(searchiphone6Sproduct3, newListName);
-            //Thread.Sleep(5000);
-            //Click(searchCurrentIphoneList);
+            Click(ButtonAddToSomeList);
+            Thread.Sleep(3000);
+            Click(ButtonAddToChoosingList);
+            Thread.Sleep(3000);
+            Click(ButtonGoToCreatedList);
             Thread.Sleep(7000);
-            Click(searchButtonExit);
-            Thread.Sleep(3000);
-            SelectDropDown(searchButtonExit, chooseExit);
             Assert.Pass();
         }
         #endregion
