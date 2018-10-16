@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using Pages.EvgenPages;
@@ -23,9 +24,12 @@ namespace Pages.YuraPages
         }
         public void RemoveCart()
         {
+            Thread.Sleep(5000);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(7));
+            Thread.Sleep(5000);
             Click(RemoveAll);
         }
+       
     }
 
 }

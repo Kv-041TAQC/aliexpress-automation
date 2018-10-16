@@ -21,9 +21,9 @@ namespace Pages.YuraPages
         public readonly string CssSelectorViewShopCard = "body > div.ui-window.ui-window-normal.ui-window-transition.ui-add-shopcart-dialog > div > div.ui-feedback.ui-feedback-simple > div > div > div > a";
         public readonly string idMenuCurrency = "#switcher-info > span.currency";
         public readonly string CssSelectorCountry = "#nav-global > div.ng-item.ng-switcher.active > div > div > div.switcher-shipto.item.util-clearfix > div > div.link-fake-selector > div > span > span";
-        public readonly string NameCountry = "Spain";
+        public readonly string NameCountry = "#nav-global > div.ng-item.ng-switcher.active > div > div > div.switcher-shipto.item.util-clearfix > div > div.list-container > a:nth-child(3) > span > span";
         public readonly string CssSelectorCurrency = "#nav-global > div.ng-item.ng-switcher.active > div > div > div.switcher-currency.item.util-clearfix > div > span > a";
-        public readonly string Currency = "GBP";
+        public readonly string Currency = "#nav-global > div.ng-item.ng-switcher.active > div > div > div.switcher-currency.item.util-clearfix > div > ul > li:nth-child(9) > a";
         public readonly string CssSelectorButtonSave = "#nav-global > div.ng-item.ng-switcher.active > div > div > div.switcher-btn.item.util-clearfix > button";
         #endregion
 
@@ -76,39 +76,59 @@ namespace Pages.YuraPages
         {
             get { return driver.FindElement(By.CssSelector(CssSelectorViewShopCard)); }
         }
+        public IWebElement buttonCurrency
+        {
+            get { return driver.FindElement(By.CssSelector(Currency)); }
+        }
+
+        public IWebElement buttonCountry
+        {
+            get { return driver.FindElement(By.CssSelector(NameCountry)); }
+        }
         #endregion
 
         #region Methods for test
         public ShoppingCartPage NextPage()
         {
+            Thread.Sleep(5000);
             foreach (string handle in driver.WindowHandles)
             {
                 driver.SwitchTo().Window(handle);
             }
+            Thread.Sleep(5000);
             Click(ClickBundle);
+            Thread.Sleep(5000);
             Click(ClickColour);
+            Thread.Sleep(5000);
             //Click(ClickQantity);
             Click(buttonAddtoCard);
+            Thread.Sleep(5000);
             Click(buttonContinueShoping);
+            Thread.Sleep(5000);
+
 
             Click(MenuCurrency);
+            Thread.Sleep(5000);
             Click(DropListCounty);
             Thread.Sleep(10000);
-            SelectDropDown(DropListCounty, NameCountry);
+            Click(buttonCountry);
+            Thread.Sleep(5000);
             Click(DropListCurrency);
-            Thread.Sleep(10000);
-            SelectDropDown(DropListCurrency, Currency);
+            Thread.Sleep(5000);
+            Click(buttonCurrency);
+            Thread.Sleep(5000);
             Click(buttonSave);
-            Thread.Sleep(10000);
+            Thread.Sleep(5000);
 
             Click(ClickBundle);
+            Thread.Sleep(5000);
             Click(ClickColour);
             //Click(ClickQantity);
-            Thread.Sleep(3000);
+            Thread.Sleep(5000);
             Click(buttonAddtoCard);
-            Thread.Sleep(3000);
+            Thread.Sleep(5000);
             Click(buttonViewShopInfo);
-
+            Thread.Sleep(5000);
 
             return new ShoppingCartPage(driver);
 

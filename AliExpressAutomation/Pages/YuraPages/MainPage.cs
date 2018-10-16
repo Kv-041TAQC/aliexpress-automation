@@ -37,18 +37,16 @@ namespace Pages.YuraPages
         public SearchPage NextPage()
         {
             MaximizeWindow();
-
             NavigateToUrl("https://ru.aliexpress.com");
+            Thread.Sleep(5000);
             if (CloseAdvertising.Displayed)
                 Click(CloseAdvertising);
             Thread.Sleep(3000);
             Click(buttonLanguage);
-            
+            Thread.Sleep(5000);
             InputCorrectData(0);
-            Thread.Sleep(1000);
+            Thread.Sleep(5000); 
             Click(SearchButton);
-            Thread.Sleep(1000);
-
             Thread.Sleep(5000);
             return new SearchPage(driver);
         }  

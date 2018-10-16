@@ -23,6 +23,7 @@ namespace Pages.YuraPages
 
         public MyProductInfoPage NextPage()
         {
+            Thread.Sleep(5000);
             Click(ClickImage);
             Thread.Sleep(2000);
             return new MyProductInfoPage(driver);
