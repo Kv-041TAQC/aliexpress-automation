@@ -2,32 +2,46 @@ using NUnit.Framework;
 using System.IO;
 using OpenQA.Selenium.Chrome;
 using Pages.EvgenPages;
+using OpenQA.Selenium;
 
 namespace Test
 {
     [TestFixture]
-    public class FirstAliTest
+    [Parallelizable]
+    public class SearchStringPositiveTest
     {
-        [Test]
-        [Parallelizable]
-        public void SearchStringPositiveTest()
+        ChromeOptions options = new ChromeOptions();
+        public static int[] arr = new int[] { 0, 1, 2 };
+
+        [Test,TestCaseSource("arr")]
+        public void FirstSearchStringPositiveTest(int index)
         {
-            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
+            options.PageLoadStrategy = PageLoadStrategy.None;
+            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(),options))
             {
                 var searchtest = new SearchStringPage(dr);
-                searchtest.RunPostiveTest(0);
-                searchtest.RunPostiveTest(1);
+                searchtest.RunPostiveTest(index);
             }
         }
-        [Test]
-        [Parallelizable]
-        public void SearchStringNegativeTest()
+
+    }
+    [TestFixture]
+    [Parallelizable]
+    public class SearchStringNegativeTest
+    {
+        ChromeOptions options = new ChromeOptions();
+        static int[] arr = new int[] { 0, 1, 2 };
+
+        [Test, TestCaseSource("arr")]
+        public void FirstSearchStringNegativeTest(int index)
         {
-            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
+            options.PageLoadStrategy = PageLoadStrategy.None;
+            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(),options))
             {
                 var searchtest = new SearchStringPage(dr);
-                searchtest.RunNegativeTest(0);
+                searchtest.RunNegativeTest(index);
             }
         }
     }
 }
+
