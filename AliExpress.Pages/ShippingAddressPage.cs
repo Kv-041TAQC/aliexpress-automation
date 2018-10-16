@@ -1,6 +1,8 @@
 ﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using AliExpress.Helpers;
+using System.Threading;
 
 
 
@@ -16,7 +18,6 @@ namespace AliExpress.Pages
         }
 
         #region Page Element Locators
-        // 10 elements
 
         // <input name="contactPerson" class="ui-textfield ui-textfield-system sa-contact-name js-input-field sa-error-field" type="text" maxlength="128" data-spm-anchor-id="a2g0s.8850659.0.i1.3d4a4c4dw7y1kW">
         public IWebElement ContactPersonInputField => driver.FindElement(By.Name("contactPerson"));
@@ -68,10 +69,14 @@ namespace AliExpress.Pages
         // zip //div[@id='address-main']/div[@class='sa-form']/div[6]//div[@class='sa-success-icon']
         // mobile //div[@id='address-main']/div[@class='sa-form']/div[7]//div[@class='sa-success-icon']
 
-        // TODO: add error checks
-        
-
-
+        // TODO: add error checks - by xpath? or by text name or check both
+        // contact name //div[@id='address-main']/div[@class='sa-form']/div[1]//p[@class='sa-error-tips']
+        // country/region //div[@id='address-main']/div[@class='sa-form']/div[2]//p[@class='sa-error-tips']
+        // street address //div[@id='address-main']/div[@class='sa-form']//div[3]//p[@class='sa-error-tips']
+        // state/province/region //div[@id='address-main']/div[@class='sa-form']//div[4]//p[@class='sa-error-tips']
+        // city //div[@id='address-main']/div[@class='sa-form']/div[5]//p[@class='sa-error-tips']
+        // zip //div[@id='address-main']/div[@class='sa-form']//div[6]//p[@class='sa-error-tips']
+        // mobile //div[@id='address-main']/div[@class='sa-form']/div[7]//p[@class='sa-error-tips']
 
 
         // <a href="javascript:;" class="ui-button ui-button-primary ui-button-medium sa-confirm" style="">Save</a>
@@ -87,23 +92,70 @@ namespace AliExpress.Pages
         // shouldn't they be defined as Set() methods of properties ?
 
 
-        public void FillShippingAddressForm()
+        public bool IsAddressPresent(Address adr)
         {
-            ContactPersonInputField.SendKeys("John Doe");
-            CountryDropDownList.SelectByText("United States");
-            AddressInputField.SendKeys("10 Test Ave");
-            ApartmentInputField.SendKeys("15");
-            StateProvinceDropDownList.SelectByText("New York");
-            CityDropDownList.SelectByText("New york");
-            ZipInputField.SendKeys("11221");
-            PhoneCountryInputField.Clear();
-            PhoneCountryInputField.SendKeys("+1");
-            MobileNumberInputField.SendKeys("5417543111");
-            SaveButton.Click();
+
+            // TODO: change to finding collection of the address boxes, find elements within elements and check text
+            // TODO: throw some exceptions or error/debug messages
+            // TODO: with XPath regex contains() element finding
+            // TODO: how to make this condition checking more elegant
+
+
+            Thread.Sleep(15000);
+            if (!driver.PageSource.Contains(adr.contactName))
+            {
+                Console.WriteLine(adr.contactName + " have not been found.");
+                return false;
+
+            }
+            if (!driver.PageSource.Contains(adr.streetAddress))
+            {
+                Console.WriteLine(adr.streetAddress + " have not been found.");
+                return false;
+            }
+            if (!driver.PageSource.Contains(adr.apartment))
+            {
+                Console.WriteLine(adr.apartment + " have not been found.");
+                return false;
+            }
+            if (!driver.PageSource.Contains(adr.stateProvinceRegion))
+            {
+                Console.WriteLine(adr.stateProvinceRegion + " have not been found.");
+                return false;
+            }
+            if (!driver.PageSource.Contains(adr.countryRegion))
+            {
+                Console.WriteLine(adr.countryRegion + " have not been found.");
+                return false;
+            }
+            if (!driver.PageSource.Contains(adr.mobileNoCountryCode))
+            {
+                Console.WriteLine(adr.mobileNoCountryCode + " have not been found.");
+                return false;
+            }
+            if (!driver.PageSource.Contains(adr.mobileNumber))
+            {
+                Console.WriteLine(adr.mobileNumber + " have not been found.");
+                return false;
+            }
+
+            return true;
         }
 
-        // TODO: add method isAddressPresent
-        // make address as struct/class
-        // add error locators and error checking methods (or how to check for errors in test)
+
+        public void FillShippingAddressForm(Address adr)
+        {
+            ContactPersonInputField.SendKeys(adr.contactName);
+            CountryDropDownList.SelectByText(adr.countryRegion);
+            AddressInputField.SendKeys(adr.streetAddress);
+            ApartmentInputField.SendKeys(adr.apartment);
+            StateProvinceDropDownList.SelectByText(adr.stateProvinceRegion);
+            CityDropDownList.SelectByText(adr.city);
+            ZipInputField.SendKeys(adr.zip);
+            PhoneCountryInputField.Clear();
+            PhoneCountryInputField.SendKeys(adr.mobileNoCountryCode);
+            MobileNumberInputField.SendKeys(adr.mobileNumber);
+            SaveButton.Click();
+        }
     }
 }
