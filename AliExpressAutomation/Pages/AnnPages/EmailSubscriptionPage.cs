@@ -9,7 +9,7 @@ using System.Threading;
 using static Pages.HelpClasses.HelpPage;
 namespace Pages.AnnPages
 {
-    class EmailSubscriptionPage : SuperPage
+    public class EmailSubscriptionPage : SuperPage
     {
         /// this is the Email Subscription Page: my.aliexpress.com/subscription/email_subscription_management.htm
        
