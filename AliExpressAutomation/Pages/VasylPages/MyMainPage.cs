@@ -58,9 +58,10 @@ namespace Pages.VasylPages
         {
             MaximizeWindow();
             NavigateToUrl(url);
+            Thread.Sleep(15000);
             if (CloseAdvertising.Displayed)
                 Click(CloseAdvertising);
-            Thread.Sleep(3000);
+            Thread.Sleep(5000);
             Click(GlobalSite);
             Thread.Sleep(3000);
             SendText(SearchField, alijson.ValidData[0]);
