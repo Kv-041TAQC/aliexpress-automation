@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Pages.VasylPages;
 using System;
@@ -14,7 +15,9 @@ namespace Tests.RegistrationTests
         [Test]
         public void LocalTest()
         {
-            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
+            ChromeOptions opt = new ChromeOptions();
+            opt.PageLoadStrategy = PageLoadStrategy.None;
+            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(),opt))
             {
                 var mainPage = new MyMainPage(dr);
                 var searchPage = mainPage.NextPage();
