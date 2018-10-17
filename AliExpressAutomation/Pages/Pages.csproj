@@ -17,8 +17,9 @@
     <Folder Include="EvgenPages\" />
     <Folder Include="AnnPages\" />
     <Folder Include="MarianPages\" />
-    <Folder Include="KostiaPages\" />
+    <Folder Include="KostiantynPages\" />
     <Folder Include="VaniaPages\" />
+    <Folder Include="VasylPages\" />
     <Folder Include="YuraPages\" />
     <Folder Include="HelpClasses\" />
   </ItemGroup>
