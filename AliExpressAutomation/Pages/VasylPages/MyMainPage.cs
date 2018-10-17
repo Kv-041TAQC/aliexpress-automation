@@ -66,7 +66,7 @@ namespace Pages.VasylPages
             Thread.Sleep(5000);
             Click(GlobalSite);
             Thread.Sleep(3000);
-            SendText(SearchField, alijson.ValidData[0]);
+            SendText(SearchField, alijson.ValidData[1]);
             Thread.Sleep(1000);
             Click(SearchButton);
             Thread.Sleep(1000);
