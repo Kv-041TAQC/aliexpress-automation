@@ -20,6 +20,7 @@ namespace Pages.VasylPages
         private readonly string idSearchField = "search-key";
         private readonly string cssSearchButton = "#form-searchbar > div.searchbar-operate-box > input";
         private readonly string cssCloseAdvertising = "body > div.ui-window.ui-window-normal.ui-window-transition.ui-newuser-layer-dialog > div > div > a";
+        private readonly By MyAliexpressLocator = By.Name("My AliExpress");
         #endregion
 
         #region IWebElements
@@ -52,6 +53,7 @@ namespace Pages.VasylPages
                 return driver.FindElement(By.CssSelector(cssCloseAdvertising));
             }
         }
+        private IWebElement MyAliExpressBtn => driver.FindElement(MyAliexpressLocator);
         #endregion
 
         public MySearchPageIphone NextPage()
@@ -69,6 +71,11 @@ namespace Pages.VasylPages
             Click(SearchButton);
             Thread.Sleep(1000);
             return new MySearchPageIphone(driver);
+        }
+        public AnnPages.AccountSettingsPage GotoAccountSettingsPage()
+        {
+            Click(MyAliExpressBtn);
+            return new AnnPages.AccountSettingsPage(driver);
         }
     }
 }

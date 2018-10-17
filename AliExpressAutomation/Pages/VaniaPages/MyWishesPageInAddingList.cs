@@ -7,9 +7,9 @@ using System.Threading;
 
 namespace Pages.VaniaPages
 {
-    public class MyWishesPageInAddingList:SuperPage
+    public class MyWishesPageInAddingList : SuperPage
     {
-        
+
         #region ConstantAndButtonsAndFields
         protected readonly string buttonChoosingList = "#otherWishList > li > a";
         protected readonly string deleteToSomeList = "#editWishListBtns > button.ui-split-button-trigger.ui-button.ui-button-normal.ui-button-medium > span";
@@ -60,4 +60,3 @@ namespace Pages.VaniaPages
         #endregion
     }
 }
-
