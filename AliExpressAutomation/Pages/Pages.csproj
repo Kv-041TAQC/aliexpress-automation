@@ -16,7 +16,6 @@
   <ItemGroup>
     <Folder Include="EvgenPages\" />
     <Folder Include="AnnPages\" />
-    <Folder Include="MarianPages\" />
     <Folder Include="KostiaPages\" />
     <Folder Include="VasylPages\" />
     <Folder Include="VaniaPages\" />
