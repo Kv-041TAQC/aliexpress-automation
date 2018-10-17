@@ -28,7 +28,7 @@ namespace Pages.VasylPages
 
         public MyGoodsFrancePage NextPage()
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             Click(Image);
             return new MyGoodsFrancePage(driver);
         }
