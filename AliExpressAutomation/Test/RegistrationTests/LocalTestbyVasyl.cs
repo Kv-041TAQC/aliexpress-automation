@@ -10,7 +10,6 @@ using System.Text;
 namespace Tests.RegistrationTests
 {
     [TestFixture]
-    [Parallelizable]
     public class LocalTestbyVasyl
     {
         [Test]
