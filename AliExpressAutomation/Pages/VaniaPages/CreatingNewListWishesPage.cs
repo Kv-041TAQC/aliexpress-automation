@@ -12,7 +12,6 @@ namespace Pages.VaniaPages
         #region ConstantButtonsAndFields
         private readonly string nameNewList = "#j-create-wishlist-dialog > div > div.ui-window-content > div > div.wish-list-name.js-tips > input";
         private readonly string buttonSave = "#j-create-wishlist-dialog > div > div.ui-window-btn > input.ui-button.ui-button-primary.ui-button-medium";
-        protected readonly string newListName = "IPhone 6s";
         #endregion
 
         #region FindWebElement
@@ -38,7 +37,7 @@ namespace Pages.VaniaPages
         public void EnterDataTrue()
         {
             NameNewList.Clear();
-            SendText(NameNewList, newListName);
+            SendText(NameNewList, alijson.Wishes[0]);
         }
 
         public void EnterDataFalse()

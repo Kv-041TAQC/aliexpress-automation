@@ -24,7 +24,8 @@ namespace Tests.RegistrationTests
                 var myWishesPage = searchProductForWishes.AddProductToWishes();
                 var creatingNewListWishesPage = myWishesPage.MyWishesCreateList();
                 var myWishesPageWithNewList = creatingNewListWishesPage.CreateNewList(true);
-                myWishesPageWithNewList.MyWishesAddProductToList();
+                var myWishesPageInAddingList = myWishesPageWithNewList.MyWishesAddProductToList();
+                myWishesPageInAddingList.MyWishesDeleteProductInList();
             }
         }
     }
