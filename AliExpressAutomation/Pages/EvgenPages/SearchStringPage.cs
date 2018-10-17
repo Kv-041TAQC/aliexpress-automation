@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using static Pages.HelpClasses.HelpPage;
