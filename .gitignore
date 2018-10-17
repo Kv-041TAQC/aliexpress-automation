@@ -3,3 +3,5 @@
 **/Test/bin
 **/Test/obj
 **/.vs
+chromedriver.exe
+chromedriver
