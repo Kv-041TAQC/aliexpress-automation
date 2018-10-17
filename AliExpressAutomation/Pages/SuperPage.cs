@@ -10,7 +10,7 @@ namespace Pages
 {
     public abstract class SuperPage
     {
-#region Custom Methods
+        #region Custom Methods
         /// <summary>
         /// <para>Custome method for clicking on element</para>
         /// <para>In param send WebElement, in which u whant to click</para>
@@ -22,14 +22,14 @@ namespace Pages
         /// </summary>
         /// <param name="element">Element.</param>
         /// <param name="message">Message.</param>
-        protected virtual void SendText(IWebElement element,string message) => element.SendKeys(message);
+        protected virtual void SendText(IWebElement element, string message) => element.SendKeys(message);
         /// <summary>
         /// <para>Custom method for selecting dropdown</para>
         /// <para>In param send webelement and value, which u whant to select</para>
         /// </summary>
         /// <param name="element">Element.</param>
         /// <param name="value">Value.</param>
-        protected virtual void SelectDropDown(IWebElement element,string value) => new SelectElement(element).SelectByText(value);
+        protected virtual void SelectDropDown(IWebElement element, string value) => new SelectElement(element).SelectByText(value);
         /// <summary>
         /// Navigates to URL.
         /// </summary>
@@ -75,19 +75,19 @@ namespace Pages
                 FileStream filestream = file.Create();
                 filestream.Close();
             }
-            for(int i = 0;i < 1;i++)
+            for (int i = 0; i < 1; i++)
             {
                 alijson = new JsonHandlerClass();
                 alijson.Login = "testostesoron@gmail.com";
                 alijson.Password = "Qwertytrewq";
-                alijson.Wishes = new string[]{"Lol","Kek","Jeburek"};
+                alijson.Wishes = new string[] { "IPhones" };
                 alijson.Countries = new string[] { "Ukraine", "Uganda", "StranaAgressor" };
                 alijson.Сurrencies = new string[] { "USD", "GRN", "EUR" };
                 alijson.Email = "testostesoron@gmail.com";
-                alijson.ValidData = new string[] { "IPhone 7","Samsung Galaxy 8","MacBook Pro 13","JBL Go Mini","Xiaomi Redmi Note 5" };
-                alijson.InvalidData = new string[] { "Asus aser pro super class","Meizu Middle-14s","Samsung Galaxy-Useless","Asus ZinPone 3.14","Xiaomi mi Nein" };
+                alijson.ValidData = new string[] { "IPhone 7", "IPhone 6s", "Samsung Galaxy 8", "MacBook Pro 13", "JBL Go Mini", "Xiaomi Redmi Note 5", "IPhone 6", "Samsung Galaxy 7" };
+                alijson.InvalidData = new string[] { "Asus aser pro super class", "Meizu Middle-14s", "Samsung Galaxy-Useless", "Asus ZinPone 3.14", "Xiaomi mi Nein" };
             }
-            using (FileStream fileSt = new FileStream(filename,FileMode.Open))
+            using (FileStream fileSt = new FileStream(filename, FileMode.Open))
             {
                 jsonSerializer.WriteObject(fileSt, alijson);
             }
@@ -113,7 +113,7 @@ namespace Pages
             actionshandler = new Actions(driver);
             this.driver = driver;
             InitializeJsonFile();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
+            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
         }
     }
 }

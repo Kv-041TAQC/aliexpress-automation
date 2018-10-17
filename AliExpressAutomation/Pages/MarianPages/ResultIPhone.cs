@@ -6,44 +6,44 @@ using OpenQA.Selenium;
 
 namespace Pages.MarianPages
 {
-    public class ResultSamsung : SuperPage
+    public class ResultIPhone : SuperPage
     {
-        public ResultSamsung(IWebDriver driver) : base(driver)
+        public ResultIPhone(IWebDriver driver) : base(driver)
         {
         }
 
         #region constants
 
-        private const string sams6 = "#limage_32528638346";
-        private const string sams7 = "#limage_32775278157";
-        private const string sams8 = "#limage_32846412268";
+        private const string ipho6 = "#limage_32869686576";
+        private const string ipho6s = "#limage_32726463724";
+        private const string ipho7 = "#limage_32846486845";
         #endregion
 
         #region webElements
                
-        private IWebElement Sams6
+        private IWebElement Ipho6
         {
-            get { return driver.FindElement(By.CssSelector(sams6)); }
+            get { return driver.FindElement(By.CssSelector(ipho6)); }
         }
 
-        private IWebElement Sams7
+        private IWebElement Ipho6s
         {
-            get { return driver.FindElement(By.CssSelector(sams7)); }
+            get { return driver.FindElement(By.CssSelector(ipho6s)); }
         }
 
-        private IWebElement Sams8
+        private IWebElement Ipho7
         {
-            get { return driver.FindElement(By.CssSelector(sams8)); }
+            get { return driver.FindElement(By.CssSelector(ipho7)); }
         }
 
         #endregion
 
         #region 
 
-        public Samsung6 GoSams6()
+        public IPhone6 GoIPhone6()
         {
             Thread.Sleep(3000);
-            Click(Sams6);
+            Click(Ipho6);
             Thread.Sleep(1000);
             var tabs = driver.WindowHandles;
             if (tabs.Count > 1)
@@ -58,14 +58,14 @@ namespace Pages.MarianPages
                 }
             }
 
-            return new Samsung6(driver);
+            return new IPhone6(driver);
             
         }
         
-        public Samsung7 GoSams7()
+        public IPhone6S GoIPhone6s()
             {
             Thread.Sleep(3000);
-            Click(Sams7);
+            Click(Ipho6s);
             Thread.Sleep(1000);
             var tabs = driver.WindowHandles;
             if (tabs.Count > 1)
@@ -79,13 +79,13 @@ namespace Pages.MarianPages
                     driver.SwitchTo().Window(handle);
                 }
             }
-            return new Samsung7(driver);
+            return new IPhone6S(driver);
             }
 
-        public Samsung8 GoSams8()
+        public IPhone7 GoIPhone7()
             {
             Thread.Sleep(3000);
-            Click(Sams8);
+            Click(Ipho7);
             Thread.Sleep(1000);
             var tabs = driver.WindowHandles;
             if (tabs.Count > 1)
@@ -99,7 +99,7 @@ namespace Pages.MarianPages
                     driver.SwitchTo().Window(handle);
                 }
             }
-            return new Samsung8(driver);
+            return new IPhone7(driver);
             }
 
             #endregion

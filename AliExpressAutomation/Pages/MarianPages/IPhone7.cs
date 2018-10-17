@@ -6,17 +6,17 @@ using OpenQA.Selenium;
 
 namespace Pages.MarianPages
 {
-    public class Samsung8 : SuperPage
+    public class IPhone7 : SuperPage
     {
-        public Samsung8(IWebDriver driver) : base(driver)
+        public IPhone7(IWebDriver driver) : base(driver)
         {
         }
 
         #region constants
 
         private const string cart = "#header > div > div.hm-right > div.nav-cart.nav-cart-box > a";
-        private const string bundle = "sku-1-200003982";
-        private const string color = "sku-2-193";
+        private const string bundle = "sku-1-200003985";
+        private const string color = "sku-2-200001438";
         private const string addToCart = "j-add-cart-btn";
         private const string close = "ui-window-close";
 
@@ -54,10 +54,15 @@ namespace Pages.MarianPages
 
         public Cart GoToCart()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             Click(Bundle);
-            Click(Color); ;
+            Thread.Sleep(1000);
+            Click(Color);
+            Thread.Sleep(1000);
+            Click(AddToCart);
+            Thread.Sleep(2000);
             Click(Close);
+            Thread.Sleep(2000);
             Click(Cart);
             
             return new Cart (driver);

@@ -56,15 +56,15 @@ namespace Pages.MarianPages
             driver.Navigate().GoToUrl(this.url);
         }
 
-        public ResultSamsung ChooseSamsung6()
+        public ResultIPhone ChooseIPhone()
         {
-            Thread.Sleep(4000);
+            Thread.Sleep(7000);
             Click(CloseSpam);
             Thread.Sleep(2000);
             Search.Clear();
-            SendText(Search, alijson.ValidData[1]);
+            SendText(Search, alijson.ValidData[6]);
             Click(SearchButton);
-            return new ResultSamsung(driver);
+            return new ResultIPhone(driver);
         }
 
     }

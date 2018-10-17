@@ -7,21 +7,22 @@ using OpenQA.Selenium.Interactions;
 
 namespace Pages.MarianPages
 {
-    public class Samsung6 : SuperPage
+    public class IPhone6 : SuperPage
     {
-        public Samsung6(IWebDriver driver) : base(driver)
+        public IPhone6(IWebDriver driver) : base(driver)
         {
         }
         
         #region constants
 
-        private const string bundle = "#sku-1-200003982";
-        private const string color = @"sku-2-29";
-        private const string quantity = @"p-quantity-increase";
-        private const string addToCart = @"j-add-cart-btn";
-        private const string close = @"ui-window-close";
-        private const string search = @"search-key";
-        private const string searchButton = @"search-button";
+        private const string bundle = "sku-1-200003982";
+        private const string color = "sku-2-350850";
+        
+        private const string quantity = "p-quantity-increase";
+        private const string addToCart = "j-add-cart-btn";
+        private const string close = "ui-window-close";
+        private const string search = "search-key";
+        private const string searchButton = "search-button";
 
         #endregion
 
@@ -29,14 +30,14 @@ namespace Pages.MarianPages
 
         private IWebElement Bundle
         {
-            get { return driver.FindElement(By.CssSelector(bundle)); }
+            get { return driver.FindElement(By.Id(bundle)); }
         }
 
         private IWebElement Color
         {
             get { return driver.FindElement(By.Id(color)); }
         }
-
+               
         private IWebElement Quantity
         {
             get { return driver.FindElement(By.ClassName(quantity)); }
@@ -65,25 +66,23 @@ namespace Pages.MarianPages
         
 
 
-        public ResultSamsung ChooseSamsung7()
+        public ResultIPhone ChooseIPhone6s()
         {            
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
             Click(Bundle);
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             Click(Color);
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);            
             Click(Quantity);
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             Click(AddToCart);
             Thread.Sleep(2000);
             Click(Close);
             Thread.Sleep(2000);
             Search.Clear();
-            Thread.Sleep(2000);
             SendText(Search, alijson.ValidData[1]);
             Click(SearchButton);
-            Thread.Sleep(2000);
-            return new ResultSamsung(driver);
+            return new ResultIPhone(driver);
         }
 
     }

@@ -6,9 +6,9 @@ using OpenQA.Selenium;
 
 namespace Pages.MarianPages
 {
-    public class Samsung7 : SuperPage
+    public class IPhone6S : SuperPage
     {
-        public Samsung7(IWebDriver driver) : base(driver)
+        public IPhone6S(IWebDriver driver) : base(driver)
         {
         }
 
@@ -16,8 +16,8 @@ namespace Pages.MarianPages
 
         private const string search = "search-key";
         private const string searchButton = "search-button";
-        private const string bundle = "sku-1-200003982";
-        private const string color = "sku-2-29";       
+        private const string bundle = "sku-1-200003985";
+        private const string color = "sku-2-350850";       
         private const string addToCart = "j-add-cart-btn";
         private const string close = "ui-window-close";
 
@@ -58,16 +58,21 @@ namespace Pages.MarianPages
         
         #endregion
 
-        public ResultSamsung ChooseSamsung8()
+        public ResultIPhone ChooseIPhone7()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             Click(Bundle);
-            Click(Color);            ;
+            Thread.Sleep(1000);
+            Click(Color);
+            Thread.Sleep(1000);
+            Click(AddToCart);
+            Thread.Sleep(2000);
             Click(Close);
+            Thread.Sleep(2000);
             Search.Clear();
-            SendText(Search, alijson.ValidData[1]);
+            SendText(Search, alijson.ValidData[0]);
             Click(SearchButton);
-            return new ResultSamsung(driver);
+            return new ResultIPhone(driver);
         }
     }
 }

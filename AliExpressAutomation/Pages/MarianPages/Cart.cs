@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace Pages.MarianPages
@@ -14,8 +15,8 @@ namespace Pages.MarianPages
 
         #region constants
 
-        private const string remove = @"#\33 2528638346-200000828\3a 200003982\23 S6\20 G920F\3b 14\3a 29\23 Black > td.product-operate > div > form > a";
-        private const string piece = @"#\33 2846412268-200000828\3a 200003982\23 S8-\28 G950F\29 \3b 14\3a 193\23 Black\20 \28 Single\20 Sim\29 > td.product-quantity > input.product-quantity-input.ui-textfield.ui-textfield-system";
+        private const string remove = @"#\33 2869686576-200000828\3a 200003982\23 iphone\20 6\20 \20 16GB\3b 14\3a 350850\23 Gold > td.product-operate > div > form > a";
+        private const string piece = @"#\33 2846486845-200000828\3a 200003985\23 Used\20 iPhone\20 7\3b 14\3a 200001438\23 256GB\20 Rose\20 Gold > td.product-quantity > input.product-quantity-input.ui-textfield.ui-textfield-system";
         private const string addPiece = "quantity-add";
         private const string addOk = "btn-ok-quantity";
         private const string buy = "#page > div.util-clearfix > div > div.bottom-info.util-clearfix > div.bottom-info-right > div.bottom-info-right-wrapper > form > input.buy-now.ui-button.ui-button-primary.ui-button-large";
@@ -35,12 +36,12 @@ namespace Pages.MarianPages
 
         private IWebElement AddPiece
         {
-            get { return driver.FindElement(By.CssSelector(addPiece)); }
+            get { return driver.FindElement(By.Id(addPiece)); }
         }
 
         private IWebElement AddOk
         {
-            get { return driver.FindElement(By.CssSelector(addOk)); }
+            get { return driver.FindElement(By.Id(addOk)); }
         }
 
         private IWebElement Buy
@@ -50,15 +51,20 @@ namespace Pages.MarianPages
 
         #endregion
 
-        public ResultSamsung ChooseSamsung8()
+        public void Finish()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(3000);
             Click(Remove);
-            Click(Piece); ;
+            Thread.Sleep(3000);
+            Click(Piece);
+            Thread.Sleep(3000);
             Click(AddPiece);
+            Thread.Sleep(3000);
             Click(AddOk);
+            Thread.Sleep(3000);
             Click(Buy);
-            return new ResultSamsung(driver);
+            Thread.Sleep(3000);
+            Assert.Pass();
         }
 
 
