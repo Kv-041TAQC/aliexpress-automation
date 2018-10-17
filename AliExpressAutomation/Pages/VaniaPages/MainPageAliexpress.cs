@@ -20,8 +20,6 @@ namespace Pages.VaniaPages
         private readonly string CssSearchButton = "#search-key";
         private readonly string CssSearchField = "#form-searchbar > div.searchbar-operate-box > input";
         private const string aliExpressLoginFormId = "alibaba-login-box";
-        private const string email = "i.v.zaichenko70@gmail.com";
-        private const string password = "dfyzdfyz70";
         #endregion
 
         #region SearchWebElement
@@ -67,34 +65,39 @@ namespace Pages.VaniaPages
 
         }
 
-        public SearchProductForWishes MainPageGoToLogin()
+        public void LoginToAccount()
         {
             MaximizeWindow();
             NavigateToUrl(urlAliexpress);
             Thread.Sleep(15000);
-            if (CloseAdvertising.Displayed)
-                Click(CloseAdvertising);
+            //if (CloseAdvertising.Displayed)
+            //    Click(CloseAdvertising);
             Thread.Sleep(2000);
             Click(ButtonLogin);
             Thread.Sleep(5000);
             driver.SwitchTo().Frame(driver.FindElement(By.Id(aliExpressLoginFormId)));
             EmailLogin.Clear();
-            SendText(EmailLogin, email);
+            SendText(EmailLogin, alijson.Email);
             Thread.Sleep(1000);
             PasswordLogin.Clear();
-            SendText(PasswordLogin, password);
+            SendText(PasswordLogin, alijson.Password);
             Thread.Sleep(1000);
             Click(ButtonSubmit);
             Thread.Sleep(5000);
-            if (CloseAdvertising.Displayed)
-                Click(CloseAdvertising);
+        }
+
+
+        public SearchProductForWishes MainPageGoToLogin()
+        {
+            LoginToAccount();
+            //if (CloseAdvertising.Displayed)
+            //    Click(CloseAdvertising);
             Thread.Sleep(5000);
             SendText(SearchButton, alijson.ValidData[0]);
             Thread.Sleep(2000);
             Click(SearchField);
             Thread.Sleep(1000);
             return new SearchProductForWishes(driver);
-
         }
         #endregion
     }
