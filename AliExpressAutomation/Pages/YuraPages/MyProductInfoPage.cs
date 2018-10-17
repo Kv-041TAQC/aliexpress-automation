@@ -14,7 +14,9 @@ namespace Pages.YuraPages
 
         #region Constants
         public readonly string idBundle = "#sku-1-200003982 > span";
+        public readonly string idBundle2 = "#sku-1-200003985 > span";
         public readonly string CssSelectorColour = "#sku-2-691 > img";
+        public readonly string CssSelectorColour2 = "#sku-2-29 > img";
         public readonly string CssSelectorQantity = "#j-product-quantity-info > dd > div.quantity-info-main > span.p-quantity-modified > i.p-quantity-increase";
         public readonly string idbuttonAddtoCard = "#j-add-cart-btn";
         public readonly string idButtonContinueShoping = "body > div.ui-window.ui-window-normal.ui-window-transition.ui-add-shopcart-dialog > div > div.ui-feedback.ui-feedback-simple > div > div > div > button";
@@ -33,9 +35,19 @@ namespace Pages.YuraPages
             get { return driver.FindElement(By.CssSelector(idBundle)); }
         }
 
+        public IWebElement ClickBundle2
+        {
+            get { return driver.FindElement(By.CssSelector(idBundle2)); }
+        }
+
         public IWebElement ClickColour
         {
             get { return driver.FindElement(By.CssSelector(CssSelectorColour)); }
+        }
+
+        public IWebElement ClickColour2
+        {
+            get { return driver.FindElement(By.CssSelector(CssSelectorColour2)); }
         }
 
         //public IWebElement ClickQantity
@@ -106,7 +118,6 @@ namespace Pages.YuraPages
             Click(buttonContinueShoping);
             Thread.Sleep(5000);
 
-
             Click(MenuCurrency);
             Thread.Sleep(5000);
             Click(DropListCounty);
@@ -120,10 +131,9 @@ namespace Pages.YuraPages
             Click(buttonSave);
             Thread.Sleep(5000);
 
-            Click(ClickBundle);
-            Thread.Sleep(5000);
-            Click(ClickColour);
-            //Click(ClickQantity);
+            Click(ClickBundle2);
+            Thread.Sleep(50002);
+            Click(ClickColour2);
             Thread.Sleep(5000);
             Click(buttonAddtoCard);
             Thread.Sleep(5000);
@@ -131,9 +141,7 @@ namespace Pages.YuraPages
             Thread.Sleep(5000);
 
             return new ShoppingCartPage(driver);
-
         }
-
         #endregion
     }
 }
