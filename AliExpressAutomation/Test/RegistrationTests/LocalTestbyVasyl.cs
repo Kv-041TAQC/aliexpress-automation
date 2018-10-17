@@ -16,9 +16,9 @@ namespace Tests.RegistrationTests
         [Test]
         public void LocalTest()
         {
-            ChromeOptions opt = new ChromeOptions();
-            opt.PageLoadStrategy = PageLoadStrategy.None;
-            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(),opt))
+            ChromeOptions options = new ChromeOptions();
+            options.PageLoadStrategy = PageLoadStrategy.None;
+            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
             {
                 var mainPage = new MyMainPage(dr);
                 var searchPage = mainPage.NextPage();
