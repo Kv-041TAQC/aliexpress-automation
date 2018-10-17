@@ -42,7 +42,7 @@ namespace Pages.YuraPages
             Thread.Sleep(2000); Thread.Sleep(3000);
             Click(buttonLanguage);
             Thread.Sleep(2000);
-            InputCorrectData(0);
+            InputCorrectData(1);
             Thread.Sleep(2000);
             Click(SearchButton);
             Thread.Sleep(2000);
