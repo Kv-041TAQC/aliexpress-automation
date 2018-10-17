@@ -30,28 +30,25 @@ namespace Tests
         }
 
         [Test]
-        public void Test1()
+        public void ShippingAddressAdditionNegativeTest()
         {
             Helpers helper = new Helpers(driver);
             helper.NavigateToAliExpressHomepage();
             Thread.Sleep(5000); // why this works only here
             helper.LoginToAliExpress();
-
-            // TODO: change this to JSON or random generation
-            Address adr;
-            adr.contactName = "John Doe";
-            adr.countryRegion = "United States";
-            adr.streetAddress = "10 Test Ave";
-            adr.apartment = "15";
-            adr.stateProvinceRegion = "New York";
-            adr.city = "New york";
-            adr.zip = "11221";
-            adr.mobileNoCountryCode = "+1";
-            adr.mobileNumber = "5417543111";
+            
 
             ShippingAddressPage shippingAddressPage = new ShippingAddressPage(driver);
-            shippingAddressPage.FillShippingAddressForm(adr);
-            Assert.True(shippingAddressPage.IsAddressPresent(adr));
+            Thread.Sleep(15000);
+            shippingAddressPage.SaveButton.Click();
+            Thread.Sleep(15000);
+            Assert.True(shippingAddressPage.IsContactErrorMessagePresentAndCorrect());
+            Assert.True(shippingAddressPage.IsCountryRegionErrorMessagePresentAndCorrect());
+            Assert.True(shippingAddressPage.IsAddressErrorMessagePresentAndCorrect());
+            Assert.True(shippingAddressPage.IsStateErrorMessagePresentAndCorrect());
+            Assert.True(shippingAddressPage.IsCityErrorMessagePresentAndCorrect());
+            Assert.True(shippingAddressPage.IsZipErrorMessagePresentAndCorrect());
+            Assert.True(shippingAddressPage.IsMobileNumberErrorMessagePresentAndCorrect());
 
         }
     }

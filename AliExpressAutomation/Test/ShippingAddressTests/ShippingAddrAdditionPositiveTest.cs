@@ -30,7 +30,7 @@ namespace Tests
         }
 
         [Test]
-        public void Test1()
+        public void ShippingAddressAdditionPositiveTest()
         {
             Helpers helper = new Helpers(driver);
             helper.NavigateToAliExpressHomepage();

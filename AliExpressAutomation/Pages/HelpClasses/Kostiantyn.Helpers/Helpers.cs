@@ -64,9 +64,18 @@ namespace AliExpress.Helpers
 
             // <a href="javascript:;" class="close-layer" data-role="layer-close">x</a>
             // <a data-role="goto-globalsite" class="link-goto-globalsite notranslate" rel="nofollow" href="http://www.aliexpress.com/">Go to Global Site (English)</a>
+            try
+            {
+                WaitForElement(AdsCloseButton);
+                AdsCloseButton.Click();
 
-            WaitForElement(AdsCloseButton);
-            AdsCloseButton.Click();
+            }
+            catch (NoSuchElementException e)
+            {
+                Console.WriteLine("DEBUG: There was no ad: " + e.Message);
+            }
+
+
             WaitForElement(GoToGlobalSiteLink);
             GoToGlobalSiteLink.Click();
             WaitForElement(SignInButton);
