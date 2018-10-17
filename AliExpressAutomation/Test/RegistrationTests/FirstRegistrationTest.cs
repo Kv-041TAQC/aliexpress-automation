@@ -4,7 +4,6 @@ using OpenQA.Selenium.Chrome;
 using Pages.EvgenPages;
 using OpenQA.Selenium;
 
-
 namespace Test
 {
     [TestFixture]
