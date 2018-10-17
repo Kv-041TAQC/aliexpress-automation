@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿ using NUnit.Framework;
 using System.IO;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
@@ -8,6 +8,7 @@ using OpenQA.Selenium;
 namespace Tests.RegistrationTests
 {
     [TestFixture]
+    [Parallelizable]
     public class YuraTest
     {
          

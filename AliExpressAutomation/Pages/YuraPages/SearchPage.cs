@@ -26,7 +26,7 @@ namespace Pages.YuraPages
         #region Methods
         public MyProductInfoPage NextPage()
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             Click(ClickImage);
             Thread.Sleep(2000);
             return new MyProductInfoPage(driver);

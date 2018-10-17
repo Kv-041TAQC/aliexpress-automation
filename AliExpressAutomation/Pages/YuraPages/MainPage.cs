@@ -37,15 +37,15 @@ namespace Pages.YuraPages
             MaximizeWindow();
             NavigateToUrl("https://ru.aliexpress.com");
             Thread.Sleep(15000);
-            if (CloseAdvertising.Displayed)
-                Click(CloseAdvertising);
-            Thread.Sleep(3000);
+            //if (CloseAdvertising.Displayed)
+            //    Click(CloseAdvertising);
+            Thread.Sleep(2000); Thread.Sleep(3000);
             Click(buttonLanguage);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             InputCorrectData(0);
-            Thread.Sleep(5000); 
+            Thread.Sleep(2000);
             Click(SearchButton);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             return new SearchPage(driver);
         }
         #endregion

@@ -107,38 +107,38 @@ namespace Pages.YuraPages
             {
                 driver.SwitchTo().Window(handle);
             }
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             Click(ClickBundle);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             Click(ClickColour);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             //Click(ClickQantity);
             Click(buttonAddtoCard);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             Click(buttonContinueShoping);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
 
             Click(MenuCurrency);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             Click(DropListCounty);
-            Thread.Sleep(10000);
+            Thread.Sleep(2000);
             Click(buttonCountry);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             Click(DropListCurrency);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             Click(buttonCurrency);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             Click(buttonSave);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
 
             Click(ClickBundle2);
-            Thread.Sleep(50002);
+            Thread.Sleep(2000); ;
             Click(ClickColour2);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             Click(buttonAddtoCard);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             Click(buttonViewShopInfo);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
 
             return new ShoppingCartPage(driver);
         }
