@@ -47,7 +47,7 @@ namespace Pages.VasylPages
         public MySearchPageFrance NextPage()
         {
             Thread.Sleep(2000);
-            SendText(SearchField, alijson.ValidData[0]);
+            SendText(SearchField, alijson.ValidData[1]);
             Thread.Sleep(1000);
             Click(SearchButton);
             Thread.Sleep(1000);
