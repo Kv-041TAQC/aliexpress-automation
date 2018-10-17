@@ -9,28 +9,29 @@ using static Pages.HelpClasses.HelpPage;
 
 namespace Pages.AnnPages
 {
-    /// this is the Account Settings Page: home.aliexpress.com/account_settings.htm?spm=a2g0s.8937420.0.0.71d62e0eWKJ0vV&flag=account
-
     public class AccountSettingsPage : SuperPage
     {
-        public AccountSettingsPage (IWebDriver driver) : base(driver)
+        // this is Account Settings Page: home.aliexpress.com/account_settings.htm?spm=a2g0s.8937420.0.0.71d62e0eWKJ0vV&flag=account
+        public AccountSettingsPage(IWebDriver driver) : base(driver)
         {
         }
         #region Constans
-        private readonly By ChangePasswordLocator = By.Name("Change Password");
+        private readonly string EmailNotificationsLocator = "#settings-panel > div:nth-child(3) > ul > li > a";
 
         #endregion
 
         #region IWebElements
-        private IWebElement ChangePasswordBtn => driver.FindElement(ChangePasswordLocator);
-        
+        private IWebElement EmailNotificationsBtn => driver.FindElement(By.CssSelector(EmailNotificationsLocator));
+
         #endregion
 
         public EmailSubscriptionPage GotoEmailSubscriptionPage()
         {
-            Click(ChangePasswordBtn);
+            Thread.Sleep(7000);
+            Click(EmailNotificationsBtn);
             return new EmailSubscriptionPage(driver);
         }
-         
+
     }
+  
 }

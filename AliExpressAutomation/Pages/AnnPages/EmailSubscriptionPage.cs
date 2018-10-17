@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading;
 using static Pages.HelpClasses.HelpPage;
+
 namespace Pages.AnnPages
 {
     public class EmailSubscriptionPage : SuperPage
@@ -17,33 +18,21 @@ namespace Pages.AnnPages
         {
         }
         #region Constans
-        private readonly By ButtonsSubscriptionLocator = By.CssSelector("a.ui-button.ui-button-normal.ui-button-medium");
-        private readonly By StatusSubscriptionLocator = By.CssSelector("td.subs-status");
-        
+        private readonly string ButtonsSubscriptionLocator = "a.ui-button.ui-button-normal.ui-button-medium";
+        private readonly string StatusSubscriptionLocator = "td.subs-status";
+
         #endregion
 
 
         #region IWebElements
-        private ReadOnlyCollection<IWebElement> ButtonsSubscription
-        {
-            get
-            {
-                return driver.FindElements(ButtonsSubscriptionLocator);
-            }
-        }
-
-        private ReadOnlyCollection<IWebElement> StatusSubscription
-        {
-            get
-            {
-                return driver.FindElements(StatusSubscriptionLocator);
-            }
-        }
+        private ReadOnlyCollection<IWebElement> ButtonsSubscription => driver.FindElements(By.CssSelector(ButtonsSubscriptionLocator));
+        private ReadOnlyCollection<IWebElement> StatusSubscription => driver.FindElements(By.CssSelector(StatusSubscriptionLocator));
 
         #endregion
 
         public void ClickButtons()
         {
+            Thread.Sleep(7000);
             foreach (IWebElement element in ButtonsSubscription)
             {
                 element.Click();
@@ -51,6 +40,7 @@ namespace Pages.AnnPages
         }
         public bool CheckStatusSubscription(string value)
         {
+            Thread.Sleep(7000);
             var count = 0;
 
             foreach (IWebElement element in StatusSubscription)
@@ -65,5 +55,6 @@ namespace Pages.AnnPages
             }
             return true;
         }
+
     }
 }
