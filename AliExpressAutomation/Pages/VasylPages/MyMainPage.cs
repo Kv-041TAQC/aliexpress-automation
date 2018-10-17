@@ -17,8 +17,6 @@ namespace Pages.VasylPages
         #region Constants
         private readonly string url = "https://ru.aliexpress.com/";
         private readonly string cssGlobalSite = "#nav-global > div.ng-item.ng-goto-globalsite > a";
-        private readonly string idSearchField = "search-key";
-        private readonly string cssSearchButton = "#form-searchbar > div.searchbar-operate-box > input";
         private readonly string cssCloseAdvertising = "body > div.ui-window.ui-window-normal.ui-window-transition.ui-newuser-layer-dialog > div > div > a";
         private readonly By MyAliexpressLocator = By.Name("My AliExpress");
         #endregion
@@ -29,21 +27,6 @@ namespace Pages.VasylPages
             get
             {
                 return driver.FindElement(By.CssSelector(cssGlobalSite));
-            }
-        }
-
-        private IWebElement SearchField
-        {
-            get
-            {
-                return driver.FindElement(By.Id(idSearchField));
-            }
-        }
-
-        private IWebElement SearchButton {
-            get
-            {
-                return driver.FindElement(By.CssSelector(cssSearchButton));
             }
         }
 
