@@ -61,13 +61,13 @@ namespace Pages.VasylPages
                 {
                     driver.SwitchTo().Window(handle);
                 }
-                Thread.Sleep(2000);
+                Thread.Sleep(5000);
                 Click(BundleButton);
                 Thread.Sleep(2000);
                 Click(ColorButton);
-                Thread.Sleep(2000);
+                Thread.Sleep(5000);
                 Click(CartButton);
-                Thread.Sleep(2000);
+                Thread.Sleep(5000);
                 Click(GoCartButton);
                 return new MyCartPage(driver);
             }
