@@ -134,11 +134,11 @@ namespace Pages.YuraPages
             Click(ClickBundle2);
             Thread.Sleep(2000); ;
             Click(ClickColour2);
-            Thread.Sleep(2000);
+            Thread.Sleep(4000);
             Click(buttonAddtoCard);
-            Thread.Sleep(2000);
+            Thread.Sleep(4000);
             Click(buttonViewShopInfo);
-            Thread.Sleep(2000);
+            Thread.Sleep(4000);
 
             return new ShoppingCartPage(driver);
         }
