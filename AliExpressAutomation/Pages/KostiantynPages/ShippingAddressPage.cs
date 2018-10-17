@@ -11,10 +11,19 @@ namespace AliExpress.Pages
     public class ShippingAddressPage
     {
 
-        #region Fields
+        #region Fields And Constants
         private IWebDriver driver;
 
-        #endregion Fields
+        private const string contactErrMsgTxt = "Please enter a Contact Name";
+        private const string countryRegionErrMsgTxt = "Please select a Country/Region";
+        private const string addressErrMsgTxt = "Please enter an Address";
+        private const string stateProvinceErrMsgTxt = "Please select a State/Province/Region";
+        private const string cityErrMsgTxt = "Please enter a City";
+        private const string zipErrMsgTxt = "Please enter a ZIP/Postal Code";
+        private const string mobileNoErrMsgTxt = "You must include a Mobile number";
+
+
+        #endregion Fields And Constants
 
         #region Page Element Locators
 
@@ -73,12 +82,115 @@ namespace AliExpress.Pages
 
         #region Methods
 
-        // TODO: ERROR CHECKING 
-        // Add private check error message method (which takes IWebElement and string message) + catches exceptions and return bool
-        // make error messages as string constants private?
-        // add public check city, etc error message (which takes error constant and element under the hood and checks if element is there and correct message is displayed)
-        // IsCityErrorPresentAndCorrect()
-        // make this into something more beautiful
+        // TODO: ERROR CHECKING :make this into something more beautiful
+        private bool CheckErrorMessage(IWebElement element, string message)
+        {
+            return element.Text.Equals(message);
+        }
+        public bool IsContactErrorMessagePresentAndCorrect()
+        {
+            try
+            {
+                return CheckErrorMessage(ContactNameErrorMessage, contactErrMsgTxt);
+
+            }
+            catch (NoSuchElementException e)
+            {
+                Console.WriteLine("DEBUG: Contact error message has not been found: " + e.Message);
+                return false;
+            }
+
+        }
+
+        public bool IsCountryRegionErrorMessagePresentAndCorrect()
+        {
+            try
+            {
+                return CheckErrorMessage(CountryRegionErrorMessage, countryRegionErrMsgTxt);
+
+            }
+            catch (NoSuchElementException e)
+            {
+                Console.WriteLine("DEBUG: Country/Region error message has not been found: " + e.Message);
+                return false;
+            }
+
+        }
+
+        public bool IsAddressErrorMessagePresentAndCorrect()
+        {
+            try
+            {
+                return CheckErrorMessage(StreetAddressErrorMessage, addressErrMsgTxt);
+
+            }
+            catch (NoSuchElementException e)
+            {
+                Console.WriteLine("DEBUG: Address error message has not been found: " + e.Message);
+                return false;
+            }
+
+        }
+
+        public bool IsStateErrorMessagePresentAndCorrect()
+        {
+            try
+            {
+                return CheckErrorMessage(StateProvinceRegionErrorMessage, stateProvinceErrMsgTxt);
+
+            }
+            catch (NoSuchElementException e)
+            {
+                Console.WriteLine("DEBUG: State error message has not been found: " + e.Message);
+                return false;
+            }
+
+        }
+
+        public bool IsCityErrorMessagePresentAndCorrect()
+        {
+            try
+            {
+                return CheckErrorMessage(CityErrorMessage, cityErrMsgTxt);
+
+            }
+            catch (NoSuchElementException e)
+            {
+                Console.WriteLine("DEBUG: City error message has not been found: " + e.Message);
+                return false;
+            }
+
+        }
+
+        public bool IsZipErrorMessagePresentAndCorrect()
+        {
+            try
+            {
+                return CheckErrorMessage(ZipErrorMessage, zipErrMsgTxt);
+
+            }
+            catch (NoSuchElementException e)
+            {
+                Console.WriteLine("DEBUG: Zip code error message has not been found: " + e.Message);
+                return false;
+            }
+
+        }
+
+        public bool IsMobileNumberErrorMessagePresentAndCorrect()
+        {
+            try
+            {
+                return CheckErrorMessage(MobileNumberErrorMessage, mobileNoErrMsgTxt);
+
+            }
+            catch (NoSuchElementException e)
+            {
+                Console.WriteLine("DEBUG: Mobile number error message has not been found: " + e.Message);
+                return false;
+            }
+
+        }
 
 
         // TODO: Change to: getting collection of the address boxes, find elements within elements and check text

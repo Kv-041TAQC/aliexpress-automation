@@ -11,7 +11,7 @@ using OpenQA.Selenium.Support.UI;
 namespace Tests
 {
     [TestFixture]
-    public class ShippingAddrAdditionPositiveTest
+    public class ShippingAddrAdditionNegativeTest
     {
 
         private IWebDriver driver;
