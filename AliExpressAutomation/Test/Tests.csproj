@@ -28,5 +28,11 @@
   <ItemGroup>
     <Compile Remove="RegistrationTests\LocalTestbyVasyl.cs" />
     <Compile Remove="RegistrationTests\TestsMyWishesIvan.cs" />
+    <Compile Remove="RegistrationTests\CurrencyTestByYura.cs" />
+    <Compile Remove="RegistrationTests\TestMarian.cs" />
+    <Compile Remove="RegistrationTests\CurrencyTestByYura.cs" />
+    <Compile Remove="RegistrationTests\LocalTestbyVasyl.cs" />
+    <Compile Remove="RegistrationTests\TestMarian.cs" />
+    <Compile Remove="RegistrationTests\TestsMyWishesIvan.cs" />
   </ItemGroup>
 </Project>
