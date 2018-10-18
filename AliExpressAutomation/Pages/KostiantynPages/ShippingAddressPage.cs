@@ -13,7 +13,7 @@ namespace AliExpress.Pages
     {
 
         #region Fields And Constants
-        private WebDriverWait wait;
+        private IWait<IWebDriver> wait;
 
         private const string contactErrMsgTxt = "Please enter a Contact Name";
         private const string countryRegionErrMsgTxt = "Please select a Country/Region";
@@ -23,30 +23,44 @@ namespace AliExpress.Pages
         private const string zipErrMsgTxt = "Please enter a ZIP/Postal Code";
         private const string mobileNoErrMsgTxt = "You must include a Mobile number";
 
+        private const string countryDropDownNotSelectedValue = "--Please Select--";
+
 
         #endregion Fields And Constants
 
         #region Page Element Locators
 
-        private By addNewAddressButtonLocator = By.LinkText("Add a new address");
-        private By contactPersonInputFieldLocator = By.Name("contactPerson");
-        public IWebElement AddNewAddressButton => driver.FindElement(addNewAddressButtonLocator);
-
         // SHIPPING ADDRESS FORM ELEMENTS
-        public IWebElement ContactPersonInputField => driver.FindElement(By.Name("contactPerson"));
-        public IWebElement CountryDropDownList => driver.FindElement(By.Name("country"));
-        public IWebElement AddressInputField => driver.FindElement(By.Name("address"));
-        public IWebElement ApartmentInputField => driver.FindElement(By.Name("address2"));
-        public IWebElement StateProvinceDropDownList => driver.FindElement(
-            By.XPath("//div[@class='sa-form']/div[@class='row sa-form-group sa-province-group']/div/select"));
+        private By addNewAddressButtonLocator = By.LinkText("Add a new address");
+        private By allAddressBoxesLocator = By.XPath("//div[contains(@class, 'sa-address-item')]");
+        private By contactPersonInputFieldLocator = By.Name("contactPerson");
+        private By countryDropDownListLocator = By.Name("country");
+        private By addressInputFieldLocator = By.Name("address");
+        private By appartmentInputFieldLocator = By.Name("address2");
+        private By stateProvinceDropDownListLocator = By.XPath("//div[@class='sa-form']/div[@class='row sa-form-group sa-province-group']/div/select");
+        private By cityInputFieldLocator = By.Name("city");
+        private By cityDropDownListLocator = By.XPath("//div[@class='row sa-form-group sa-city-group']/div/select");
+        private By zipInputFieldLocator = By.Name("zip");
+        private By noZipCodeCheckBoxLocator = By.XPath("//div[@class='sa-form']//label[@class='sa-no-zip-code']/input");
+        private By phoneCountryLocator = By.Name("phoneCountry");
+        private By mobileNumberInputFieldLocator = By.Name("mobileNo");
+        private By setAsDefaultCheckBoxLocator = By.XPath("//div[@class='sa-form']//input[@name='isDefault']");
+
+
+        public IWebElement AddNewAddressButton => driver.FindElement(addNewAddressButtonLocator);
+        public IWebElement ContactPersonInputField => driver.FindElement(contactPersonInputFieldLocator);
+        public IWebElement CountryDropDownList => driver.FindElement(countryDropDownListLocator);
+        public IWebElement AddressInputField => driver.FindElement(addressInputFieldLocator);
+        public IWebElement ApartmentInputField => driver.FindElement(appartmentInputFieldLocator);
+        public IWebElement StateProvinceDropDownList => driver.FindElement(stateProvinceDropDownListLocator);
         // City field can be input or drop down list depending on the Country / State selection
-        public IWebElement CityInputField => driver.FindElement(By.Name("city"));
-        public IWebElement CityDropDownList => driver.FindElement(By.XPath("//div[@class='row sa-form-group sa-city-group']/div/select"));
-        public IWebElement ZipInputField => driver.FindElement(By.Name("zip"));
-        public IWebElement NoZipCodeCheckBox => driver.FindElement(By.XPath("//div[@class='sa-form']//label[@class='sa-no-zip-code']/input"));
-        public IWebElement PhoneCountryInputField => driver.FindElement(By.Name("phoneCountry"));
-        public IWebElement MobileNumberInputField => driver.FindElement(By.Name("mobileNo"));
-        public IWebElement SetAsDefaultCheckBox => driver.FindElement(By.XPath("//div[@class='sa-form']//input[@name='isDefault']"));
+        public IWebElement CityInputField => driver.FindElement(cityInputFieldLocator);
+        public IWebElement CityDropDownList => driver.FindElement(cityDropDownListLocator);
+        public IWebElement ZipInputField => driver.FindElement(zipInputFieldLocator);
+        public IWebElement NoZipCodeCheckBox => driver.FindElement(noZipCodeCheckBoxLocator);
+        public IWebElement PhoneCountryInputField => driver.FindElement(phoneCountryLocator);
+        public IWebElement MobileNumberInputField => driver.FindElement(mobileNumberInputFieldLocator);
+        public IWebElement SetAsDefaultCheckBox => driver.FindElement(setAsDefaultCheckBoxLocator);
 
         // SUCCESS ICONS
         public IWebElement ContactNameSuccessIcon => driver.FindElement(By.XPath("//div[@id='address-main']/div[@class='sa-form']/div[1]//div[@class='sa-success-icon']"));
@@ -62,35 +76,46 @@ namespace AliExpress.Pages
         public IWebElement MobileNumberSuccessIcon => driver.FindElement(By.XPath("//div[@id='address-main']/div[@class='sa-form']/div[7]//div[@class='sa-success-icon']"));
 
         // ERROR MESSAGES
-        public IWebElement ContactNameErrorMessage => driver.FindElement(By.XPath("//div[@id='address-main']/div[@class='sa-form']/div[1]//p[@class='sa-error-tips']"));
-        public IWebElement CountryRegionErrorMessage => driver.FindElement(By.XPath("//div[@id='address-main']/div[@class='sa-form']/div[2]//p[@class='sa-error-tips']"));
-        public IWebElement StreetAddressErrorMessage => driver.FindElement(By.XPath("//div[@id='address-main']/div[@class='sa-form']//div[3]//p[@class='sa-error-tips']"));
-        public IWebElement StateProvinceRegionErrorMessage => driver.FindElement(By.XPath("//div[@id='address-main']/div[@class='sa-form']//div[4]//p[@class='sa-error-tips']"));
-        public IWebElement CityErrorMessage => driver.FindElement(By.XPath("//div[@id='address-main']/div[@class='sa-form']/div[5]//p[@class='sa-error-tips']"));
-        public IWebElement ZipErrorMessage => driver.FindElement(By.XPath("//div[@id='address-main']/div[@class='sa-form']//div[6]//p[@class='sa-error-tips']"));
-        public IWebElement MobileNumberErrorMessage => driver.FindElement(By.XPath("//div[@id='address-main']/div[@class='sa-form']/div[7]//p[@class='sa-error-tips']"));
+
+        private By contactNameErrorMessageLocator = By.XPath("//div[@id='address-main']/div[@class='sa-form']/div[1]//p[@class='sa-error-tips']");
+        private By countryRegionErrorMessageLocator = By.XPath("//div[@id='address-main']/div[@class='sa-form']/div[2]//p[@class='sa-error-tips']");
+        private By streetAddressErrorMessageLocator = By.XPath("//div[@id='address-main']/div[@class='sa-form']//div[3]//p[@class='sa-error-tips']");
+        private By stateProvinceRegionErrorMessageLocator => By.XPath("//div[@id='address-main']/div[@class='sa-form']//div[4]//p[@class='sa-error-tips']");
+        private By cityErrorMessageLocator = By.XPath("//div[@id='address-main']/div[@class='sa-form']/div[5]//p[@class='sa-error-tips']");
+        private By zipErrorMessageLocator = By.XPath("//div[@id='address-main']/div[@class='sa-form']//div[6]//p[@class='sa-error-tips']");
+        private By mobileNumberErrorMessageLocator = By.XPath("//div[@id='address-main']/div[@class='sa-form']/div[7]//p[@class='sa-error-tips']");
+
+        public IWebElement ContactNameErrorMessage => driver.FindElement(contactNameErrorMessageLocator);
+        public IWebElement CountryRegionErrorMessage => driver.FindElement(countryRegionErrorMessageLocator);
+        public IWebElement StreetAddressErrorMessage => driver.FindElement(streetAddressErrorMessageLocator);
+        public IWebElement StateProvinceRegionErrorMessage => driver.FindElement(stateProvinceRegionErrorMessageLocator);
+        public IWebElement CityErrorMessage => driver.FindElement(cityErrorMessageLocator);
+        public IWebElement ZipErrorMessage => driver.FindElement(zipErrorMessageLocator);
+        public IWebElement MobileNumberErrorMessage => driver.FindElement(mobileNumberErrorMessageLocator);
 
 
         // BUTTONS
-        public IWebElement SaveButton => driver.FindElement(By.LinkText("Save"));
-        public IWebElement CancelButton => driver.FindElement(By.LinkText("Cancel"));
+
+        private By saveButtonLocator = By.LinkText("Save");
+        private By cancelButtonLocator = By.LinkText("Cancel");
+
+        public IWebElement SaveButton => driver.FindElement(saveButtonLocator);
+        public IWebElement CancelButton => driver.FindElement(cancelButtonLocator);
 
         #endregion Page Element Locators
 
         #region Constructors
-        public ShippingAddressPage(IWebDriver driver) : base(driver)
+        public ShippingAddressPage(IWebDriver driver, IWait<IWebDriver> wait) : base(driver)
         {
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            this.wait = wait;
         }
 
         #endregion Constructors
 
         #region Methods
 
-        // TODO: ERROR CHECKING :make this into something more beautiful
-        private bool CheckErrorMessage(IWebElement element, string message)
+        public bool CheckErrorMessage(IWebElement element, string message)
         {
-            // WaitUtilities.WaitForElement(driver, element, 15);
             return element.Text.Equals(message);
         }
 
@@ -98,6 +123,7 @@ namespace AliExpress.Pages
         {
             try
             {
+                wait.Until(ExpectedConditions.ElementIsVisible(contactNameErrorMessageLocator));
                 return CheckErrorMessage(ContactNameErrorMessage, contactErrMsgTxt);
 
             }
@@ -113,6 +139,7 @@ namespace AliExpress.Pages
         {
             try
             {
+                wait.Until(ExpectedConditions.ElementIsVisible(countryRegionErrorMessageLocator));
                 return CheckErrorMessage(CountryRegionErrorMessage, countryRegionErrMsgTxt);
 
             }
@@ -128,6 +155,7 @@ namespace AliExpress.Pages
         {
             try
             {
+                wait.Until(ExpectedConditions.ElementIsVisible(streetAddressErrorMessageLocator));
                 return CheckErrorMessage(StreetAddressErrorMessage, addressErrMsgTxt);
 
             }
@@ -143,6 +171,7 @@ namespace AliExpress.Pages
         {
             try
             {
+                wait.Until(ExpectedConditions.ElementIsVisible(stateProvinceRegionErrorMessageLocator));
                 return CheckErrorMessage(StateProvinceRegionErrorMessage, stateProvinceErrMsgTxt);
 
             }
@@ -158,6 +187,7 @@ namespace AliExpress.Pages
         {
             try
             {
+                wait.Until(ExpectedConditions.ElementIsVisible(cityErrorMessageLocator));
                 return CheckErrorMessage(CityErrorMessage, cityErrMsgTxt);
 
             }
@@ -173,6 +203,7 @@ namespace AliExpress.Pages
         {
             try
             {
+                wait.Until(ExpectedConditions.ElementIsVisible(zipErrorMessageLocator));
                 return CheckErrorMessage(ZipErrorMessage, zipErrMsgTxt);
 
             }
@@ -188,6 +219,7 @@ namespace AliExpress.Pages
         {
             try
             {
+                wait.Until(ExpectedConditions.ElementIsVisible(mobileNumberErrorMessageLocator));
                 return CheckErrorMessage(MobileNumberErrorMessage, mobileNoErrMsgTxt);
 
             }
@@ -206,7 +238,10 @@ namespace AliExpress.Pages
         //       how to make those multiple condition checking more elegant
         public bool IsAddressPresent(Address adr)
         {
-            Thread.Sleep(15000);
+            // wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+            
+            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(allAddressBoxesLocator));
+
             if (!driver.PageSource.Contains(adr.contactName))
             {
                 Console.WriteLine(adr.contactName + " have not been found.");
@@ -258,16 +293,36 @@ namespace AliExpress.Pages
         {
             wait.Until(ExpectedConditions.ElementToBeClickable(contactPersonInputFieldLocator));
             SendText(ContactPersonInputField, adr.contactName);
+            wait.Until(ExpectedConditions.ElementToBeClickable(countryDropDownListLocator));
             SelectDropDown(CountryDropDownList, adr.countryRegion);
             SendText(AddressInputField, adr.streetAddress);
             SendText(ApartmentInputField, adr.apartment);
+            wait.Until(ExpectedConditions.ElementToBeClickable(stateProvinceDropDownListLocator));
             SelectDropDown(StateProvinceDropDownList, adr.stateProvinceRegion);
+            wait.Until(ExpectedConditions.ElementToBeClickable(cityDropDownListLocator));
             SelectDropDown(CityDropDownList, adr.city);
             SendText(ZipInputField, adr.zip);
             PhoneCountryInputField.Clear();
             SendText(PhoneCountryInputField, adr.mobileNoCountryCode);
             SendText(MobileNumberInputField, adr.mobileNumber);
+        }
+
+        public void ClearCountryDropDown()
+        {
+            wait.Until(ExpectedConditions.ElementToBeClickable(CountryDropDownList));
+            SelectDropDown(CountryDropDownList, countryDropDownNotSelectedValue);
+        }
+
+        public void ShippingAddressFormSave()
+        {
+            wait.Until(ExpectedConditions.ElementToBeClickable(saveButtonLocator));
             Click(SaveButton);
+        }
+
+        public void ShippingAddressFormCancel()
+        {
+            wait.Until(ExpectedConditions.ElementToBeClickable(cancelButtonLocator));
+            Click(CancelButton);
         }
 
         #endregion Methods

@@ -13,7 +13,7 @@ namespace AliExpress.Pages
 
         #region Fields and Constants
 
-        private WebDriverWait wait;
+        private IWait<IWebDriver> wait;
         private const string aliExpressURL = "https://www.aliexpress.com";
         private const string aliExpressLogin = "skaxrfdzeajgee2w@outlook.com";
         private const string aliExpressPassword = "qLEvZxcMVU9xqdQC";
@@ -47,9 +47,9 @@ namespace AliExpress.Pages
         #endregion
 
         #region Constructors
-        public AliExpressHomePage(IWebDriver driver) : base(driver)
+        public AliExpressHomePage(IWebDriver driver, IWait<IWebDriver> wait) : base(driver)
         {
-            this.wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+            this.wait = wait;
         }
 
         #endregion
@@ -66,6 +66,7 @@ namespace AliExpress.Pages
 
             try
             {
+                wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
                 wait.Until(ExpectedConditions.ElementToBeClickable(adsCloseButtonLocator));
                 Click(AdsCloseButton);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(adsLayerLocator));
@@ -80,8 +81,8 @@ namespace AliExpress.Pages
             Click(GoToGlobalSiteLink);
             wait.Until(ExpectedConditions.ElementToBeClickable(signInButtonLocator));
             Click(SignInButton);
-            wait.Until(ExpectedConditions.ElementToBeClickable(aliExpressLoginFormLocator));
-            driver.SwitchTo().Frame(AliExpressLoginForm);
+            wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(aliExpressLoginFormLocator));
+            //driver.SwitchTo().Frame(AliExpressLoginForm);
             // wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             //wait.Until(ExpectedConditions.ElementIsVisible(loginFieldLocator));
             Thread.Sleep(15000);
@@ -97,7 +98,7 @@ namespace AliExpress.Pages
             // wait.Until(ExpectedConditions.ElementToBeClickable(myOrdersLinkLocator));
             Thread.Sleep(15000);
             Click(MyOrdersLink);
-            return new MyOrdersPage(driver);
+            return new MyOrdersPage(driver, wait);
         }
 
         #endregion

@@ -12,7 +12,7 @@ namespace AliExpress.Pages
     {
 
         #region Fields and Constants
-        private WebDriverWait wait;
+        private IWait<IWebDriver> wait;
 
         #endregion
 
@@ -24,9 +24,9 @@ namespace AliExpress.Pages
         #endregion
 
         #region Constructors
-        public MyOrdersPage(IWebDriver driver) : base(driver)
+        public MyOrdersPage(IWebDriver driver, IWait<IWebDriver> wait) : base(driver)
         {
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            this.wait = wait;
         }
         #endregion
 
@@ -35,7 +35,7 @@ namespace AliExpress.Pages
         {
             wait.Until(ExpectedConditions.ElementToBeClickable(shipmentAddressLinkLocator));
             Click(ShipmentAddressLink);
-            return new ShippingAddressPage(driver);
+            return new ShippingAddressPage(driver, wait);
         }
         #endregion
 

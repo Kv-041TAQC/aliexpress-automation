@@ -15,6 +15,7 @@ namespace Tests
     {
 
         private IWebDriver driver;
+        private IWait<IWebDriver> wait;
 
         [SetUp]
         public void Setup()
@@ -25,12 +26,14 @@ namespace Tests
             // driver = new ChromeDriver("/home/kbogomazov/dotnet_src/lib", options);
             driver = new ChromeDriver(@"F:\src\qa\qa_automation_lib", options);
             driver.Manage().Window.Maximize();
+
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
         }
 
         [Test]
         public void ShippingAddressAdditionPositiveTest()
         {
-            AliExpressHomePage homePage = new AliExpressHomePage(driver);
+            AliExpressHomePage homePage = new AliExpressHomePage(driver, wait);
             homePage.NavigateToAliExpressHomepage();
             homePage.LoginToAliExpress();
             MyOrdersPage myOrdersPage = homePage.NavigateToMyOrdersPage();
@@ -50,6 +53,7 @@ namespace Tests
 
             shippingAddressPage.AddNewShippingAddress();
             shippingAddressPage.FillShippingAddressForm(adr);
+            shippingAddressPage.ShippingAddressFormSave();
             Assert.True(shippingAddressPage.IsAddressPresent(adr));
 
         }
