@@ -17,44 +17,51 @@ namespace Pages.AnnPages
         public EmailSubscriptionPage(IWebDriver driver) : base(driver)
         {
         }
-        #region Constans
-        private readonly string ButtonsSubscriptionLocator = "a.ui-button.ui-button-normal.ui-button-medium";
-        private readonly string StatusSubscriptionLocator = "td.subs-status";
-
-        #endregion
+        //#region Constans
+        //private readonly string ButtonsSubscriptionLocator = "a.ui-button.ui-button-normal.ui-button-medium";
+        // private readonly string StatusSubscriptionLocator = "td.subs-status";  
+       // #endregion
 
 
         #region IWebElements
-        private ReadOnlyCollection<IWebElement> ButtonsSubscription => driver.FindElements(By.CssSelector(ButtonsSubscriptionLocator));
-        private ReadOnlyCollection<IWebElement> StatusSubscription => driver.FindElements(By.CssSelector(StatusSubscriptionLocator));
+        private IWebElement ButtonsSubscription1 => driver.FindElement(By.CssSelector("body > div.me-main.util-clearfix.email-subscriptions > div.container > div > div > div > table > tbody > tr:nth-child(1) > td.subs-btn > a"));
+
+        //private IWebElement ButtonsSubscription2 => driver.FindElements(By.CssSelector("body > div.me-main.util-clearfix.email-subscriptions > div.container > div > div > div > table > tbody > tr:nth-child(2) > td.subs-btn > a"));
+        //private ReadOnlyCollection<IWebElement> StatusSubscription => driver.FindElements(By.CssSelector(StatusSubscriptionLocator));
 
         #endregion
 
-        public void ClickButtons()
+        //public void ClickButtons()
+        //{
+        //    Thread.Sleep(7000);
+        //    foreach (IWebElement element in ButtonsSubscription)
+        //    {
+        //        element.Click();
+        //    }
+        //}
+        public void ClickButtonsSubscription1()
         {
             Thread.Sleep(7000);
-            foreach (IWebElement element in ButtonsSubscription)
-            {
-                element.Click();
-            }
+            Click(ButtonsSubscription1);
+           
         }
-        public bool CheckStatusSubscription(string value)
-        {
-            Thread.Sleep(7000);
-            var count = 0;
+        //public bool CheckStatusSubscription(string value)
+        //{
+        //    Thread.Sleep(7000);
+        //    var count = 0;
 
-            foreach (IWebElement element in StatusSubscription)
-            {
-                if (element.Text == value)
-                {
-                    count++;
-                } else
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+        //    foreach (IWebElement element in StatusSubscription)
+        //    {
+        //        if (element.Text == value)
+        //        {
+        //            count++;
+        //        } else
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    return true;
+        //}
 
     }
 }

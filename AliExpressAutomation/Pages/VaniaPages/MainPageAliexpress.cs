@@ -76,7 +76,7 @@ namespace Pages.VaniaPages
                 Click(CloseAdvertising);
             Thread.Sleep(2000);
             Click(ButtonLogin);
-            Thread.Sleep(20000);
+            Thread.Sleep(8000);
             driver.SwitchTo().Frame(driver.FindElement(By.Id(aliExpressLoginFormId)));
             EmailLogin.Clear();
             //SendText(EmailLogin, alijson.Email);
@@ -106,7 +106,7 @@ namespace Pages.VaniaPages
         public AnnPages.AccountHomePage GoToAccountHomePage()
         {
             LoginToAccount();
-            Thread.Sleep(5000);
+            // Thread.Sleep(5000);
             //if (CloseAdvertising.Displayed)
             //    Click(CloseAdvertising);
             Thread.Sleep(5000);

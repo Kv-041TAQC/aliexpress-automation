@@ -15,14 +15,10 @@ namespace Pages.AnnPages
         public AccountSettingsPage(IWebDriver driver) : base(driver)
         {
         }
-        #region Constans
-        private readonly string EmailNotificationsLocator = "#settings-panel > div:nth-child(3) > ul > li > a";
-
-        #endregion
-
+        
         #region IWebElements
-        private IWebElement EmailNotificationsBtn => driver.FindElement(By.CssSelector(EmailNotificationsLocator));
-
+        private IWebElement EmailNotificationsBtn => driver.FindElement(By.CssSelector("#settings-panel > div:nth-child(3) > ul > li > a"));
+        
         #endregion
 
         public EmailSubscriptionPage GotoEmailSubscriptionPage()
