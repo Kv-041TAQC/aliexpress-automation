@@ -26,6 +26,7 @@ namespace AliExpress.Pages
         #endregion Fields And Constants
 
         #region Page Element Locators
+        public IWebElement AddNewAddressButton => driver.FindElement(By.LinkText("Add a new address"));
 
         // SHIPPING ADDRESS FORM ELEMENTS
         public IWebElement ContactPersonInputField => driver.FindElement(By.Name("contactPerson"));
@@ -85,8 +86,10 @@ namespace AliExpress.Pages
         // TODO: ERROR CHECKING :make this into something more beautiful
         private bool CheckErrorMessage(IWebElement element, string message)
         {
+            WaitUtilities.WaitForElement(driver, element, 15);
             return element.Text.Equals(message);
         }
+
         public bool IsContactErrorMessagePresentAndCorrect()
         {
             try
@@ -238,6 +241,12 @@ namespace AliExpress.Pages
             }
 
             return true;
+        }
+
+        public void AddNewShippingAddress()
+        {
+            WaitUtilities.WaitForElement(driver, AddNewAddressButton, 15);
+            AddNewAddressButton.Click();
         }
 
         // TODO: add success icon checks (1.input 2.click on form 3.check for icon)

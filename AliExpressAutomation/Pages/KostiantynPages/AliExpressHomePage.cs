@@ -2,12 +2,15 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System.Threading;
+using AliExpress.Helpers;
 
 
-namespace AliExpress.Helpers
+namespace AliExpress.Pages
 {
-    public class Helpers
+    public class AliExpressHomePage
     {
+
+        #region Fields and Constants
 
         private IWebDriver driver;
         private const string aliExpressURL = "https://www.aliexpress.com";
@@ -16,57 +19,46 @@ namespace AliExpress.Helpers
 
         private const string aliExpressLoginFormId = "alibaba-login-box";
 
+        #endregion
 
+        #region Page Element Locators  
+        public IWebElement GoToGlobalSiteLink => driver.FindElement(By.LinkText("Go to Global Site (English)"));
         public IWebElement SignInButton => driver.FindElement(
             By.XPath("//div[@id='user-benefits']/div[@class='user-account']//span[@class='register-btn']/a[@data-role='sign-link']"));
-
+        public IWebElement AliExpressLoginForm => driver.FindElement(By.Id(aliExpressLoginFormId));
         public IWebElement LoginField => driver.FindElement(By.Id("fm-login-id"));
         public IWebElement PasswordField => driver.FindElement(By.Id("fm-login-password"));
         public IWebElement LoginSubmitButton => driver.FindElement(By.Id("fm-login-submit"));
 
         public IWebElement AdsCloseButton => driver.FindElement(By.XPath("//a[@data-role='layer-close']"));
 
-        public IWebElement GoToGlobalSiteLink => driver.FindElement(By.LinkText("Go to Global Site (English)"));
+        
 
-        // TODO: change to click in the drop down menu, change to finding by text My Orders
         public IWebElement MyOrdersLink => driver.FindElements(By.XPath("//a[contains(@href, 'orderList.htm')]"))[1];
 
-        // TODO: change to something more adequate
-        public IWebElement ShipmentAddressLink => driver.FindElement(By.LinkText("Shipping Address"));
+        #endregion
 
-        public IWebElement AddNewAddressButton => driver.FindElement(By.LinkText("Add a new address"));
-
-
-
-        public Helpers(IWebDriver driver)
+        #region Constructors
+        public AliExpressHomePage(IWebDriver driver)
         {
             this.driver = driver;
         }
 
+        #endregion
+
+        #region Methods
         public void NavigateToAliExpressHomepage()
         {
             driver.Navigate().GoToUrl(aliExpressURL);
         }
 
-        public void WaitForElement(IWebElement element)
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.ElementToBeClickable(element));
-            Console.WriteLine($"Waiting for {element.GetAttribute("class")} to appear.");
-            Thread.Sleep(15000);
-        }
 
         public void LoginToAliExpress()
         {
 
-            // TODO: try to set cookie
-            // TODO: try to find those elements using class attribute
-
-            // <a href="javascript:;" class="close-layer" data-role="layer-close">x</a>
-            // <a data-role="goto-globalsite" class="link-goto-globalsite notranslate" rel="nofollow" href="http://www.aliexpress.com/">Go to Global Site (English)</a>
             try
             {
-                WaitForElement(AdsCloseButton);
+                WaitUtilities.WaitForElement(driver, AdsCloseButton, 15);
                 AdsCloseButton.Click();
 
             }
@@ -75,56 +67,28 @@ namespace AliExpress.Helpers
                 Console.WriteLine("DEBUG: There was no ad: " + e.Message);
             }
 
-
-            WaitForElement(GoToGlobalSiteLink);
+            WaitUtilities.WaitForElement(driver, GoToGlobalSiteLink, 15);
             GoToGlobalSiteLink.Click();
-            WaitForElement(SignInButton);
+            WaitUtilities.WaitForElement(driver, SignInButton, 15);
             SignInButton.Click();
-            WaitForElement(driver.FindElement(By.Id(aliExpressLoginFormId)));
-            driver.SwitchTo().Frame(driver.FindElement(By.Id(aliExpressLoginFormId))); // TODO: change to lambda expression or something cool
-            WaitForElement(LoginField);
+            WaitUtilities.WaitForElement(driver, AliExpressLoginForm, 15);
+            driver.SwitchTo().Frame(AliExpressLoginForm);
+            WaitUtilities.WaitForElement(driver, LoginField, 15);
             LoginField.SendKeys(aliExpressLogin);
-            WaitForElement(PasswordField);
+            WaitUtilities.WaitForElement(driver, PasswordField, 15);
             PasswordField.SendKeys(aliExpressPassword);
-            WaitForElement(LoginSubmitButton);
+            WaitUtilities.WaitForElement(driver, LoginSubmitButton, 15);
             LoginSubmitButton.Click();
+        }
 
-            // Click My Orders link
-            // <a href="//trade.aliexpress.com/orderList.htm"><span class="order-icon entrance-icon">&nbsp;</span> <span class="entrance-name flex-vertical middle-center">My Orders</span> </a>
-            // <a href="//trade.aliexpress.com/orderList.htm?spm=2114.11010108.01010.4.16d4649bidxqVM" data-spm-anchor-id="2114.11010108.01010.4"><span class="order-icon entrance-icon" data-spm-anchor-id="2114.11010108.01010.i0.16d4649bidxqVM">&nbsp;</span> <span class="entrance-name flex-vertical middle-center">My Orders</span> </a>
-            // <a href="//trade.aliexpress.com/orderList.htm?spm=2114.11010108.01010.4.3503649b4YDP6z" data-spm-anchor-id="2114.11010108.01010.4"><span class="order-icon entrance-icon">&nbsp;</span> <span class="entrance-name flex-vertical middle-center" data-spm-anchor-id="2114.11010108.01010.i0.3503649b4YDP6z">My Orders</span> </a>
-            WaitForElement(MyOrdersLink);
+        public MyOrdersPage NavigateToMyOrdersPage()
+        {
+            WaitUtilities.WaitForElement(driver, MyOrdersLink, 15);
             MyOrdersLink.Click();
-
-            // Click shipping address menu
-            // <a href="http://ilogisticsaddress.aliexpress.com/addressList.htm">Shipping Address</a>
-            WaitForElement(ShipmentAddressLink);
-            ShipmentAddressLink.Click();
-
-            // Click "Add new address" button
-            // <a href="javascript:;" class="ui-button ui-button-primary ui-button-large sa-add-a-new-address" data-spm-anchor-id="a2g0s.8850659.0.0">Add a new address</a>
-            WaitForElement(AddNewAddressButton);
-            AddNewAddressButton.Click();
+            return new MyOrdersPage(driver);
         }
 
-        public void OpenMyOrdersPage()
-        {
-
-        }
-
-        public void OpenShipmentAddress()
-        {
-
-        }
-
-        // TODO: move all this stuff into:
-        // Homepage
-        // MyAliExpress page
-        // which switches into My Orders and other options
-        // in helper class should be waiters, ads/popup windows checking/closing
-        // make normal class hierarchy
-        // work with ajax / js
-
+        #endregion
 
     }
 }

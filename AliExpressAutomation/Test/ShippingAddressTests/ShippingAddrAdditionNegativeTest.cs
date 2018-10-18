@@ -25,23 +25,19 @@ namespace Tests
             driver = new ChromeDriver("/home/kbogomazov/dotnet_src/lib", options);
             // driver = new ChromeDriver(@"F:\src\qa\qa_automation_lib", options);
             driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-
         }
 
         [Test]
         public void ShippingAddressAdditionNegativeTest()
         {
-            Helpers helper = new Helpers(driver);
-            helper.NavigateToAliExpressHomepage();
-            Thread.Sleep(5000); // why this works only here
-            helper.LoginToAliExpress();
-            
-
-            ShippingAddressPage shippingAddressPage = new ShippingAddressPage(driver);
-            Thread.Sleep(15000);
+            AliExpressHomePage homePage = new AliExpressHomePage(driver);
+            homePage.NavigateToAliExpressHomepage();
+            homePage.LoginToAliExpress();
+            MyOrdersPage myOrdersPage = homePage.NavigateToMyOrdersPage();
+            ShippingAddressPage shippingAddressPage = myOrdersPage.OpenShippingAddressPage();
+            WaitUtilities.WaitForElement(driver, shippingAddressPage.SaveButton, 15);
             shippingAddressPage.SaveButton.Click();
-            Thread.Sleep(15000);
+            
             Assert.True(shippingAddressPage.IsContactErrorMessagePresentAndCorrect());
             Assert.True(shippingAddressPage.IsCountryRegionErrorMessagePresentAndCorrect());
             Assert.True(shippingAddressPage.IsAddressErrorMessagePresentAndCorrect());

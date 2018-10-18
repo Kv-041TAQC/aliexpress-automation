@@ -18,6 +18,7 @@
     <Folder Include="AnnPages\" />
     <Folder Include="MarianPages\" />
     <Folder Include="KostiantynPages\" />
+    <Folder Include="KostiantynPages\Helpers\" />
     <Folder Include="VaniaPages\" />
     <Folder Include="VasylPages\" />
     <Folder Include="YuraPages\" />
