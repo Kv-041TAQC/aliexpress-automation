@@ -25,4 +25,8 @@
     <Folder Include="ScreenShots\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="RegistrationTests\LocalTestbyVasyl.cs" />
+    <Compile Remove="RegistrationTests\TestsMyWishesIvan.cs" />
+  </ItemGroup>
 </Project>
