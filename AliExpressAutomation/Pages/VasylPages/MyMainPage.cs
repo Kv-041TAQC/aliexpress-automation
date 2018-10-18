@@ -58,8 +58,9 @@ namespace Pages.VasylPages
 
         public MySearchPageIphone NextPage()
         {
-            MaximizeWindow();
             NavigateToUrl(url);
+            Thread.Sleep(2000);
+            MaximizeWindow();
             Thread.Sleep(15000);
             if (CloseAdvertising.Displayed)
                 Click(CloseAdvertising);

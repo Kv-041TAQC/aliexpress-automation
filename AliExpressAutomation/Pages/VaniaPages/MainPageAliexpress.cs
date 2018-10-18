@@ -67,11 +67,12 @@ namespace Pages.VaniaPages
 
         public void LoginToAccount()
         {
-            MaximizeWindow();
             NavigateToUrl(urlAliexpress);
+            Thread.Sleep(2000);
+            MaximizeWindow();
             Thread.Sleep(15000);
-            //if (CloseAdvertising.Displayed)
-            //    Click(CloseAdvertising);
+            if (CloseAdvertising.Displayed)
+                Click(CloseAdvertising);
             Thread.Sleep(2000);
             Click(ButtonLogin);
             Thread.Sleep(5000);
@@ -90,8 +91,8 @@ namespace Pages.VaniaPages
         public SearchProductForWishes MainPageGoToLogin()
         {
             LoginToAccount();
-            //if (CloseAdvertising.Displayed)
-            //    Click(CloseAdvertising);
+            if (CloseAdvertising.Displayed)
+                Click(CloseAdvertising);
             Thread.Sleep(5000);
             SendText(SearchButton, alijson.ValidData[0]);
             Thread.Sleep(2000);
