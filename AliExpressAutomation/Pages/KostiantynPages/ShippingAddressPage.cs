@@ -286,6 +286,7 @@ namespace AliExpress.Pages
         {
             wait.Until(ExpectedConditions.ElementToBeClickable(addNewAddressButtonLocator));
             AddNewAddressButton.Click();
+            wait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
         }
 
         // TODO: add success icon checks (1.input 2.click on form 3.check for icon)

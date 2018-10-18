@@ -30,8 +30,12 @@ namespace AliExpress.Pages
         private By passwordFieldLocator = By.Id("fm-login-password");
         private By loginSubmitButtonLocator = By.Id("fm-login-submit");
         private By adsCloseButtonLocator = By.XPath("//a[@data-role='layer-close']");
-        private By adsLayerLocator = By.ClassName("ui-window ui-window-normal ui-window-transition ui-newuser-layer-dialog");
-        private By myOrdersLinkLocator = By.XPath("//a[contains(@href, 'orderList.htm')]");
+        private By adsLayerLocator = By.XPath("//div[@class='ui-window ui-window-normal ui-window-transition ui-newuser-layer-dialog']");
+
+        private By newUserAdNotificationLocator = By.ClassName("ui-newuser-coupon-tips");
+
+        private By myOrdersIconLocator = By.CssSelector(".order-icon");
+        private By myOrdersLinkLocator = By.XPath("//div[@class='fast-entry']//a[contains(@href, 'orderList.htm')]");
 
 
         public IWebElement GoToGlobalSiteLink => driver.FindElement(goToGlobalSiteLinkLocator);
@@ -42,7 +46,7 @@ namespace AliExpress.Pages
         public IWebElement LoginSubmitButton => driver.FindElement(loginSubmitButtonLocator);
 
         public IWebElement AdsCloseButton => driver.FindElement(adsCloseButtonLocator);
-        public IWebElement MyOrdersLink => driver.FindElements(myOrdersLinkLocator)[1];
+        public IWebElement MyOrdersLink => driver.FindElement(myOrdersLinkLocator);
 
         #endregion
 
@@ -63,45 +67,56 @@ namespace AliExpress.Pages
 
         public void LoginToAliExpress()
         {
+            IWait<IWebDriver> longAdWait = new WebDriverWait(driver, TimeSpan.FromMinutes(1));
 
             try
             {
-                wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
-                wait.Until(ExpectedConditions.ElementToBeClickable(adsCloseButtonLocator));
+                longAdWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+                longAdWait.Until(ExpectedConditions.ElementToBeClickable(adsCloseButtonLocator));
                 Click(AdsCloseButton);
-                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(adsLayerLocator));
-
+                longAdWait.Until(ExpectedConditions.StalenessOf(driver.FindElement(adsLayerLocator)));
             }
             catch (NoSuchElementException e)
             {
-                Console.WriteLine("DEBUG: There was no ad: " + e.Message);
+                Console.WriteLine("DEBUG: Could not locate ad: " + e.Message);
             }
+            catch (WebDriverTimeoutException e)
+            {
+                Console.WriteLine("DEBUG: Timed out while waiting for ad: " + e.Message);
+            }
+
             wait.Until(ExpectedConditions.ElementToBeClickable(goToGlobalSiteLinkLocator));
-            Thread.Sleep(15000);
             Click(GoToGlobalSiteLink);
             wait.Until(ExpectedConditions.ElementToBeClickable(signInButtonLocator));
             Click(SignInButton);
+
             wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(aliExpressLoginFormLocator));
-            //driver.SwitchTo().Frame(AliExpressLoginForm);
-            // wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
-            //wait.Until(ExpectedConditions.ElementIsVisible(loginFieldLocator));
-            Thread.Sleep(15000);
+            wait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
+            driver.SwitchTo().Frame(AliExpressLoginForm);
+            var frameWait = new WebDriverWait(driver, wait.Timeout);
+            frameWait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
+            frameWait.Until(ExpectedConditions.ElementIsVisible(loginFieldLocator));
             SendText(LoginField, aliExpressLogin);
-            wait.Until(ExpectedConditions.ElementToBeClickable(passwordFieldLocator));
+            frameWait.Until(ExpectedConditions.ElementIsVisible(passwordFieldLocator));
             SendText(PasswordField, aliExpressPassword);
-            wait.Until(ExpectedConditions.ElementToBeClickable(loginSubmitButtonLocator));
+            frameWait.Until(ExpectedConditions.ElementIsVisible(loginSubmitButtonLocator));
             Click(LoginSubmitButton);
+            frameWait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
         }
 
         public MyOrdersPage NavigateToMyOrdersPage()
         {
-            // wait.Until(ExpectedConditions.ElementToBeClickable(myOrdersLinkLocator));
-            Thread.Sleep(15000);
+            driver.SwitchTo().Window(driver.CurrentWindowHandle);
+            var pageWait = new WebDriverWait(driver, wait.Timeout);
+            
+            pageWait.Until(ExpectedConditions.ElementIsVisible(myOrdersIconLocator));
             Click(MyOrdersLink);
-            return new MyOrdersPage(driver, wait);
+            return new MyOrdersPage(driver, pageWait);
         }
 
         #endregion
+
+
 
     }
 }
