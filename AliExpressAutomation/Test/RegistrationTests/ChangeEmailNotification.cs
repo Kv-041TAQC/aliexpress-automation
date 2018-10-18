@@ -47,8 +47,7 @@ namespace Tests.RegistrationTests
                 var accountHomePage = mainPageAliexpress.GoToAccountHomePage();
                 var accounSettingsPage = accountHomePage.GotoAccountSettingsPage();
                 var emailSubscriptionPage = accounSettingsPage.GotoEmailSubscriptionPage();
-                Thread.Sleep(5000);
-                emailSubscriptionPage.ClickButtonsSubscription1();
+                emailSubscriptionPage.ClickButtons();
                 //Assert.True(emailSubscriptionPage.CheckStatusSubscription("Disabled"));
                                
             }

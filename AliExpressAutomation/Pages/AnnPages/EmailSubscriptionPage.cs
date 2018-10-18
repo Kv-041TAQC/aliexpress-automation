@@ -18,32 +18,35 @@ namespace Pages.AnnPages
         {
         }
         //#region Constans
-        //private readonly string ButtonsSubscriptionLocator = "a.ui-button.ui-button-normal.ui-button-medium";
+        private readonly string ButtonsSubscriptionLocator = "td.subs-btn > a";
         // private readonly string StatusSubscriptionLocator = "td.subs-status";  
-       // #endregion
+        // #endregion
 
 
         #region IWebElements
-        private IWebElement ButtonsSubscription1 => driver.FindElement(By.CssSelector("body > div.me-main.util-clearfix.email-subscriptions > div.container > div > div > div > table > tbody > tr:nth-child(1) > td.subs-btn > a"));
+        // private IWebElement ButtonsSubscription1 => driver.FindElement(By.CssSelector("body > div.me-main.util-clearfix.email-subscriptions > div.container > div > div > div > table > tbody > tr:nth-child(1) > td.subs-btn > a"));
 
-        //private IWebElement ButtonsSubscription2 => driver.FindElements(By.CssSelector("body > div.me-main.util-clearfix.email-subscriptions > div.container > div > div > div > table > tbody > tr:nth-child(2) > td.subs-btn > a"));
+
         //private ReadOnlyCollection<IWebElement> StatusSubscription => driver.FindElements(By.CssSelector(StatusSubscriptionLocator));
-
+        private ReadOnlyCollection<IWebElement> ButtonsSubscription => driver.FindElements(By.CssSelector(ButtonsSubscriptionLocator));
         #endregion
 
-        //public void ClickButtons()
-        //{
-        //    Thread.Sleep(7000);
-        //    foreach (IWebElement element in ButtonsSubscription)
-        //    {
-        //        element.Click();
-        //    }
-        //}
-        public void ClickButtonsSubscription1()
+        public void ClickButtons()
         {
+            Thread.Sleep(10000);
+            var test = ButtonsSubscription;
             Thread.Sleep(7000);
-            Click(ButtonsSubscription1);
-           
+            foreach (IWebElement element in test)
+            {
+                element.Click();
+                Thread.Sleep(2000);
+            }
+            //}
+            //public void ClickButtonsSubscription1()
+            //{
+            //    Thread.Sleep(7000);
+            //    Click(ButtonsSubscription1);
+
         }
         //public bool CheckStatusSubscription(string value)
         //{
