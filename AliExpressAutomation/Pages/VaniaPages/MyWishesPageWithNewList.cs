@@ -40,7 +40,7 @@ namespace Pages.VaniaPages
 
         }
 
-        public void MyWishesAddProductToList()
+        public MyWishesPageInAddingList MyWishesAddProductToList()
         {
             Thread.Sleep(3000);
             Click(ButtonAddToSomeList);
@@ -48,8 +48,8 @@ namespace Pages.VaniaPages
             Click(ButtonAddToChoosingList);
             Thread.Sleep(3000);
             Click(ButtonGoToCreatedList);
-            Thread.Sleep(7000);
-            Assert.Pass();
+            Thread.Sleep(3000);
+            return new MyWishesPageInAddingList(driver);
         }
         #endregion
     }

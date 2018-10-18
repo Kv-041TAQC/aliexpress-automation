@@ -58,15 +58,16 @@ namespace Pages.VasylPages
 
         public MySearchPageIphone NextPage()
         {
-            MaximizeWindow();
             NavigateToUrl(url);
+            Thread.Sleep(2000);
+            MaximizeWindow();
             Thread.Sleep(15000);
             if (CloseAdvertising.Displayed)
                 Click(CloseAdvertising);
             Thread.Sleep(5000);
             Click(GlobalSite);
             Thread.Sleep(3000);
-            SendText(SearchField, alijson.ValidData[0]);
+            SendText(SearchField, alijson.ValidData[1]);
             Thread.Sleep(1000);
             Click(SearchButton);
             Thread.Sleep(1000);
