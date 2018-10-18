@@ -13,6 +13,7 @@ namespace AliExpress.Pages
 
         #region Fields And Constants
         private IWebDriver driver;
+        private WebDriverWait wait;
 
         private const string contactErrMsgTxt = "Please enter a Contact Name";
         private const string countryRegionErrMsgTxt = "Please select a Country/Region";
@@ -26,7 +27,10 @@ namespace AliExpress.Pages
         #endregion Fields And Constants
 
         #region Page Element Locators
-        public IWebElement AddNewAddressButton => driver.FindElement(By.LinkText("Add a new address"));
+
+        private By addNewAddressButtonLocator = By.LinkText("Add a new address");
+        private By contactPersonInputFieldLocator = By.Name("contactPerson");
+        public IWebElement AddNewAddressButton => driver.FindElement(addNewAddressButtonLocator);
 
         // SHIPPING ADDRESS FORM ELEMENTS
         public IWebElement ContactPersonInputField => driver.FindElement(By.Name("contactPerson"));
@@ -77,6 +81,7 @@ namespace AliExpress.Pages
         public ShippingAddressPage(IWebDriver driver)
         {
             this.driver = driver;
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
         }
 
         #endregion Constructors
@@ -86,7 +91,7 @@ namespace AliExpress.Pages
         // TODO: ERROR CHECKING :make this into something more beautiful
         private bool CheckErrorMessage(IWebElement element, string message)
         {
-            WaitUtilities.WaitForElement(driver, element, 15);
+            // WaitUtilities.WaitForElement(driver, element, 15);
             return element.Text.Equals(message);
         }
 
@@ -245,13 +250,14 @@ namespace AliExpress.Pages
 
         public void AddNewShippingAddress()
         {
-            WaitUtilities.WaitForElement(driver, AddNewAddressButton, 15);
+            wait.Until(ExpectedConditions.ElementToBeClickable(addNewAddressButtonLocator));
             AddNewAddressButton.Click();
         }
 
         // TODO: add success icon checks (1.input 2.click on form 3.check for icon)
         public void FillShippingAddressForm(Address adr)
         {
+            wait.Until(ExpectedConditions.ElementToBeClickable(contactPersonInputFieldLocator));
             ContactPersonInputField.SendKeys(adr.contactName);
             CountryDropDownList.SelectByText(adr.countryRegion);
             AddressInputField.SendKeys(adr.streetAddress);

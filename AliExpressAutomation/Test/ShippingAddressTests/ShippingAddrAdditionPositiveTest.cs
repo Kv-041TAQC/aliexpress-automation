@@ -22,8 +22,8 @@ namespace Tests
 
             ChromeOptions options = new ChromeOptions();
             options.PageLoadStrategy = PageLoadStrategy.None; // PageLoadStrategy.Eager not supported by Chrome
-            driver = new ChromeDriver("/home/kbogomazov/dotnet_src/lib", options);
-            // driver = new ChromeDriver(@"F:\src\qa\qa_automation_lib", options);
+            // driver = new ChromeDriver("/home/kbogomazov/dotnet_src/lib", options);
+            driver = new ChromeDriver(@"F:\src\qa\qa_automation_lib", options);
             driver.Manage().Window.Maximize();
         }
 
@@ -52,6 +52,12 @@ namespace Tests
             shippingAddressPage.FillShippingAddressForm(adr);
             Assert.True(shippingAddressPage.IsAddressPresent(adr));
 
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            driver.Close();
         }
     }
 }

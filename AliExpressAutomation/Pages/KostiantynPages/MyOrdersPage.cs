@@ -12,11 +12,14 @@ namespace AliExpress.Pages
 
         #region Fields and Constants
         private IWebDriver driver;
+        private WebDriverWait wait;
 
         #endregion
 
         #region Page Element Locators
-        public IWebElement ShipmentAddressLink => driver.FindElement(By.LinkText("Shipping Address"));
+        
+        private By shipmentAddressLinkLocator = By.LinkText("Shipping Address");
+        public IWebElement ShipmentAddressLink => driver.FindElement(shipmentAddressLinkLocator);
 
         #endregion
 
@@ -24,13 +27,14 @@ namespace AliExpress.Pages
         public MyOrdersPage(IWebDriver driver)
         {
             this.driver = driver;
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
         }
         #endregion
 
         #region Methods
         public ShippingAddressPage OpenShippingAddressPage()
         {
-            WaitUtilities.WaitForElement(driver, ShipmentAddressLink, 15);
+            wait.Until(ExpectedConditions.ElementToBeClickable(shipmentAddressLinkLocator));
             ShipmentAddressLink.Click();
             return new ShippingAddressPage(driver);
         }
