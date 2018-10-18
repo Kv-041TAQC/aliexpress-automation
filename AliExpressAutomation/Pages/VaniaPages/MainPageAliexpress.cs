@@ -58,7 +58,13 @@ namespace Pages.VaniaPages
         {
             get { return driver.FindElement(By.CssSelector(buttonSubmit)); }
         }
-        private IWebElement MyAliExpressBtn => driver.FindElement(By.CssSelector(MyAliexpressLocator));
+        private IWebElement MyAliExpressBtn
+        {
+            get
+            {
+                return driver.FindElement(By.CssSelector(MyAliexpressLocator));
+            }
+        }
         #endregion
 
         #region Methods

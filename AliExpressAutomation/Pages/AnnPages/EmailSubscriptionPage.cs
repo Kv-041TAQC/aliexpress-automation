@@ -17,20 +17,17 @@ namespace Pages.AnnPages
         public EmailSubscriptionPage(IWebDriver driver) : base(driver)
         {
         }
-        //#region Constans
+        #region Constans
         private readonly string ButtonsSubscriptionLocator = "td.subs-btn > a";
-        // private readonly string StatusSubscriptionLocator = "td.subs-status";  
-        // #endregion
-
-
+        
+        #endregion
+        
         #region IWebElements
-        // private IWebElement ButtonsSubscription1 => driver.FindElement(By.CssSelector("body > div.me-main.util-clearfix.email-subscriptions > div.container > div > div > div > table > tbody > tr:nth-child(1) > td.subs-btn > a"));
-
-
-        //private ReadOnlyCollection<IWebElement> StatusSubscription => driver.FindElements(By.CssSelector(StatusSubscriptionLocator));
-        private ReadOnlyCollection<IWebElement> ButtonsSubscription => driver.FindElements(By.CssSelector(ButtonsSubscriptionLocator));
+        private ReadOnlyCollection<IWebElement> ButtonsSubscription => driver.FindElements(By.CssSelector("td.subs-btn > a"));
+        
         #endregion
 
+        #region Methods
         public void ClickButtons()
         {
             Thread.Sleep(10000);
@@ -41,30 +38,7 @@ namespace Pages.AnnPages
                 element.Click();
                 Thread.Sleep(2000);
             }
-            //}
-            //public void ClickButtonsSubscription1()
-            //{
-            //    Thread.Sleep(7000);
-            //    Click(ButtonsSubscription1);
-
+            #endregion
         }
-        //public bool CheckStatusSubscription(string value)
-        //{
-        //    Thread.Sleep(7000);
-        //    var count = 0;
-
-        //    foreach (IWebElement element in StatusSubscription)
-        //    {
-        //        if (element.Text == value)
-        //        {
-        //            count++;
-        //        } else
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    return true;
-        //}
-
     }
 }

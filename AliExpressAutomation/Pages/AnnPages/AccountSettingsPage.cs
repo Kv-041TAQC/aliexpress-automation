@@ -15,19 +15,24 @@ namespace Pages.AnnPages
         public AccountSettingsPage(IWebDriver driver) : base(driver)
         {
         }
-        
-        #region IWebElements
-        private IWebElement EmailNotificationsBtn => driver.FindElement(By.CssSelector("#settings-panel > div:nth-child(3) > ul > li > a"));
-        
+
+        #region Сonstants
+        private readonly string EmailNotificationsBtnLocator = "#settings-panel > div:nth-child(3) > ul > li > a";
         #endregion
 
+        #region IWebElements
+        private IWebElement EmailNotificationsBtn => driver.FindElement(By.CssSelector(EmailNotificationsBtnLocator));
+
+        #endregion
+
+        #region Methods
         public EmailSubscriptionPage GotoEmailSubscriptionPage()
         {
             Thread.Sleep(7000);
             Click(EmailNotificationsBtn);
             return new EmailSubscriptionPage(driver);
         }
-
+        #endregion
     }
-  
+
 }
