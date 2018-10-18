@@ -4,6 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using AliExpress.Helpers;
 using Pages;
+using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 
 namespace AliExpress.Pages
@@ -93,6 +94,7 @@ namespace AliExpress.Pages
             wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(aliExpressLoginFormLocator));
             wait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
             driver.SwitchTo().Frame(AliExpressLoginForm);
+            
             var frameWait = new WebDriverWait(driver, wait.Timeout);
             frameWait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
             frameWait.Until(ExpectedConditions.ElementIsVisible(loginFieldLocator));

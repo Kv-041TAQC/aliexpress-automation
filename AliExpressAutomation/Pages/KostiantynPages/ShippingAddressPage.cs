@@ -4,6 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using AliExpress.Helpers;
 using System.Threading;
 using Pages;
+using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 
 
@@ -233,13 +234,8 @@ namespace AliExpress.Pages
 
 
         // TODO: Change to: getting collection of the address boxes, find elements within elements and check text
-        //       throw some exceptions or error/debug messages
-        //       with XPath regex contains() element finding
-        //       how to make those multiple condition checking more elegant
         public bool IsAddressPresent(Address adr)
-        {
-            // wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
-            
+        {       
             wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(allAddressBoxesLocator));
 
             if (!driver.PageSource.Contains(adr.contactName))

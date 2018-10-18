@@ -4,6 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using AliExpress.Helpers;
 using Pages;
+using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 
 namespace AliExpress.Pages
