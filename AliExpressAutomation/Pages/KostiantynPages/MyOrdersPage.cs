@@ -3,15 +3,15 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using AliExpress.Helpers;
+using Pages;
 
 
 namespace AliExpress.Pages
 {
-    public class MyOrdersPage
+    public class MyOrdersPage : SuperPage
     {
 
         #region Fields and Constants
-        private IWebDriver driver;
         private WebDriverWait wait;
 
         #endregion
@@ -24,9 +24,8 @@ namespace AliExpress.Pages
         #endregion
 
         #region Constructors
-        public MyOrdersPage(IWebDriver driver)
+        public MyOrdersPage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
         }
         #endregion
@@ -35,7 +34,7 @@ namespace AliExpress.Pages
         public ShippingAddressPage OpenShippingAddressPage()
         {
             wait.Until(ExpectedConditions.ElementToBeClickable(shipmentAddressLinkLocator));
-            ShipmentAddressLink.Click();
+            Click(ShipmentAddressLink);
             return new ShippingAddressPage(driver);
         }
         #endregion

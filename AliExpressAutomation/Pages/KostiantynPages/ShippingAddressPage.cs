@@ -3,16 +3,16 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using AliExpress.Helpers;
 using System.Threading;
+using Pages;
 
 
 
 namespace AliExpress.Pages
 {
-    public class ShippingAddressPage
+    public class ShippingAddressPage : SuperPage
     {
 
         #region Fields And Constants
-        private IWebDriver driver;
         private WebDriverWait wait;
 
         private const string contactErrMsgTxt = "Please enter a Contact Name";
@@ -34,14 +34,14 @@ namespace AliExpress.Pages
 
         // SHIPPING ADDRESS FORM ELEMENTS
         public IWebElement ContactPersonInputField => driver.FindElement(By.Name("contactPerson"));
-        public SelectElement CountryDropDownList => new SelectElement(driver.FindElement(By.Name("country")));
+        public IWebElement CountryDropDownList => driver.FindElement(By.Name("country"));
         public IWebElement AddressInputField => driver.FindElement(By.Name("address"));
         public IWebElement ApartmentInputField => driver.FindElement(By.Name("address2"));
-        public SelectElement StateProvinceDropDownList => new SelectElement(driver.FindElement(
-            By.XPath("//div[@class='sa-form']/div[@class='row sa-form-group sa-province-group']/div/select")));
+        public IWebElement StateProvinceDropDownList => driver.FindElement(
+            By.XPath("//div[@class='sa-form']/div[@class='row sa-form-group sa-province-group']/div/select"));
         // City field can be input or drop down list depending on the Country / State selection
         public IWebElement CityInputField => driver.FindElement(By.Name("city"));
-        public SelectElement CityDropDownList => new SelectElement(driver.FindElement(By.XPath("//div[@class='row sa-form-group sa-city-group']/div/select")));
+        public IWebElement CityDropDownList => driver.FindElement(By.XPath("//div[@class='row sa-form-group sa-city-group']/div/select"));
         public IWebElement ZipInputField => driver.FindElement(By.Name("zip"));
         public IWebElement NoZipCodeCheckBox => driver.FindElement(By.XPath("//div[@class='sa-form']//label[@class='sa-no-zip-code']/input"));
         public IWebElement PhoneCountryInputField => driver.FindElement(By.Name("phoneCountry"));
@@ -78,9 +78,8 @@ namespace AliExpress.Pages
         #endregion Page Element Locators
 
         #region Constructors
-        public ShippingAddressPage(IWebDriver driver)
+        public ShippingAddressPage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
         }
 
@@ -258,17 +257,17 @@ namespace AliExpress.Pages
         public void FillShippingAddressForm(Address adr)
         {
             wait.Until(ExpectedConditions.ElementToBeClickable(contactPersonInputFieldLocator));
-            ContactPersonInputField.SendKeys(adr.contactName);
-            CountryDropDownList.SelectByText(adr.countryRegion);
-            AddressInputField.SendKeys(adr.streetAddress);
-            ApartmentInputField.SendKeys(adr.apartment);
-            StateProvinceDropDownList.SelectByText(adr.stateProvinceRegion);
-            CityDropDownList.SelectByText(adr.city);
-            ZipInputField.SendKeys(adr.zip);
+            SendText(ContactPersonInputField, adr.contactName);
+            SelectDropDown(CountryDropDownList, adr.countryRegion);
+            SendText(AddressInputField, adr.streetAddress);
+            SendText(ApartmentInputField, adr.apartment);
+            SelectDropDown(StateProvinceDropDownList, adr.stateProvinceRegion);
+            SelectDropDown(CityDropDownList, adr.city);
+            SendText(ZipInputField, adr.zip);
             PhoneCountryInputField.Clear();
-            PhoneCountryInputField.SendKeys(adr.mobileNoCountryCode);
-            MobileNumberInputField.SendKeys(adr.mobileNumber);
-            SaveButton.Click();
+            SendText(PhoneCountryInputField, adr.mobileNoCountryCode);
+            SendText(MobileNumberInputField, adr.mobileNumber);
+            Click(SaveButton);
         }
 
         #endregion Methods

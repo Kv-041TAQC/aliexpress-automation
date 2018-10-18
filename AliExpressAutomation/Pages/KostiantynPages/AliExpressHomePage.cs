@@ -3,16 +3,16 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using AliExpress.Helpers;
+using Pages;
 
 
 namespace AliExpress.Pages
 {
-    public class AliExpressHomePage
+    public class AliExpressHomePage : SuperPage
     {
 
         #region Fields and Constants
 
-        private IWebDriver driver;
         private WebDriverWait wait;
         private const string aliExpressURL = "https://www.aliexpress.com";
         private const string aliExpressLogin = "skaxrfdzeajgee2w@outlook.com";
@@ -47,9 +47,8 @@ namespace AliExpress.Pages
         #endregion
 
         #region Constructors
-        public AliExpressHomePage(IWebDriver driver)
+        public AliExpressHomePage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
             this.wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
         }
 
@@ -68,7 +67,7 @@ namespace AliExpress.Pages
             try
             {
                 wait.Until(ExpectedConditions.ElementToBeClickable(adsCloseButtonLocator));
-                AdsCloseButton.Click();
+                Click(AdsCloseButton);
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(adsLayerLocator));
 
             }
@@ -78,26 +77,26 @@ namespace AliExpress.Pages
             }
             wait.Until(ExpectedConditions.ElementToBeClickable(goToGlobalSiteLinkLocator));
             Thread.Sleep(15000);
-            GoToGlobalSiteLink.Click();
+            Click(GoToGlobalSiteLink);
             wait.Until(ExpectedConditions.ElementToBeClickable(signInButtonLocator));
-            SignInButton.Click();
+            Click(SignInButton);
             wait.Until(ExpectedConditions.ElementToBeClickable(aliExpressLoginFormLocator));
             driver.SwitchTo().Frame(AliExpressLoginForm);
             // wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             //wait.Until(ExpectedConditions.ElementIsVisible(loginFieldLocator));
             Thread.Sleep(15000);
-            LoginField.SendKeys(aliExpressLogin);
+            SendText(LoginField, aliExpressLogin);
             wait.Until(ExpectedConditions.ElementToBeClickable(passwordFieldLocator));
-            PasswordField.SendKeys(aliExpressPassword);
+            SendText(PasswordField, aliExpressPassword);
             wait.Until(ExpectedConditions.ElementToBeClickable(loginSubmitButtonLocator));
-            LoginSubmitButton.Click();
+            Click(LoginSubmitButton);
         }
 
         public MyOrdersPage NavigateToMyOrdersPage()
         {
             // wait.Until(ExpectedConditions.ElementToBeClickable(myOrdersLinkLocator));
             Thread.Sleep(15000);
-            MyOrdersLink.Click();
+            Click(MyOrdersLink);
             return new MyOrdersPage(driver);
         }
 
