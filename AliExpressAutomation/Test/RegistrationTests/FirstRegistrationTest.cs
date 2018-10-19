@@ -8,6 +8,7 @@ using System.Threading;
 using Pages.MarianPages;
 using Pages.VasylPages;
 using Pages.VaniaPages;
+using Pages.AnnPages;
 
 namespace Test
 {
@@ -149,6 +150,24 @@ namespace Test
     #region Tests by Kostya
     #endregion
     #region Tests by Anna
+    [TestFixture]
+    public class ChangeEmailNotification
+    {
+        [Test]
+        public void ChangeEmailNotificationTest()
+        {
+            ChromeOptions options = new ChromeOptions();
+            options.PageLoadStrategy = PageLoadStrategy.None;
+            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
+            {
+                var mainPageAliexpress = new MainPageAliexpress(dr);
+                var accountHomePage = mainPageAliexpress.GoToAccountHomePage();
+                var accounSettingsPage = accountHomePage.GotoAccountSettingsPage();
+                var emailSubscriptionPage = accounSettingsPage.GotoEmailSubscriptionPage();
+                emailSubscriptionPage.ClickButtonsSubscription();
+            }
+        }
+    }
     #endregion
 }
 
