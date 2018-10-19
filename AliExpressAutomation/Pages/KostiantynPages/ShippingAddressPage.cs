@@ -281,6 +281,7 @@ namespace AliExpress.Pages
         public void AddNewShippingAddress()
         {
             wait.Until(ExpectedConditions.ElementToBeClickable(addNewAddressButtonLocator));
+            wait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
             AddNewAddressButton.Click();
             wait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
         }

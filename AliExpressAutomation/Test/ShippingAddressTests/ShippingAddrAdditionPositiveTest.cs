@@ -6,6 +6,7 @@ using AliExpress.Helpers;
 using AliExpress.Pages;
 using System.Threading;
 using System;
+using System.IO;
 using OpenQA.Selenium.Support.UI;
 
 namespace Tests
@@ -17,17 +18,21 @@ namespace Tests
         private IWebDriver driver;
         private IWait<IWebDriver> wait;
 
+        private TestDataHandler dataHandler;
+
         [SetUp]
         public void Setup()
         {
 
             ChromeOptions options = new ChromeOptions();
             options.PageLoadStrategy = PageLoadStrategy.None; // PageLoadStrategy.Eager not supported by Chrome
-            // driver = new ChromeDriver("/home/kbogomazov/dotnet_src/lib", options);
-            driver = new ChromeDriver(@"F:\src\qa\qa_automation_lib", options);
+            driver = new ChromeDriver(Directory.GetCurrentDirectory(), options);
             driver.Manage().Window.Maximize();
 
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+            
+            dataHandler = new TestDataHandler(@".\ShippingAddressTestData");
+            dataHandler.WriteTestData();
         }
 
         [Test]
@@ -35,22 +40,11 @@ namespace Tests
         {
             AliExpressHomePage homePage = new AliExpressHomePage(driver, wait);
             homePage.NavigateToAliExpressHomepage();
-            homePage.LoginToAliExpress();
+            homePage.LoginToAliExpress(dataHandler.ReadLoginData());
             MyOrdersPage myOrdersPage = homePage.NavigateToMyOrdersPage();
             ShippingAddressPage shippingAddressPage = myOrdersPage.OpenShippingAddressPage();
 
-            // TODO: change this to JSON or random generation
-            Address adr;
-            adr.contactName = "John Doe";
-            adr.countryRegion = "United States";
-            adr.streetAddress = "10 Test Ave";
-            adr.apartment = "15";
-            adr.stateProvinceRegion = "New York";
-            adr.city = "New york";
-            adr.zip = "11221";
-            adr.mobileNoCountryCode = "+1";
-            adr.mobileNumber = "5417543111";
-
+            Address adr = dataHandler.ReadAddressData();
             shippingAddressPage.AddNewShippingAddress();
             shippingAddressPage.FillShippingAddressForm(adr);
             shippingAddressPage.ShippingAddressFormSave();

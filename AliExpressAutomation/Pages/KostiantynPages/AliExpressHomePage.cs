@@ -16,8 +16,9 @@ namespace AliExpress.Pages
 
         private IWait<IWebDriver> wait;
         private const string aliExpressURL = "https://www.aliexpress.com";
-        private const string aliExpressLogin = "skaxrfdzeajgee2w@outlook.com";
-        private const string aliExpressPassword = "qLEvZxcMVU9xqdQC";
+        
+        // private const string aliExpressLogin = "skaxrfdzeajgee2w@outlook.com";
+        // private const string aliExpressPassword = "qLEvZxcMVU9xqdQC";
 
 
         #endregion
@@ -66,7 +67,7 @@ namespace AliExpress.Pages
         }
 
 
-        public void LoginToAliExpress()
+        public void LoginToAliExpress(Login login)
         {
             IWait<IWebDriver> longAdWait = new WebDriverWait(driver, TimeSpan.FromMinutes(1));
 
@@ -93,14 +94,15 @@ namespace AliExpress.Pages
 
             wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(aliExpressLoginFormLocator));
             wait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
+            wait.Until(ExpectedConditions.ElementIsVisible(aliExpressLoginFormLocator));
             driver.SwitchTo().Frame(AliExpressLoginForm);
             
             var frameWait = new WebDriverWait(driver, wait.Timeout);
             frameWait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
             frameWait.Until(ExpectedConditions.ElementIsVisible(loginFieldLocator));
-            SendText(LoginField, aliExpressLogin);
+            SendText(LoginField, login.login);
             frameWait.Until(ExpectedConditions.ElementIsVisible(passwordFieldLocator));
-            SendText(PasswordField, aliExpressPassword);
+            SendText(PasswordField, login.password);
             frameWait.Until(ExpectedConditions.ElementIsVisible(loginSubmitButtonLocator));
             Click(LoginSubmitButton);
             frameWait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
