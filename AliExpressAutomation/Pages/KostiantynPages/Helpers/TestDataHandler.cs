@@ -3,7 +3,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 
-namespace AliExpress.Helpers
+namespace Pages.KostiantynPages.Helpers
 {
 
     public class TestDataHandler

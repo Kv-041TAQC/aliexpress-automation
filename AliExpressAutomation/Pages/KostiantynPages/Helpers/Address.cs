@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace AliExpress.Helpers
+namespace Pages.KostiantynPages.Helpers
 {
 
     [DataContract]

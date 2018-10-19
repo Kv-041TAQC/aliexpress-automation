@@ -1,14 +1,14 @@
 ﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using AliExpress.Helpers;
+using Pages.KostiantynPages.Helpers;
 using System.Threading;
 using Pages;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 
 
-namespace AliExpress.Pages
+namespace Pages.KostiantynPages
 {
     public class ShippingAddressPage : SuperPage
     {

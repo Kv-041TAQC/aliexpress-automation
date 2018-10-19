@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 
-namespace AliExpress.Helpers
+namespace Pages.KostiantynPages.Helpers
 {
     public class WaitUtilities
     {
