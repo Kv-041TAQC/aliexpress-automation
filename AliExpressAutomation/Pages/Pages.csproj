@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="NUnit" Version="3.11.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
@@ -12,14 +13,17 @@
     <PackageReference Include="Selenium.Support" Version="3.14.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.14.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="2.42.0.1" />
+    <PackageReference Include="System.Runtime.Serialization.Json" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="EvgenPages\" />
     <Folder Include="AnnPages\" />
     <Folder Include="MarianPages\" />
+    <Folder Include="KostiantynPages\" />
+    <Folder Include="KostiantynPages\Helpers\" />
     <Folder Include="VaniaPages\" />
-    <Folder Include="KostiaPages\" />
+    <Folder Include="VasylPages\" />
     <Folder Include="YuraPages\" />
     <Folder Include="HelpClasses\" />
   </ItemGroup>
