@@ -16,11 +16,8 @@ namespace Pages.YuraPages
         public readonly string idClickImage = "#limage_32726463724";
         #endregion
 
-        #region Constants
-        public IWebElement ClickImage
-        {
-            get { return driver.FindElement(By.CssSelector(idClickImage)); }
-        }
+        #region WebElement
+        public IWebElement ClickImage{get { return driver.FindElement(By.CssSelector(idClickImage)); }}
         #endregion
         
         #region Methods

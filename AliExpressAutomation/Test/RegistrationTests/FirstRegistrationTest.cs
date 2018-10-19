@@ -142,7 +142,6 @@ namespace Test
                 var productinfo = searchPage.NextPage();
                 var cartPage = productinfo.NextPage();
                 cartPage.RemoveCart();
-                Thread.Sleep(5000);
             }
         }
     }

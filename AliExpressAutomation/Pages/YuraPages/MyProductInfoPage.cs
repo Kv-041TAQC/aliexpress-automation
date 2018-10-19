@@ -16,7 +16,7 @@ namespace Pages.YuraPages
         public readonly string idBundle = "#sku-1-200003982 > span";
         public readonly string idBundle2 = "#sku-1-200003985 > span";
         public readonly string CssSelectorColour = "#sku-2-691 > img";
-        public readonly string CssSelectorColour2 = "#sku-2-29 > img";
+        public readonly string CssSelectorColour2 = "#sku-2-350850 > img";
         public readonly string CssSelectorQantity = "#j-product-quantity-info > dd > div.quantity-info-main > span.p-quantity-modified > i.p-quantity-increase";
         public readonly string idbuttonAddtoCard = "#j-add-cart-btn";
         public readonly string idButtonContinueShoping = "body > div.ui-window.ui-window-normal.ui-window-transition.ui-add-shopcart-dialog > div > div.ui-feedback.ui-feedback-simple > div > div > div > button";
@@ -30,73 +30,31 @@ namespace Pages.YuraPages
         #endregion
 
         #region WebElements
-        public IWebElement ClickBundle
-        {
-            get { return driver.FindElement(By.CssSelector(idBundle)); }
-        }
+        public IWebElement ClickBundle{get { return driver.FindElement(By.CssSelector(idBundle)); }}
 
-        public IWebElement ClickBundle2
-        {
-            get { return driver.FindElement(By.CssSelector(idBundle2)); }
-        }
+        public IWebElement ClickBundle2{get { return driver.FindElement(By.CssSelector(idBundle2)); }}
 
-        public IWebElement ClickColour
-        {
-            get { return driver.FindElement(By.CssSelector(CssSelectorColour)); }
-        }
+        public IWebElement ClickColour{get { return driver.FindElement(By.CssSelector(CssSelectorColour)); }}
 
-        public IWebElement ClickColour2
-        {
-            get { return driver.FindElement(By.CssSelector(CssSelectorColour2)); }
-        }
+        public IWebElement ClickColour2{get { return driver.FindElement(By.CssSelector(CssSelectorColour2)); }}
 
-        //public IWebElement ClickQantity
-        //{
-        //    get { return driver.FindElement(By.Id(CssSelectorQantity)); }
-        //}
-        public IWebElement buttonAddtoCard
-        {
-            get { return driver.FindElement(By.CssSelector(idbuttonAddtoCard)); }
-        }
+        public IWebElement buttonAddtoCard{get { return driver.FindElement(By.CssSelector(idbuttonAddtoCard)); }}
 
-        public IWebElement buttonContinueShoping
-        {
-            get { return driver.FindElement(By.CssSelector(idButtonContinueShoping)); }
-        }
+        public IWebElement buttonContinueShoping{get { return driver.FindElement(By.CssSelector(idButtonContinueShoping)); }}
 
-        public IWebElement MenuCurrency
-        {
-            get { return driver.FindElement(By.CssSelector(idMenuCurrency)); }
-        }
+        public IWebElement MenuCurrency{get { return driver.FindElement(By.CssSelector(idMenuCurrency)); }}
 
-        public IWebElement DropListCounty
-        {
-            get { return driver.FindElement(By.CssSelector(CssSelectorCountry)); }
-        }
+        public IWebElement DropListCounty{get { return driver.FindElement(By.CssSelector(CssSelectorCountry)); }}
 
-        public IWebElement DropListCurrency
-        {
-            get { return driver.FindElement(By.CssSelector(CssSelectorCurrency)); }
-        }
+        public IWebElement DropListCurrency{get { return driver.FindElement(By.CssSelector(CssSelectorCurrency)); }}
 
-        public IWebElement buttonSave
-        {
-            get { return driver.FindElement(By.CssSelector(CssSelectorButtonSave)); }
-        }
+        public IWebElement buttonSave{get { return driver.FindElement(By.CssSelector(CssSelectorButtonSave)); }}
 
-        public IWebElement buttonViewShopInfo
-        {
-            get { return driver.FindElement(By.CssSelector(CssSelectorViewShopCard)); }
-        }
-        public IWebElement buttonCurrency
-        {
-            get { return driver.FindElement(By.CssSelector(Currency)); }
-        }
+        public IWebElement buttonViewShopInfo { get { return driver.FindElement(By.CssSelector(CssSelectorViewShopCard)); } }
 
-        public IWebElement buttonCountry
-        {
-            get { return driver.FindElement(By.CssSelector(NameCountry)); }
-        }
+        public IWebElement buttonCurrency{get { return driver.FindElement(By.CssSelector(Currency)); }}
+
+        public IWebElement buttonCountry{get { return driver.FindElement(By.CssSelector(NameCountry)); }}
         #endregion
 
         #region Methods for test
@@ -112,7 +70,6 @@ namespace Pages.YuraPages
             Thread.Sleep(2000);
             Click(ClickColour);
             Thread.Sleep(2000);
-            //Click(ClickQantity);
             Click(buttonAddtoCard);
             Thread.Sleep(2000);
             Click(buttonContinueShoping);
