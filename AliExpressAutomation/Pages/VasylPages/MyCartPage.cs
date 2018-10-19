@@ -65,14 +65,14 @@ namespace Pages.VasylPages
             Assert.Pass();
         } 
 
-        public MyFranceMainPage Nextpage()
+        public LocalMainMethodsPage Nextpage()
         {
             Thread.Sleep(2000);
             Click(LanguageDropList);
             Thread.Sleep(2000);
             Click(LanguageFrance);
             Thread.Sleep(2000);
-            return new MyFranceMainPage(driver);
+            return new LocalMainMethodsPage(driver);
         }
     }
 }

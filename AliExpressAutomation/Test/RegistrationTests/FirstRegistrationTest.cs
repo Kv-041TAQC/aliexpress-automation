@@ -8,6 +8,7 @@ using System.Threading;
 using Pages.MarianPages;
 using Pages.VasylPages;
 using Pages.VaniaPages;
+using Pages.AnnPages;
 using Pages.KostiantynPages;
 using Pages.KostiantynPages.Helpers;
 using OpenQA.Selenium.Support.UI;
@@ -115,14 +116,14 @@ namespace Test
             options.PageLoadStrategy = PageLoadStrategy.None;
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
             {
-                var mainPage = new MyMainPage(dr);
-                var searchPage = mainPage.NextPage();
-                var goodsPage = searchPage.NextPage();
-                var cartPage = goodsPage.NextPage();
-                var franceMainPage = cartPage.Nextpage();
-                var franceSearchPage = franceMainPage.NextPage();
-                var franceGoodsPage = franceSearchPage.NextPage();
-                cartPage = franceGoodsPage.NextPage();
+                var mainPage = new LocalMainMethodsPage(dr);
+                var searchPage = mainPage.NextPageEnglish();
+                var goodsPage = searchPage.NextPageEnglish();
+                var cartPage = goodsPage.NextPageEnglish();
+                mainPage = cartPage.Nextpage();
+                searchPage = mainPage.NextPageFrance();
+                goodsPage = searchPage.NextPageFrance();
+                cartPage = goodsPage.NextPageFrance();
                 cartPage.RemoveCart();
             }
         }
@@ -237,6 +238,24 @@ namespace Test
 
     #endregion
     #region Tests by Anna
+    [TestFixture]
+    public class ChangeEmailNotification
+    {
+        [Test]
+        public void ChangeEmailNotificationTest()
+        {
+            ChromeOptions options = new ChromeOptions();
+            options.PageLoadStrategy = PageLoadStrategy.None;
+            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
+            {
+                var mainPageAliexpress = new MainPageAliexpress(dr);
+                var accountHomePage = mainPageAliexpress.GoToAccountHomePage();
+                var accounSettingsPage = accountHomePage.GotoAccountSettingsPage();
+                var emailSubscriptionPage = accounSettingsPage.GotoEmailSubscriptionPage();
+                emailSubscriptionPage.ClickButtonsSubscription();
+            }
+        }
+    }
     #endregion
 }
 
