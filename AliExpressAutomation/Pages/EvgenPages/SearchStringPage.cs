@@ -38,7 +38,9 @@ namespace Pages.EvgenPages
         {
             NavigateToUrl("https://ru.aliexpress.com");
             Thread.Sleep(2000);
-            if(CloseAdvertising.Displayed)
+            MaximizeWindow();
+            Thread.Sleep(12000);
+            if (CloseAdvertising.Displayed)
                 Click(CloseAdvertising);
             InputCorrectData(NumberOfTest);
             Thread.Sleep(1000);
@@ -60,6 +62,8 @@ namespace Pages.EvgenPages
         {
             NavigateToUrl("https://ru.aliexpress.com");
             Thread.Sleep(2000);
+            MaximizeWindow();
+            Thread.Sleep(12000);
             if (CloseAdvertising.Displayed)
                 Click(CloseAdvertising);
             InputInvalidData(NumberOfTest);
