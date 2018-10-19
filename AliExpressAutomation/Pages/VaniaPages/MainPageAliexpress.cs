@@ -86,15 +86,15 @@ namespace Pages.VaniaPages
             Thread.Sleep(8000);
             driver.SwitchTo().Frame(driver.FindElement(By.Id(aliExpressLoginFormId)));
             EmailLogin.Clear();
-            //SendText(EmailLogin, alijson.Email);
-            SendText(EmailLogin, "skaxrfdzeajgee2w@outlook.com");
+            SendText(EmailLogin, alijson.Email);
+            //SendText(EmailLogin, "skaxrfdzeajgee2w@outlook.com");
             Thread.Sleep(1000);
             PasswordLogin.Clear();
-            // SendText(PasswordLogin, alijson.Password);
-            SendText(PasswordLogin, "qLEvZxcMVU9xqdQC");
+            SendText(PasswordLogin, alijson.Password);
+            //SendText(PasswordLogin, "qLEvZxcMVU9xqdQC");
             Thread.Sleep(1000);
             Click(ButtonSubmit);
-            Thread.Sleep(5000);
+            Thread.Sleep(7000);
         }
 
 
