@@ -19,23 +19,19 @@ namespace Pages.YuraPages
         #endregion
        
         #region WebElements
-        private IWebElement RemoveAll
-        {
-            get{return driver.FindElement(By.CssSelector(cssRemoveAll));}
-        }
+        private IWebElement RemoveAll{get{return driver.FindElement(By.CssSelector(cssRemoveAll));}}
 
-        private IWebElement buttonOk
-        {
-            get { return driver.FindElement(By.CssSelector(cssbuttonOk)); }
-        }
+        private IWebElement buttonOk{get { return driver.FindElement(By.CssSelector(cssbuttonOk)); }}
         #endregion
         
         #region Methods
         public void RemoveCart()
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
             Click(RemoveAll);
             Click(buttonOk);
+            Thread.Sleep(5000);
+
         }
         #endregion
     }

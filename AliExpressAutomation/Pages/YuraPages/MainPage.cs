@@ -15,20 +15,22 @@ namespace Pages.YuraPages
         {
             SendText(SearchField, "IPhone 6s");
         }
-        
+
         #region Constatnts
         public readonly string idButtonLanguage = "#nav-global > div.ng-item.ng-goto-globalsite > a";
+        public readonly string idSearchField = "search-key";
+        public readonly string selectorCloseAdvertising = "body > div.ui-window.ui-window-normal.ui-window-transition.ui-newuser-layer-dialog > div > div > a";
+        public readonly string selecctorButtonSearch = "#form-searchbar > div.searchbar-operate-box > input";
+        public readonly string selectorButtonLanguage = "#nav-global > div.ng-item.ng-goto-globalsite > a";
+        public readonly string selectorWarningWindow = "#main-wrap > p > span";
         #endregion
 
         #region WebElements
-        private IWebElement SearchField { get { return driver.FindElement(By.Id("search-key")); } }
-        private IWebElement CloseAdvertising { get { return driver.FindElement(By.CssSelector("body > div.ui-window.ui-window-normal.ui-window-transition.ui-newuser-layer-dialog > div > div > a")); } }
-        private IWebElement SearchButton { get { return driver.FindElement(By.CssSelector("#form-searchbar > div.searchbar-operate-box > input")); } }
-        private IWebElement WarningWindow { get { return driver.FindElement(By.CssSelector("#main-wrap > p > span")); } }
-        public IWebElement buttonLanguage
-        {
-            get { return driver.FindElement(By.CssSelector(idButtonLanguage)); }
-        }
+        private IWebElement SearchField { get { return driver.FindElement(By.Id(idSearchField)); } }
+        private IWebElement CloseAdvertising { get { return driver.FindElement(By.CssSelector(selectorCloseAdvertising)); } }
+        private IWebElement SearchButton { get { return driver.FindElement(By.CssSelector(selecctorButtonSearch)); } }
+        private IWebElement WarningWindow { get { return driver.FindElement(By.CssSelector(selectorWarningWindow)); } }
+        public IWebElement buttonLanguage { get { return driver.FindElement(By.CssSelector(idButtonLanguage)); } }
         #endregion
 
         #region Methods
@@ -37,8 +39,8 @@ namespace Pages.YuraPages
             MaximizeWindow();
             NavigateToUrl("https://ru.aliexpress.com");
             Thread.Sleep(15000);
-            //if (CloseAdvertising.Displayed)
-            //    Click(CloseAdvertising);
+            if (CloseAdvertising.Displayed)
+                Click(CloseAdvertising);
             Thread.Sleep(2000); Thread.Sleep(3000);
             Click(buttonLanguage);
             Thread.Sleep(2000);
