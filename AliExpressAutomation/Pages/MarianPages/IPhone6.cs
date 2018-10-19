@@ -15,8 +15,8 @@ namespace Pages.MarianPages
         
         #region constants
 
-        private const string bundle = "sku-1-200003982";
-        private const string color = "sku-2-350850";
+        private const string bundle = "sku-1-200003985";
+        private const string color = "sku-2-496";
         
         private const string quantity = "p-quantity-increase";
         private const string addToCart = "j-add-cart-btn";
