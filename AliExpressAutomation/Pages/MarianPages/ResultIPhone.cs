@@ -14,7 +14,7 @@ namespace Pages.MarianPages
 
         #region constants
 
-        private const string ipho6 = "#limage_32869686576";
+        private const string ipho6 = "#limage_32831607745";
         private const string ipho6s = "#limage_32726463724";
         private const string ipho7 = "#limage_32846486845";
         #endregion

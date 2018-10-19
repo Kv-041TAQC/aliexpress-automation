@@ -15,7 +15,7 @@ namespace Pages.MarianPages
 
         #region constants
 
-        private const string remove = @"#\33 2869686576-200000828\3a 200003982\23 iphone\20 6\20 \20 16GB\3b 14\3a 350850\23 Gold > td.product-operate > div > form > a";
+        private const string remove = @"#\33 2831607745-200000828\3a 200003985\23 Used\20 \20 IPhone\20 6\3b 14\3a 496\23 128GB\20 \20 Gold > td.product-operate > div > form > a";
         private const string piece = @"#\33 2846486845-200000828\3a 200003985\23 Used\20 iPhone\20 7\3b 14\3a 200001438\23 256GB\20 Rose\20 Gold > td.product-quantity > input.product-quantity-input.ui-textfield.ui-textfield-system";
         private const string addPiece = "quantity-add";
         private const string addOk = "btn-ok-quantity";
