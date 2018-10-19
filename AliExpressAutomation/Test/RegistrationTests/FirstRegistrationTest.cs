@@ -248,8 +248,8 @@ namespace Test
             options.PageLoadStrategy = PageLoadStrategy.None;
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
             {
-                var mainPageAliexpress = new MainPageAliexpress(dr);
-                var accountHomePage = mainPageAliexpress.GoToAccountHomePage();
+                var aliExpressHomePage = new AliExpressHomePage(dr);
+                var accountHomePage = aliExpressHomePage.GoToAccountHomePage();
                 var accounSettingsPage = accountHomePage.GotoAccountSettingsPage();
                 var emailSubscriptionPage = accounSettingsPage.GotoEmailSubscriptionPage();
                 emailSubscriptionPage.ClickButtonsSubscription();
