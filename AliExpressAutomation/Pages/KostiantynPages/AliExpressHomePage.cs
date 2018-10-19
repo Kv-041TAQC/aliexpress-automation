@@ -2,12 +2,12 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System.Threading;
-using AliExpress.Helpers;
+using Pages.KostiantynPages.Helpers;
 using Pages;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 
-namespace AliExpress.Pages
+namespace Pages.KostiantynPages
 {
     public class AliExpressHomePage : SuperPage
     {
