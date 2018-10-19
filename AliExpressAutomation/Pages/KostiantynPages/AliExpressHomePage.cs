@@ -4,6 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using Pages.KostiantynPages.Helpers;
 using Pages;
+using Pages.AnnPages;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 
@@ -20,7 +21,7 @@ namespace Pages.KostiantynPages
         // private const string aliExpressLogin = "skaxrfdzeajgee2w@outlook.com";
         // private const string aliExpressPassword = "qLEvZxcMVU9xqdQC";
 
-
+        private readonly string MyAliexpressLocator = "#user-benefits > div.user-account.olduser-account > div.fast-entry > ul > li:nth-child(1) > a > span.entrance-name.flex-vertical.middle-center";
         #endregion
 
         #region Page Element Locators and Properties
@@ -50,6 +51,8 @@ namespace Pages.KostiantynPages
         public IWebElement AdsCloseButton => driver.FindElement(adsCloseButtonLocator);
         public IWebElement MyOrdersLink => driver.FindElement(myOrdersLinkLocator);
 
+        private IWebElement MyAliExpressBtn => driver.FindElement(By.CssSelector(MyAliexpressLocator));
+       
         #endregion
 
         #region Constructors
@@ -127,7 +130,21 @@ namespace Pages.KostiantynPages
             Click(MyOrdersLink);
             return new MyOrdersPage(driver, pageWait);
         }
+        
+        public AccountHomePage GoToAccountHomePage()
+        {
+            Login myLogin;
+            myLogin.login = "skaxrfdzeajgee2w@outlook.com";
+            myLogin.password = "qLEvZxcMVU9xqdQC";
 
+            LoginToAliExpress(myLogin);
+            // Thread.Sleep(5000);
+            //if (CloseAdvertising.Displayed)
+            //    Click(CloseAdvertising);
+            Thread.Sleep(5000);
+            Click(MyAliExpressBtn);
+            return new AccountHomePage(driver);
+        }
         #endregion
 
 
