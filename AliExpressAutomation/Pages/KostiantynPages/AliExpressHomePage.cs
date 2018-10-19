@@ -76,7 +76,9 @@ namespace AliExpress.Pages
                 longAdWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
                 longAdWait.Until(ExpectedConditions.ElementToBeClickable(adsCloseButtonLocator));
                 Click(AdsCloseButton);
-                longAdWait.Until(ExpectedConditions.StalenessOf(driver.FindElement(adsLayerLocator)));
+                longAdWait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
+                // longAdWait.Until(ExpectedConditions.InvisibilityOfElementLocated(adsLayerLocator));
+                // longAdWait.Until(ExpectedConditions.StalenessOf(driver.FindElement(adsLayerLocator)));
             }
             catch (NoSuchElementException e)
             {
