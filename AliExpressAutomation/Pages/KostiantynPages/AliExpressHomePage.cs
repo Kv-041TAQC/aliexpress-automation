@@ -16,7 +16,7 @@ namespace AliExpress.Pages
 
         private IWait<IWebDriver> wait;
         private const string aliExpressURL = "https://www.aliexpress.com";
-        
+
         // private const string aliExpressLogin = "skaxrfdzeajgee2w@outlook.com";
         // private const string aliExpressPassword = "qLEvZxcMVU9xqdQC";
 
@@ -53,6 +53,11 @@ namespace AliExpress.Pages
         #endregion
 
         #region Constructors
+
+        public AliExpressHomePage(IWebDriver driver) : base(driver)
+        {
+
+        }
         public AliExpressHomePage(IWebDriver driver, IWait<IWebDriver> wait) : base(driver)
         {
             this.wait = wait;
@@ -76,7 +81,9 @@ namespace AliExpress.Pages
                 longAdWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
                 longAdWait.Until(ExpectedConditions.ElementToBeClickable(adsCloseButtonLocator));
                 Click(AdsCloseButton);
-                longAdWait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
+                Thread.Sleep(15000);
+                // TODO: change this wait
+                // longAdWait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
                 // longAdWait.Until(ExpectedConditions.InvisibilityOfElementLocated(adsLayerLocator));
                 // longAdWait.Until(ExpectedConditions.StalenessOf(driver.FindElement(adsLayerLocator)));
             }
@@ -94,11 +101,12 @@ namespace AliExpress.Pages
             wait.Until(ExpectedConditions.ElementToBeClickable(signInButtonLocator));
             Click(SignInButton);
 
-            wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(aliExpressLoginFormLocator));
-            wait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
-            wait.Until(ExpectedConditions.ElementIsVisible(aliExpressLoginFormLocator));
+            //wait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
+            //wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(aliExpressLoginFormLocator));
+            //wait.Until(ExpectedConditions.ElementIsVisible(aliExpressLoginFormLocator));
+            Thread.Sleep(15000);
             driver.SwitchTo().Frame(AliExpressLoginForm);
-            
+
             var frameWait = new WebDriverWait(driver, wait.Timeout);
             frameWait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
             frameWait.Until(ExpectedConditions.ElementIsVisible(loginFieldLocator));
@@ -114,7 +122,7 @@ namespace AliExpress.Pages
         {
             driver.SwitchTo().Window(driver.CurrentWindowHandle);
             var pageWait = new WebDriverWait(driver, wait.Timeout);
-            
+
             pageWait.Until(ExpectedConditions.ElementIsVisible(myOrdersIconLocator));
             Click(MyOrdersLink);
             return new MyOrdersPage(driver, pageWait);
