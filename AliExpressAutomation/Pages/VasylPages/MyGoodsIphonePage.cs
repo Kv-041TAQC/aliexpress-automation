@@ -14,48 +14,85 @@ namespace Pages.VasylPages
         }
 
         #region Constans
-        private readonly string cssBundle = "#sku-1-200003985 > span";
-        private readonly string cssColor = "#sku-2-350853 > img";
-        private readonly string idCart = "j-add-cart-btn";
-        private readonly string cssGoCart = "body > div.ui-window.ui-window-normal.ui-window-transition.ui-add-shopcart-dialog > div > div.ui-feedback.ui-feedback-simple > div > div > div > a";
+        private readonly string cssBundleEnglish = "#sku-1-200003985 > span";
+        private readonly string cssColorEnglish = "#sku-2-350853 > img";
+        private readonly string idCartEnglish = "j-add-cart-btn";
+        private readonly string cssGoCartEnglish = "body > div.ui-window.ui-window-normal.ui-window-transition.ui-add-shopcart-dialog > div > div.ui-feedback.ui-feedback-simple > div > div > div > a";
+
+        private readonly string cssBundleFrance = "#sku-1-200003982";
+        private readonly string cssColorFrance = "#sku-2-691";
+        private readonly string idCartFrance = "j-add-cart-btn";
+        private readonly string cssGoCartFrance = "body > div.ui-window.ui-window-normal.ui-window-transition.ui-add-shopcart-dialog > div > div.ui-feedback.ui-feedback-simple > div > div > div > a";
 
         #endregion
 
         #region IWebElements
-        private IWebElement BundleButton
+        private IWebElement BundleButtonEnglish
         {
             get
             {
-                return driver.FindElement(By.CssSelector(cssBundle));
+                return driver.FindElement(By.CssSelector(cssBundleEnglish));
             }
         }
 
-        private IWebElement ColorButton
+        private IWebElement ColorButtonEnglish
         {
             get
             {
-                return driver.FindElement(By.CssSelector(cssColor));
+                return driver.FindElement(By.CssSelector(cssColorEnglish));
             }
         }
 
-        private IWebElement CartButton
+        private IWebElement CartButtonEnglish
         {
             get
             {
-                return driver.FindElement(By.Id(idCart));
+                return driver.FindElement(By.Id(idCartEnglish));
             }
         }
 
-        private IWebElement GoCartButton
+        private IWebElement GoCartButtonEnglish
         {
             get
             {
-                return driver.FindElement(By.CssSelector(cssGoCart));
+                return driver.FindElement(By.CssSelector(cssGoCartEnglish));
+            }
+        }
+
+        private IWebElement BundleButtonFrance
+        {
+            get
+            {
+                return driver.FindElement(By.CssSelector(cssBundleFrance));
+            }
+        }
+
+        private IWebElement ColorButtonFrance
+        {
+            get
+            {
+                return driver.FindElement(By.CssSelector(cssColorFrance));
+            }
+        }
+
+        private IWebElement CartButtonFrance
+        {
+            get
+            {
+                return driver.FindElement(By.Id(idCartFrance));
+            }
+        }
+
+        private IWebElement GoCartButtonFrance
+        {
+            get
+            {
+                return driver.FindElement(By.CssSelector(cssGoCartFrance));
             }
         }
         #endregion
 
-        public MyCartPage NextPage()
+        public MyCartPage NextPageEnglish()
         {
             Thread.Sleep(3000);
             foreach (string handle in driver.WindowHandles)
@@ -63,13 +100,31 @@ namespace Pages.VasylPages
                 driver.SwitchTo().Window(handle);
             }
             Thread.Sleep(5000);
-            Click(BundleButton);
+            Click(BundleButtonEnglish);
             Thread.Sleep(2000);
-            Click(ColorButton);
+            Click(ColorButtonEnglish);
             Thread.Sleep(5000);
-            Click(CartButton);
+            Click(CartButtonEnglish);
             Thread.Sleep(5000);
-            Click(GoCartButton);
+            Click(GoCartButtonEnglish);
+            return new MyCartPage(driver);
+        }
+
+        public MyCartPage NextPageFrance()
+        {
+            Thread.Sleep(3000);
+            foreach (string handle in driver.WindowHandles)
+            {
+                driver.SwitchTo().Window(handle);
+            }
+            Thread.Sleep(5000);
+            Click(BundleButtonFrance);
+            Thread.Sleep(2000);
+            Click(ColorButtonFrance);
+            Thread.Sleep(5000);
+            Click(CartButtonFrance);
+            Thread.Sleep(5000);
+            Click(GoCartButtonFrance);
             return new MyCartPage(driver);
         }
     }
