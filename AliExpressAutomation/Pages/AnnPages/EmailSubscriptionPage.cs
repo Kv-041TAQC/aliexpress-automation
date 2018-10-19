@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading;
 using static Pages.HelpClasses.HelpPage;
+
 namespace Pages.AnnPages
 {
     public class EmailSubscriptionPage : SuperPage
@@ -17,53 +18,27 @@ namespace Pages.AnnPages
         {
         }
         #region Constans
-        private readonly By ButtonsSubscriptionLocator = By.CssSelector("a.ui-button.ui-button-normal.ui-button-medium");
-        private readonly By StatusSubscriptionLocator = By.CssSelector("td.subs-status");
+        private readonly string ButtonsSubscriptionLocator = "td.subs-btn > a";
+        
+        #endregion
+        
+        #region IWebElements
+        private ReadOnlyCollection<IWebElement> ButtonsSubscription => driver.FindElements(By.CssSelector("td.subs-btn > a"));
         
         #endregion
 
-
-        #region IWebElements
-        private ReadOnlyCollection<IWebElement> ButtonsSubscription
-        {
-            get
-            {
-                return driver.FindElements(ButtonsSubscriptionLocator);
-            }
-        }
-
-        private ReadOnlyCollection<IWebElement> StatusSubscription
-        {
-            get
-            {
-                return driver.FindElements(StatusSubscriptionLocator);
-            }
-        }
-
-        #endregion
-
+        #region Methods
         public void ClickButtons()
         {
-            foreach (IWebElement element in ButtonsSubscription)
+            Thread.Sleep(10000);
+            var test = ButtonsSubscription;
+            Thread.Sleep(7000);
+            foreach (IWebElement element in test)
             {
                 element.Click();
+                Thread.Sleep(2000);
             }
-        }
-        public bool CheckStatusSubscription(string value)
-        {
-            var count = 0;
-
-            foreach (IWebElement element in StatusSubscription)
-            {
-                if (element.Text == value)
-                {
-                    count++;
-                } else
-                {
-                    return false;
-                }
-            }
-            return true;
+            #endregion
         }
     }
 }
