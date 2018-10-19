@@ -11,7 +11,7 @@ namespace Pages.KostiantynPages
 {
     public class AliExpressHomePage : SuperPage
     {
-
+        //alijson
         #region Fields and Constants
 
         private IWait<IWebDriver> wait;
@@ -39,7 +39,23 @@ namespace Pages.KostiantynPages
         private By myOrdersIconLocator = By.CssSelector(".order-icon");
         private By myOrdersLinkLocator = By.XPath("//div[@class='fast-entry']//a[contains(@href, 'orderList.htm')]");
 
+        private By searchFieldLocator = By.Id("search-key");
+        private By searchButtonLocator = By.CssSelector("#form-searchbar > div.searchbar-operate-box > input");
 
+        public IWebElement SearchField
+        {
+            get
+            {
+                return driver.FindElement(searchFieldLocator);
+            }
+        }
+        public IWebElement SearchButton
+        {
+            get
+            {
+                return driver.FindElement(searchButtonLocator);
+            }
+        }
         public IWebElement GoToGlobalSiteLink => driver.FindElement(goToGlobalSiteLinkLocator);
         public IWebElement SignInButton => driver.FindElement(signInButtonLocator);
         public IWebElement AliExpressLoginForm => driver.FindElement(aliExpressLoginFormLocator);
