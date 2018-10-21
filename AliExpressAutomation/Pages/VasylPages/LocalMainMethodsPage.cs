@@ -22,7 +22,7 @@ namespace Pages.VasylPages
 
         public MyShoppingPage NextPageEnglish()
         {
-            MaximizeWindow();
+            driver.Manage().Window.FullScreen();
             NavigateToAliExpressHomepage();
             Thread.Sleep(15000);
             Click(AdsCloseButton);

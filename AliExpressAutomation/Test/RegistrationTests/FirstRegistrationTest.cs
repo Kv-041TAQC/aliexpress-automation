@@ -89,7 +89,7 @@ namespace Test
             options.PageLoadStrategy = PageLoadStrategy.None;
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
             {
-                dr.Manage().Window.Maximize();
+                dr.Manage().Window.FullScreen();
                 var mydriver = new Main(dr);
                 mydriver.NavigateToAli();
                 ResultIPhone resultIPhone6 = mydriver.ChooseIPhone();
@@ -237,7 +237,7 @@ namespace Test
 
 
     #endregion
-    #region Tests by Anna
+    /*#region Tests by Anna
     [TestFixture]
     public class ChangeEmailNotification
     {
@@ -257,5 +257,6 @@ namespace Test
         }
     }
     #endregion
+    */
 }
 

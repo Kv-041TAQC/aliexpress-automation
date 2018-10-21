@@ -38,7 +38,8 @@ namespace Pages.EvgenPages
         {
             NavigateToUrl("https://ru.aliexpress.com");
             Thread.Sleep(2000);
-            MaximizeWindow();
+            //ScreenSizeSettings(2560, 1600);
+            driver.Manage().Window.FullScreen();
             Thread.Sleep(12000);
             if (CloseAdvertising.Displayed)
                 Click(CloseAdvertising);
@@ -62,7 +63,8 @@ namespace Pages.EvgenPages
         {
             NavigateToUrl("https://ru.aliexpress.com");
             Thread.Sleep(2000);
-            MaximizeWindow();
+            //ScreenSizeSettings(2560, 1600);
+            driver.Manage().Window.FullScreen();
             Thread.Sleep(12000);
             if (CloseAdvertising.Displayed)
                 Click(CloseAdvertising);

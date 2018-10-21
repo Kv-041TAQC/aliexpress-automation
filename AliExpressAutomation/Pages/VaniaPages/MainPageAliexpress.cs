@@ -20,7 +20,7 @@ namespace Pages.VaniaPages
         private readonly string CssSearchButton = "#search-key";
         private readonly string CssSearchField = "#form-searchbar > div.searchbar-operate-box > input";
         private const string aliExpressLoginFormId = "alibaba-login-box";
-       
+
         #endregion
 
         #region SearchWebElement
@@ -58,7 +58,7 @@ namespace Pages.VaniaPages
         {
             get { return driver.FindElement(By.CssSelector(buttonSubmit)); }
         }
-       
+
         #endregion
 
         #region Methods
@@ -71,7 +71,7 @@ namespace Pages.VaniaPages
         {
             NavigateToUrl(urlAliexpress);
             Thread.Sleep(2000);
-            MaximizeWindow();
+            driver.Manage().Window.FullScreen();
             Thread.Sleep(15000);
             if (CloseAdvertising.Displayed)
                 Click(CloseAdvertising);
@@ -81,11 +81,11 @@ namespace Pages.VaniaPages
             driver.SwitchTo().Frame(driver.FindElement(By.Id(aliExpressLoginFormId)));
             EmailLogin.Clear();
             SendText(EmailLogin, alijson.Email);
-           // SendText(EmailLogin, "skaxrfdzeajgee2w@outlook.com");
+            // SendText(EmailLogin, "skaxrfdzeajgee2w@outlook.com");
             Thread.Sleep(1000);
             PasswordLogin.Clear();
             SendText(PasswordLogin, alijson.Password);
-           // SendText(PasswordLogin, "qLEvZxcMVU9xqdQC");
+            // SendText(PasswordLogin, "qLEvZxcMVU9xqdQC");
             Thread.Sleep(1000);
             Click(ButtonSubmit);
             Thread.Sleep(7000);
@@ -104,8 +104,7 @@ namespace Pages.VaniaPages
             Thread.Sleep(1000);
             return new SearchProductForWishes(driver);
         }
-        
-        }
-                #endregion
+
     }
+    #endregion
 }

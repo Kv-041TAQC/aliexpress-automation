@@ -36,7 +36,7 @@ namespace Pages.YuraPages
         #region Methods
         public SearchPage NextPage()
         {
-            MaximizeWindow();
+            driver.Manage().Window.FullScreen();
             NavigateToUrl("https://ru.aliexpress.com");
             Thread.Sleep(15000);
             if (CloseAdvertising.Displayed)
