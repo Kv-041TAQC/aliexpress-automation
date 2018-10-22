@@ -12,15 +12,11 @@ namespace Pages.KostiantynPages
 {
     public class AliExpressHomePage : SuperPage
     {
-        //alijson
         #region Fields and Constants
 
         private IWait<IWebDriver> wait;
         private const string aliExpressURL = "https://www.aliexpress.com";
 
-        // private const string aliExpressLogin = "skaxrfdzeajgee2w@outlook.com";
-        // private const string aliExpressPassword = "qLEvZxcMVU9xqdQC";
-                
         #endregion
 
         #region Page Element Locators and Properties
@@ -92,62 +88,68 @@ namespace Pages.KostiantynPages
 
         public void LoginToAliExpress(Login login)
         {
-            IWait<IWebDriver> longAdWait = new WebDriverWait(driver, TimeSpan.FromMinutes(1));
 
+            bool isAdClosed = false;
             try
             {
-                longAdWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
-                longAdWait.Until(ExpectedConditions.ElementToBeClickable(adsCloseButtonLocator));
+                WaitUtilities.WaitForElementNTimes(driver, adsCloseButtonLocator, 5000, 3);
                 Click(AdsCloseButton);
-                Thread.Sleep(15000);
-                // TODO: change this wait
-                // longAdWait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
-                // longAdWait.Until(ExpectedConditions.InvisibilityOfElementLocated(adsLayerLocator));
-                // longAdWait.Until(ExpectedConditions.StalenessOf(driver.FindElement(adsLayerLocator)));
+                isAdClosed = true;
             }
             catch (NoSuchElementException e)
             {
                 Console.WriteLine("DEBUG: Could not locate ad: " + e.Message);
             }
-            catch (WebDriverTimeoutException e)
-            {
-                Console.WriteLine("DEBUG: Timed out while waiting for ad: " + e.Message);
-            }
 
+            WaitUtilities.WaitForElementNTimes(driver, goToGlobalSiteLinkLocator, 5000, 3);
             wait.Until(ExpectedConditions.ElementToBeClickable(goToGlobalSiteLinkLocator));
             Click(GoToGlobalSiteLink);
-            wait.Until(ExpectedConditions.ElementToBeClickable(signInButtonLocator));
+
+            if (!isAdClosed)
+            {
+                try
+                {
+                    WaitUtilities.WaitForElementNTimes(driver, adsCloseButtonLocator, 5000, 3);
+                    Click(AdsCloseButton);
+                    isAdClosed = true;
+
+                }
+                catch (NoSuchElementException e)
+                {
+                    Console.WriteLine("DEBUG: Could not locate ad: " + e.Message);
+                }
+            }
+            
+            WaitUtilities.WaitForElementNTimes(driver, signInButtonLocator, 5000, 3);
             Click(SignInButton);
 
-            //wait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
-            //wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(aliExpressLoginFormLocator));
-            //wait.Until(ExpectedConditions.ElementIsVisible(aliExpressLoginFormLocator));
-            Thread.Sleep(15000);
+
+            WaitUtilities.WaitForElementNTimes(driver, aliExpressLoginFormLocator, 5000, 3);
             driver.SwitchTo().Frame(AliExpressLoginForm);
 
-            var frameWait = new WebDriverWait(driver, wait.Timeout);
-            frameWait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
-            frameWait.Until(ExpectedConditions.ElementIsVisible(loginFieldLocator));
+      
+            WaitUtilities.WaitForElementNTimes(driver, loginFieldLocator, 5000, 3);
             SendText(LoginField, login.login);
-            frameWait.Until(ExpectedConditions.ElementIsVisible(passwordFieldLocator));
+
+      
+            WaitUtilities.WaitForElementNTimes(driver, passwordFieldLocator, 5000, 3);
             SendText(PasswordField, login.password);
-            frameWait.Until(ExpectedConditions.ElementIsVisible(loginSubmitButtonLocator));
+
+      
+            WaitUtilities.WaitForElementNTimes(driver, loginSubmitButtonLocator, 5000, 3);
             Click(LoginSubmitButton);
-            frameWait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
+
         }
 
         public MyOrdersPage NavigateToMyOrdersPage()
         {
-            driver.SwitchTo().Window(driver.CurrentWindowHandle);
-            var pageWait = new WebDriverWait(driver, wait.Timeout);
-
-            pageWait.Until(ExpectedConditions.ElementIsVisible(myOrdersIconLocator));
+    
+            WaitUtilities.WaitForElementNTimes(driver, myOrdersLinkLocator, 5000, 3);
             Click(MyOrdersLink);
-            return new MyOrdersPage(driver, pageWait);
+            return new MyOrdersPage(driver, wait);
         }
         
          #endregion
-
 
 
     }
