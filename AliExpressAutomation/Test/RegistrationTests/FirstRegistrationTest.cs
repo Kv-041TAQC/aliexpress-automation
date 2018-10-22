@@ -237,7 +237,7 @@ namespace Test
 
 
     #endregion
-    /*#region Tests by Anna
+    #region Tests by Anna
     [TestFixture]
     public class ChangeEmailNotification
     {
@@ -246,9 +246,13 @@ namespace Test
         {
             ChromeOptions options = new ChromeOptions();
             options.PageLoadStrategy = PageLoadStrategy.None;
-            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
+           // using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
+            using (ChromeDriver driver = new ChromeDriver(Directory.GetCurrentDirectory(), options))
             {
-                var aliExpressHomePage = new AliExpressHomePage(dr);
+                driver.Manage().Window.Maximize();
+                IWait<IWebDriver> wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+
+                var aliExpressHomePage = new AliExpressHomePage(driver);
                 var accountHomePage = aliExpressHomePage.GoToAccountHomePage();
                 var accounSettingsPage = accountHomePage.GotoAccountSettingsPage();
                 var emailSubscriptionPage = accounSettingsPage.GotoEmailSubscriptionPage();
@@ -257,6 +261,5 @@ namespace Test
         }
     }
     #endregion
-    */
 }
 
