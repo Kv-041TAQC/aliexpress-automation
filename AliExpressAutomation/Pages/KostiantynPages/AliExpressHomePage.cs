@@ -92,8 +92,9 @@ namespace Pages.KostiantynPages
             bool isAdClosed = false;
             try
             {
-                WaitUtilities.WaitForElementNTimes(driver, adsCloseButtonLocator, 5000, 3);
+                WaitUtilities.WaitForElementNTimes(driver, adsCloseButtonLocator, TimeSpan.FromSeconds(5), 3);
                 Click(AdsCloseButton);
+                WaitUtilities.WaitForElementNTimes(driver, newUserAdNotificationLocator, TimeSpan.FromSeconds(5), 3);
                 isAdClosed = true;
             }
             catch (NoSuchElementException e)
@@ -101,7 +102,7 @@ namespace Pages.KostiantynPages
                 Console.WriteLine("DEBUG: Could not locate ad: " + e.Message);
             }
 
-            WaitUtilities.WaitForElementNTimes(driver, goToGlobalSiteLinkLocator, 5000, 3);
+            WaitUtilities.WaitForElementNTimes(driver, goToGlobalSiteLinkLocator, TimeSpan.FromSeconds(5), 3);
             wait.Until(ExpectedConditions.ElementToBeClickable(goToGlobalSiteLinkLocator));
             Click(GoToGlobalSiteLink);
 
@@ -109,8 +110,9 @@ namespace Pages.KostiantynPages
             {
                 try
                 {
-                    WaitUtilities.WaitForElementNTimes(driver, adsCloseButtonLocator, 5000, 3);
+                    WaitUtilities.WaitForElementNTimes(driver, adsCloseButtonLocator, TimeSpan.FromSeconds(5), 3);
                     Click(AdsCloseButton);
+                    WaitUtilities.WaitForElementNTimes(driver, newUserAdNotificationLocator, TimeSpan.FromSeconds(5), 3);
                     isAdClosed = true;
 
                 }
@@ -120,23 +122,23 @@ namespace Pages.KostiantynPages
                 }
             }
             
-            WaitUtilities.WaitForElementNTimes(driver, signInButtonLocator, 5000, 3);
+            WaitUtilities.WaitForElementNTimes(driver, signInButtonLocator, TimeSpan.FromSeconds(5), 3);
             Click(SignInButton);
 
 
-            WaitUtilities.WaitForElementNTimes(driver, aliExpressLoginFormLocator, 5000, 3);
+            WaitUtilities.WaitForElementNTimes(driver, aliExpressLoginFormLocator, TimeSpan.FromSeconds(5), 3);
             driver.SwitchTo().Frame(AliExpressLoginForm);
 
       
-            WaitUtilities.WaitForElementNTimes(driver, loginFieldLocator, 5000, 3);
+            WaitUtilities.WaitForElementNTimes(driver, loginFieldLocator, TimeSpan.FromSeconds(5), 3);
             SendText(LoginField, login.login);
 
       
-            WaitUtilities.WaitForElementNTimes(driver, passwordFieldLocator, 5000, 3);
+            WaitUtilities.WaitForElementNTimes(driver, passwordFieldLocator, TimeSpan.FromSeconds(5), 3);
             SendText(PasswordField, login.password);
 
       
-            WaitUtilities.WaitForElementNTimes(driver, loginSubmitButtonLocator, 5000, 3);
+            WaitUtilities.WaitForElementNTimes(driver, loginSubmitButtonLocator, TimeSpan.FromSeconds(5), 3);
             Click(LoginSubmitButton);
 
         }
@@ -144,7 +146,7 @@ namespace Pages.KostiantynPages
         public MyOrdersPage NavigateToMyOrdersPage()
         {
     
-            WaitUtilities.WaitForElementNTimes(driver, myOrdersLinkLocator, 5000, 3);
+            WaitUtilities.WaitForElementNTimes(driver, myOrdersLinkLocator, TimeSpan.FromSeconds(5), 3);
             Click(MyOrdersLink);
             return new MyOrdersPage(driver, wait);
         }
