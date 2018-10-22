@@ -8,21 +8,27 @@ namespace Pages.KostiantynPages.Helpers
 {
     public class WaitUtilities
     {
-        public static void WaitForElementNTimes(IWebDriver driver, By locator, int time, int numberOfTimes)
+        public static void WaitForElementNTimes(IWebDriver driver, By locator, TimeSpan time, int numberOfRepeats)
         {
 
-            for (int i = 0; i < numberOfTimes; i++)
+            for (int i = 0; i < numberOfRepeats; i++)
             {
                 try
                 {
-                    Thread.Sleep(time);
-                    driver.FindElement(locator);
-                    Console.WriteLine("Sleeping");
+                    Console.WriteLine("Trying to find element.");
+                    IWebElement element = driver.FindElement(locator);
+                    if (element != null)
+                    {
+                        return;
+                    }
+                    
 
                 }
                 catch (NoSuchElementException e)
                 {
-
+                    Console.WriteLine(e.Message);
+                    Thread.Sleep(time);
+                    Console.WriteLine("Sleeping");
                 }
             }
         }
