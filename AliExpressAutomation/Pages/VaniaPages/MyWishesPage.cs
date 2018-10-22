@@ -25,7 +25,6 @@ namespace Pages.VaniaPages
         {
             get { return driver.FindElement(By.Id(createNewListId)); }
         }
-
         #endregion
 
         #region Methods

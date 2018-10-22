@@ -77,7 +77,7 @@ namespace Pages.VaniaPages
         {
             NavigateToUrl(urlAliexpress);
             Thread.Sleep(2000);
-            MaximizeWindow();
+            driver.Manage().Window.FullScreen();
             Thread.Sleep(15000);
             if (CloseAdvertising.Displayed)
                 Click(CloseAdvertising);
@@ -87,11 +87,11 @@ namespace Pages.VaniaPages
             driver.SwitchTo().Frame(driver.FindElement(By.Id(aliExpressLoginFormId)));
             EmailLogin.Clear();
             SendText(EmailLogin, alijson.Email);
-           // SendText(EmailLogin, "skaxrfdzeajgee2w@outlook.com");
+            // SendText(EmailLogin, "skaxrfdzeajgee2w@outlook.com");
             Thread.Sleep(1000);
             PasswordLogin.Clear();
             SendText(PasswordLogin, alijson.Password);
-           // SendText(PasswordLogin, "qLEvZxcMVU9xqdQC");
+            // SendText(PasswordLogin, "qLEvZxcMVU9xqdQC");
             Thread.Sleep(1000);
             Click(ButtonSubmit);
             Thread.Sleep(7000);
@@ -110,16 +110,41 @@ namespace Pages.VaniaPages
             Thread.Sleep(1000);
             return new SearchProductForWishes(driver);
         }
+
         public AnnPages.AccountHomePage GoToAccountHomePage()
         {
-            LoginToAccount();
-            // Thread.Sleep(5000);
-            //if (CloseAdvertising.Displayed)
-            //    Click(CloseAdvertising);
+            NavigateToUrl(urlAliexpress);
+            Thread.Sleep(2000);
+            driver.Manage().Window.FullScreen();
+            Thread.Sleep(15000);
+            try
+            {
+                Click(CloseAdvertising);
+            }
+            catch (NoSuchElementException)
+            { }
+            Thread.Sleep(2000);
+            Click(ButtonLogin);
+            Thread.Sleep(8000);
+            driver.SwitchTo().Frame(driver.FindElement(By.Id(aliExpressLoginFormId)));
+            EmailLogin.Clear();
+            SendText(EmailLogin, "skaxrfdzeajgee2w@outlook.com");
+            Thread.Sleep(1000);
+            PasswordLogin.Clear();
+            SendText(PasswordLogin, "qLEvZxcMVU9xqdQC");
+            Thread.Sleep(1000);
+            Click(ButtonSubmit);
+            Thread.Sleep(7000);
+            try
+            {
+                Click(CloseAdvertising);
+            }
+            catch(NoSuchElementException)
+            { }
             Thread.Sleep(5000);
             Click(MyAliExpressBtn);
             return new AnnPages.AccountHomePage(driver);
         }
-                #endregion
     }
+    #endregion
 }

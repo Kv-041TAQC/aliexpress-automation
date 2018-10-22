@@ -89,7 +89,7 @@ namespace Test
             options.PageLoadStrategy = PageLoadStrategy.None;
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
             {
-                dr.Manage().Window.Maximize();
+                dr.Manage().Window.FullScreen();
                 var mydriver = new Main(dr);
                 mydriver.NavigateToAli();
                 ResultIPhone resultIPhone6 = mydriver.ChooseIPhone();
@@ -241,7 +241,8 @@ namespace Test
     [TestFixture]
     public class ChangeEmailNotification
     {
-        [Test]
+        [Test] 
+        [Retry(3)]
         public void ChangeEmailNotificationTest()
         {
             ChromeOptions options = new ChromeOptions();
@@ -253,9 +254,10 @@ namespace Test
                 var accounSettingsPage = accountHomePage.GotoAccountSettingsPage();
                 var emailSubscriptionPage = accounSettingsPage.GotoEmailSubscriptionPage();
                 emailSubscriptionPage.ClickButtonsSubscription();
+                Assert.True(emailSubscriptionPage.Check());
             }
         }
+     #endregion
+        
     }
-    #endregion
 }
-

@@ -4,6 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using Pages.KostiantynPages.Helpers;
 using Pages;
+using Pages.AnnPages;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 
@@ -11,7 +12,6 @@ namespace Pages.KostiantynPages
 {
     public class AliExpressHomePage : SuperPage
     {
-
         #region Fields and Constants
 
         private IWait<IWebDriver> wait;
@@ -35,7 +35,23 @@ namespace Pages.KostiantynPages
         private By myOrdersIconLocator = By.CssSelector(".order-icon");
         private By myOrdersLinkLocator = By.XPath("//div[@class='fast-entry']//a[contains(@href, 'orderList.htm')]");
 
+        private By searchFieldLocator = By.Id("search-key");
+        private By searchButtonLocator = By.CssSelector("#form-searchbar > div.searchbar-operate-box > input");
 
+        public IWebElement SearchField
+        {
+            get
+            {
+                return driver.FindElement(searchFieldLocator);
+            }
+        }
+        public IWebElement SearchButton
+        {
+            get
+            {
+                return driver.FindElement(searchButtonLocator);
+            }
+        }
         public IWebElement GoToGlobalSiteLink => driver.FindElement(goToGlobalSiteLinkLocator);
         public IWebElement SignInButton => driver.FindElement(signInButtonLocator);
         public IWebElement AliExpressLoginForm => driver.FindElement(aliExpressLoginFormLocator);
@@ -46,6 +62,8 @@ namespace Pages.KostiantynPages
         public IWebElement AdsCloseButton => driver.FindElement(adsCloseButtonLocator);
         public IWebElement MyOrdersLink => driver.FindElement(myOrdersLinkLocator);
 
+       
+       
         #endregion
 
         #region Constructors
@@ -130,8 +148,8 @@ namespace Pages.KostiantynPages
             Click(MyOrdersLink);
             return new MyOrdersPage(driver, wait);
         }
-
-        #endregion
+        
+         #endregion
 
 
     }

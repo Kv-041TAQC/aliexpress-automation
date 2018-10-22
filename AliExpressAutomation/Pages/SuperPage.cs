@@ -113,7 +113,6 @@ namespace Pages
             actionshandler = new Actions(driver);
             this.driver = driver;
             InitializeJsonFile();
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
         }
     }
 }

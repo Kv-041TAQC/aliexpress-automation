@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using OpenQA.Selenium;
-using AliExpress.Pages;
-using static Pages.HelpClasses.HelpPage;
+using Pages.KostiantynPages;
 
 namespace Pages.VasylPages
 {
@@ -12,25 +8,6 @@ namespace Pages.VasylPages
     {
         public LocalMainMethodsPage(IWebDriver driver) : base(driver)
         {
-        }
-
-        private By searchFieldLocator = By.Id("search-key");
-        private By searchButtonLocator = By.CssSelector("#form-searchbar > div.searchbar-operate-box > input");
-
-        private IWebElement SearchField
-        {
-            get
-            {
-                return driver.FindElement(searchFieldLocator);
-            }
-        }
-
-        private IWebElement SearchButton
-        {
-            get
-            {
-                return driver.FindElement(searchButtonLocator);
-            }
         }
 
         public MyShoppingPage NextPageFrance()
@@ -45,7 +22,7 @@ namespace Pages.VasylPages
 
         public MyShoppingPage NextPageEnglish()
         {
-            MaximizeWindow();
+            driver.Manage().Window.FullScreen();
             NavigateToAliExpressHomepage();
             Thread.Sleep(15000);
             Click(AdsCloseButton);
