@@ -20,7 +20,7 @@ namespace Pages.VaniaPages
         private readonly string CssSearchButton = "#search-key";
         private readonly string CssSearchField = "#form-searchbar > div.searchbar-operate-box > input";
         private const string aliExpressLoginFormId = "alibaba-login-box";
-
+        private readonly string MyAliexpressLocator = "#user-benefits > div.user-account.olduser-account > div.fast-entry > ul > li:nth-child(1) > a > span.entrance-name.flex-vertical.middle-center";
         #endregion
 
         #region SearchWebElement
@@ -58,7 +58,13 @@ namespace Pages.VaniaPages
         {
             get { return driver.FindElement(By.CssSelector(buttonSubmit)); }
         }
-
+        private IWebElement MyAliExpressBtn
+        {
+            get
+            {
+                return driver.FindElement(By.CssSelector(MyAliexpressLocator));
+            }
+        }
         #endregion
 
         #region Methods
@@ -105,6 +111,40 @@ namespace Pages.VaniaPages
             return new SearchProductForWishes(driver);
         }
 
+        public AnnPages.AccountHomePage GoToAccountHomePage()
+        {
+            NavigateToUrl(urlAliexpress);
+            Thread.Sleep(2000);
+            driver.Manage().Window.FullScreen();
+            Thread.Sleep(15000);
+            try
+            {
+                Click(CloseAdvertising);
+            }
+            catch (NoSuchElementException)
+            { }
+            Thread.Sleep(2000);
+            Click(ButtonLogin);
+            Thread.Sleep(8000);
+            driver.SwitchTo().Frame(driver.FindElement(By.Id(aliExpressLoginFormId)));
+            EmailLogin.Clear();
+            SendText(EmailLogin, "skaxrfdzeajgee2w@outlook.com");
+            Thread.Sleep(1000);
+            PasswordLogin.Clear();
+            SendText(PasswordLogin, "qLEvZxcMVU9xqdQC");
+            Thread.Sleep(1000);
+            Click(ButtonSubmit);
+            Thread.Sleep(7000);
+            try
+            {
+                Click(CloseAdvertising);
+            }
+            catch(NoSuchElementException)
+            { }
+            Thread.Sleep(5000);
+            Click(MyAliExpressBtn);
+            return new AnnPages.AccountHomePage(driver);
+        }
     }
     #endregion
 }

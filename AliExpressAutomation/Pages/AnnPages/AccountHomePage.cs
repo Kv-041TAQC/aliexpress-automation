@@ -9,7 +9,6 @@ using static Pages.HelpClasses.HelpPage;
 
 namespace Pages.AnnPages
 {
-      /// this is  home.aliexpress.com/index.htm?spm=2114.11010108.01010.3.650c649bFCSFo5
     public class AccountHomePage : SuperPage
     {
         public AccountHomePage (IWebDriver driver) : base(driver)

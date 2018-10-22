@@ -11,7 +11,6 @@ namespace Pages.AnnPages
 {
     public class AccountSettingsPage : SuperPage
     {
-        // this is Account Settings Page: home.aliexpress.com/account_settings.htm?spm=a2g0s.8937420.0.0.71d62e0eWKJ0vV&flag=account
         public AccountSettingsPage(IWebDriver driver) : base(driver)
         {
         }
@@ -29,7 +28,8 @@ namespace Pages.AnnPages
         public EmailSubscriptionPage GotoEmailSubscriptionPage()
         {
             Thread.Sleep(7000);
-            Click(EmailNotificationsBtn);
+            //Click(EmailNotificationsBtn);
+            driver.Navigate().GoToUrl(@"https://my.aliexpress.com/subscription/email_subscription_management.htm");
             return new EmailSubscriptionPage(driver);
         }
         #endregion
