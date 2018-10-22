@@ -241,25 +241,23 @@ namespace Test
     [TestFixture]
     public class ChangeEmailNotification
     {
-        [Test]
+        [Test] 
+        [Retry(3)]
         public void ChangeEmailNotificationTest()
         {
             ChromeOptions options = new ChromeOptions();
             options.PageLoadStrategy = PageLoadStrategy.None;
-           // using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
-            using (ChromeDriver driver = new ChromeDriver(Directory.GetCurrentDirectory(), options))
+            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
             {
-                driver.Manage().Window.Maximize();
-                IWait<IWebDriver> wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
-
-                var aliExpressHomePage = new AliExpressHomePage(driver);
-                var accountHomePage = aliExpressHomePage.GoToAccountHomePage();
+                var mainPageAliexpress = new MainPageAliexpress(dr);
+                var accountHomePage = mainPageAliexpress.GoToAccountHomePage();
                 var accounSettingsPage = accountHomePage.GotoAccountSettingsPage();
                 var emailSubscriptionPage = accounSettingsPage.GotoEmailSubscriptionPage();
                 emailSubscriptionPage.ClickButtonsSubscription();
+                Assert.True(emailSubscriptionPage.Check());
             }
         }
+     #endregion
+        
     }
-    #endregion
 }
-

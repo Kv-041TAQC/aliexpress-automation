@@ -12,38 +12,46 @@ namespace Pages.AnnPages
 {
     public class EmailSubscriptionPage : SuperPage
     {
-        /// this is the Email Subscription Page: my.aliexpress.com/subscription/email_subscription_management.htm
-
+        
         public EmailSubscriptionPage(IWebDriver driver) : base(driver)
         {
         }
         #region Constans
+        // private readonly string ButtonsSubscription1Locator = "body > div.me-main.util-clearfix.email-subscriptions > div.container > div > div > div > table > tbody > tr:nth-child(1) > td.subs-btn > a";
         private readonly string ButtonsSubscriptionLocator = "td.subs-btn > a";
-
+        private readonly string StatusLocator = "td.subs-status";
         #endregion
 
         #region IWebElements
-        private ReadOnlyCollection<IWebElement> ButtonsSubscription => driver.FindElements(By.CssSelector(ButtonsSubscriptionLocator));
-       
+        //private IWebElement ButtonsSubscription1 => driver.FindElement(By.CssSelector(ButtonsSubscription1Locator));
+        private ReadOnlyCollection <IWebElement> ButtonsSubscription => driver.FindElements(By.CssSelector(ButtonsSubscriptionLocator));
+        private ReadOnlyCollection <IWebElement> Status => driver.FindElements(By.CssSelector(StatusLocator));
+
         #endregion
-               
+
         #region Methods
         public void ClickButtonsSubscription()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
-            wait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
-            Thread.Sleep(10000);
-            var test = ButtonsSubscription;
-            Thread.Sleep(7000);
-            foreach (IWebElement element in test)
+            Thread.Sleep(5000);
+            foreach (IWebElement element in ButtonsSubscription)
             {
-                var executor = (IJavaScriptExecutor)driver;
+                Thread.Sleep(1000);
+                Click(element);
+            }
+            Thread.Sleep(5000);
+        }
 
-                executor.ExecuteScript("arguments[0].click();", element);
-                Thread.Sleep(2000);
+        public bool Check()
+        {
+            if (ButtonsSubscription[0].Text == "Disable")
+            {
+                return Status[0].Text == "Enabled";
+            } else
+            {
+                return Status[0].Text == "Disabled";
             }
         }
+        
         #endregion
     }
-
 }
