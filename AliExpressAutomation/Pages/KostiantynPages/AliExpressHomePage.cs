@@ -153,6 +153,7 @@ namespace Pages.KostiantynPages
             myLogin.login = "skaxrfdzeajgee2w@outlook.com";
             myLogin.password = "qLEvZxcMVU9xqdQC";
 
+            NavigateToAliExpressHomepage();
             LoginToAliExpress(myLogin);
             // Thread.Sleep(5000);
             //if (CloseAdvertising.Displayed)
