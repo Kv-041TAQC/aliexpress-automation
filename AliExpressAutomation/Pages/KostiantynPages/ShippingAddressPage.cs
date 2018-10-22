@@ -4,6 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using Pages.KostiantynPages.Helpers;
 using System.Threading;
 using Pages;
+using System.Collections.Generic;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 
@@ -233,9 +234,8 @@ namespace Pages.KostiantynPages
         }
 
 
-        // TODO: Change to: getting collection of the address boxes, find elements within elements and check text
         public bool IsAddressPresent(Address adr)
-        {       
+        {
             wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(allAddressBoxesLocator));
 
             if (!driver.PageSource.Contains(adr.contactName))
@@ -286,7 +286,6 @@ namespace Pages.KostiantynPages
             wait.Until(d => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").ToString().Equals("complete"));
         }
 
-        // TODO: add success icon checks (1.input 2.click on form 3.check for icon)
         public void FillShippingAddressForm(Address adr)
         {
             wait.Until(ExpectedConditions.ElementToBeClickable(contactPersonInputFieldLocator));

@@ -181,7 +181,7 @@ namespace Test
                 shippingAddressPage.AddNewShippingAddress();
                 shippingAddressPage.FillShippingAddressForm(adr);
                 shippingAddressPage.ShippingAddressFormSave();
-                Assert.True(shippingAddressPage.IsAddressPresent(adr));
+                Assert.True(shippingAddressPage.IsAddressPresent(adr));         
             }
 
         }
