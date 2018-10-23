@@ -40,19 +40,39 @@ namespace Pages.EvgenPages
             Thread.Sleep(2000);
             //ScreenSizeSettings(2560, 1600);
             driver.Manage().Window.FullScreen();
-            Thread.Sleep(12000);
-            if (CloseAdvertising.Displayed)
-                Click(CloseAdvertising);
-            InputCorrectData(NumberOfTest);
-            Thread.Sleep(1000);
-            Click(SearchButton);
-            Thread.Sleep(1000);
-            try{
-                result = WarningWindow.Displayed;
+            Thread.Sleep(2000);
+            try
+            {
+                if (CloseAdvertising.Displayed)
+                    Click(CloseAdvertising);
+                InputCorrectData(NumberOfTest);
+                Thread.Sleep(1000);
+                Click(SearchButton);
+                Thread.Sleep(1000);
+                try
+                {
+                    result = WarningWindow.Displayed;
+                }
+                catch (NoSuchElementException)
+                {
+                    Assert.Pass();
+                }
             }
             catch(NoSuchElementException)
             {
-                Assert.Pass();
+                Thread.Sleep(5000);
+                InputCorrectData(NumberOfTest);
+                Thread.Sleep(1000);
+                Click(SearchButton);
+                Thread.Sleep(1000);
+                try
+                {
+                    result = WarningWindow.Displayed;
+                }
+                catch (NoSuchElementException)
+                {
+                    Assert.Pass();
+                }
             }
         }
         /// <summary>
@@ -65,14 +85,26 @@ namespace Pages.EvgenPages
             Thread.Sleep(2000);
             //ScreenSizeSettings(2560, 1600);
             driver.Manage().Window.FullScreen();
-            Thread.Sleep(12000);
-            if (CloseAdvertising.Displayed)
-                Click(CloseAdvertising);
-            InputInvalidData(NumberOfTest);
-            Thread.Sleep(1000);
-            Click(SearchButton);
-            Thread.Sleep(1000);
-            Assert.IsTrue(WarningWindow.Displayed);
+            Thread.Sleep(3000);
+            try
+            {
+                if (CloseAdvertising.Displayed)
+                    Click(CloseAdvertising);
+                InputInvalidData(NumberOfTest);
+                Thread.Sleep(1000);
+                Click(SearchButton);
+                Thread.Sleep(1000);
+                Assert.IsTrue(WarningWindow.Displayed);
+            }
+            catch (NoSuchElementException)
+            {
+                Thread.Sleep(5000);
+                InputInvalidData(NumberOfTest);
+                Thread.Sleep(1000);
+                Click(SearchButton);
+                Thread.Sleep(1000);
+                Assert.IsTrue(WarningWindow.Displayed);
+            }
         }
         #endregion
     }
