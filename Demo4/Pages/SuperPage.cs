@@ -77,6 +77,10 @@ namespace Pages
         protected Actions actionshandler;//For extra actions
         protected IAlert alerthandler;
         #endregion
+        #region DataBase Methods
+        //Add, AddRange, Delete, Update, InitializeDatabase
+        //Interfaces for MsSql and etc
+        #endregion
         protected SuperPage(IWebDriver driver)
         {
             actionshandler = new Actions(driver);

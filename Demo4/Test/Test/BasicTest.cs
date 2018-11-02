@@ -17,11 +17,11 @@ namespace Tests.Test
         {
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
             {
-                SearchStringPage screen = new SearchStringPage(dr);
-                if(TestContext.CurrentContext.Result.Outcome.Status.Equals(TestStatus.Failed))
-                {
-                    screen.TakeScreenShot();
-                }
+                //SearchStringPage screen = new SearchStringPage(dr);
+                //if(TestContext.CurrentContext.Result.Outcome.Status.Equals(TestStatus.Failed))
+                //{
+                //    screen.TakeScreenShot();
+                //}
             }
         }
     }
