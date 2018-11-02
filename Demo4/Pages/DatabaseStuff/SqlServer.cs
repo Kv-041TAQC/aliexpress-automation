@@ -11,19 +11,19 @@ namespace Pages.DatabaseStuff
         private readonly string connectionstring = "Server=(localdb)\\MSSQLLocalDB;Database=AliGoods;Trusted_Connection=True;";
         public void Add(AliGoods x)
         {
-            
+         //addTest , addrangeTest, Delete test   
             AliGoods localali = x;
-            string query = $"Insert into aliGoods(Price,Name) values ({localali.Price},'{localali.Name}')";
+            string query = $"Insert into aliGoods(Price,Name) values (@price,@name)";
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
                 connection.Open();
-                /*SqlParameter idparam = new SqlParameter("@id", localali[i].Id);
-                    SqlParameter priceparam = new SqlParameter("@price", localali[i].Price);
-                    SqlParameter nameparam = new SqlParameter("@name", localali[i].Name);*/
+                //SqlParameter idparam = new SqlParameter("@id", localali.Id);
+                SqlParameter priceparam = new SqlParameter("@price", localali.Price);
+                 SqlParameter nameparam = new SqlParameter("@name", localali.Name);
                 SqlCommand isertcommand = new SqlCommand(query, connection);
-                /*isertcommand.Parameters.Add(idparam);
+                //isertcommand.Parameters.Add(idparam);
                 isertcommand.Parameters.Add(priceparam);
-                isertcommand.Parameters.Add(nameparam); */
+                isertcommand.Parameters.Add(nameparam); 
                 isertcommand.ExecuteNonQuery();
 
             }
@@ -34,17 +34,17 @@ namespace Pages.DatabaseStuff
             AliGoods[] localali = arr;
             for (int i = 0; i < arr.Length; i++)
             {
-                string query = $"Insert into aliGoods values ({localali[i].Price},'{localali[i].Name}')";
+                string query = $"Insert into aliGoods(Price,Name) values (@price,@name)";
                 using (SqlConnection connection = new SqlConnection(connectionstring))
                 {
                     connection.Open();
-                    /*SqlParameter idparam = new SqlParameter("@id", localali[i].Id);
+                    //SqlParameter idparam = new SqlParameter("@id", localali[i].Id);
                     SqlParameter priceparam = new SqlParameter("@price", localali[i].Price);
-                    SqlParameter nameparam = new SqlParameter("@name", localali[i].Name);*/
+                    SqlParameter nameparam = new SqlParameter("@name", localali[i].Name);
                     SqlCommand isertcommand = new SqlCommand(query, connection);
-                    /*isertcommand.Parameters.Add(idparam);
+                   // isertcommand.Parameters.Add(idparam);
                     isertcommand.Parameters.Add(priceparam);
-                    isertcommand.Parameters.Add(nameparam); */
+                    isertcommand.Parameters.Add(nameparam);
                     isertcommand.ExecuteNonQuery();
                 }
             }

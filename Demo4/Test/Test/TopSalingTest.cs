@@ -21,7 +21,7 @@ namespace Test
             {
                 dr.Navigate().GoToUrl("http://www.google.com");
                 SqlServer<AliGoods> sqlServer = new SqlServer<AliGoods>();
-                sqlServer.Add(new AliGoods() {Price = 9999, Name = "firstproductasdasdas" });
+                sqlServer.Add(new AliGoods() {Price = 9999, Name = "sssssss" });
                 sqlServer.AddRange(new AliGoods[] {new AliGoods(){ Price = 9999, Name = "firstproduct" }, new AliGoods() { Price = 9999, Name = "firstproduct" } , new AliGoods() { Price = 9999, Name = "firstproduct" } });
                 sqlServer.Delete(2);
                 Thread.Sleep(3000);
