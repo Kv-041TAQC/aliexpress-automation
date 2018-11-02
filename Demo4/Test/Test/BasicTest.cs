@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium.Chrome;
+using Pages.TopSaling;
 
 namespace Tests.Test
 {
@@ -17,7 +18,7 @@ namespace Tests.Test
         {
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
             {
-                SearchStringPage screen = new SearchStringPage(dr);
+                MainPage  screen = new MainPage(dr);
                 if(TestContext.CurrentContext.Result.Outcome.Status.Equals(TestStatus.Failed))
                 {
                     screen.TakeScreenShot();
