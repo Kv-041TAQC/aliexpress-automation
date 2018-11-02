@@ -4,18 +4,24 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
+using System.Threading;
 
 namespace Pages
 {
     public abstract class SuperPage
     {
         #region Custom Methods
+        protected string[,] Phones = new string[144,2];
         /// <summary>
         /// <para>Custome method for clicking on element</para>
         /// <para>In param send WebElement, in which u whant to click</para>
         /// </summary>
         /// <param name="element">Element.</param>
-        protected virtual void Click(IWebElement element) => element.Click();
+        protected virtual void Click(IWebElement element)
+        {
+            element.Click();
+            Thread.Sleep(3000);
+        }
         /// <summary>
         /// <para>Custome method for sending text in WebElements</para>
         /// </summary>
@@ -33,7 +39,11 @@ namespace Pages
         /// Navigates to URL.
         /// </summary>
         /// <param name="url">URL.</param>
-        protected void NavigateToUrl(string url) => driver.Navigate().GoToUrl(url);
+        protected void NavigateToUrl(string url)
+        {
+            driver.Navigate().GoToUrl(url);
+            Thread.Sleep(8000);
+        }
         /// <summary>
         /// Maximizes the window.
         /// </summary>
