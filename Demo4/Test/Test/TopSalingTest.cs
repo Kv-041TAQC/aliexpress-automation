@@ -20,10 +20,12 @@ namespace Test
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
             {
                 dr.Navigate().GoToUrl("http://www.google.com");
-                SqlServer<AliGoods> sqlServer = new SqlServer<AliGoods>();
-                sqlServer.Add(new AliGoods() {Price = 9999, Name = "sssssss" });
-                sqlServer.AddRange(new AliGoods[] {new AliGoods(){ Price = 9999, Name = "firstproduct" }, new AliGoods() { Price = 9999, Name = "firstproduct" } , new AliGoods() { Price = 9999, Name = "firstproduct" } });
-                sqlServer.Delete(2);
+                MsSql<AliGoods> MsSql = new MsSql<AliGoods>();
+                MsSql.Add(new AliGoods() {Price = 9999, Name = "sssssss" });
+                MsSql.AddRange(new AliGoods[] {new AliGoods(){ Price = 9999, Name = "firstproduct" }, new AliGoods() { Price = 9999, Name = "firstproduct" } , new AliGoods() { Price = 9999, Name = "firstproduct" } });
+                MsSql.Delete(2);
+                MsSql.ClearTable();
+                MsSql.CloseAllConnections();
                 Thread.Sleep(3000);
 
             }
