@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -7,16 +8,24 @@ namespace Pages.DatabaseStuff
     public class MsSql<T> : BaseSql<AliGoods>, IDisposable
         where T : class
     {
-        #region Query and Connection strings
+        #region Queries and Connection strings
         private readonly string localconnection = "Server=(localdb)\\MSSQLLocalDB;Database=AliGoods;Trusted_Connection=True;";
-        private readonly string evgenserverconnection = "Server=KAMPLIPUTER\\MSSQLSERVEREVGEN;Database=AliGoods;Trusted_Connection=True;";
-        string addquery = $"Insert into aliGoods(Price,Name) values (@price,@name)";
-        string addrangequery = $"Insert into aliGoods(Price,Name) values (@price,@name)";
-        string getall = "select * from AliGoods";
-        string clearquery = "Delete AliGoods where id between 1 and 1000";
+        private readonly string amazonconnectionstring = "Server=alitestdb.c0i3it1m9rox.us-east-2.rds.amazonaws.com;Database=AliGoods;User Id=devmaster;pwd=Gavras123321";
+        #region Products table Queries
+        private readonly string addquery = $"Insert into aliGoods(ProductPrice,ProductName) values (@price,@name)";
+        private readonly string addrangequery = $"Insert into aliGoods(ProductPrice,ProductName) values (@price,@name)";
+        private readonly string getall = "select * from AliGoods";
+        private readonly string clearquery = "Delete AliGoods where id between 1 and 1000";
+        #endregion
+        #region TestResult table Queries
+        private readonly string addfailedtestresultquery = "Insert into TestResults Values (@Testrunnigtime,@IsRunned,@TestName,@TestResult,@ErrorMessage)";
+        private readonly string addpassedtestrusultquery = "Insert into TestResults Values ('@Testrunnigtime',@IsRunned,'@TestName',@TestResult)";
+        private readonly string addrangetestresultsquery = "";
+        private readonly string deletetestresultquery = "";
+        #endregion
         SqlConnection connection;
         #endregion
-        #region MsSql Methods
+        #region MsSql Products table methods
         public void Add(AliGoods product)
         {
             AliGoods localali = product;
@@ -78,10 +87,27 @@ namespace Pages.DatabaseStuff
         public MsSql()
         {
             connection = new SqlConnection();
-            connection.ConnectionString = evgenserverconnection;
+            connection.ConnectionString = amazonconnectionstring;
             connection.Open();
         }
         #endregion
+        #endregion
+        #region MsSql TestResult table methods
+        public void AddTestResult(TestResults test)
+        {
+            SqlCommand command = new SqlCommand(addpassedtestrusultquery, connection);
+            SqlParameter[] parameters = new SqlParameter[] { new SqlParameter("@TestName", test.Name), new SqlParameter("@Testrunnigtime", test.Time), new SqlParameter("@TestResult", test.Result), new SqlParameter("@IsRunned", test.IsRunned) };            
+            command.Parameters.AddRange(parameters);
+            command.ExecuteNonQuery();
+        }
+        public void DeleteTestResult()
+        {
+
+        }
+        public void AddRangeTestResult()
+        {
+
+        }
         #endregion
 
     }
