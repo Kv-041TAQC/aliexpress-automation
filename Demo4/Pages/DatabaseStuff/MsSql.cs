@@ -5,11 +5,11 @@ using System.Data.SqlClient;
 
 namespace Pages.DatabaseStuff
 {
-    public class MsSql<T> : BaseSql<AliGoods>, IDisposable
-        where T : class
+    public class MsSql : BaseSql<AliGoods>, IDisposable
     {
         #region Queries and Connection strings
         private readonly string localconnection = "Server=(localdb)\\MSSQLLocalDB;Database=AliGoods;Trusted_Connection=True;";
+        SqlConnection connection;
         private readonly string amazonconnectionstring = "Server=alitestdb.c0i3it1m9rox.us-east-2.rds.amazonaws.com;Database=AliGoods;User Id=devmaster;pwd=Gavras123321";
         #region Products table Queries
         private readonly string addquery = $"Insert into aliGoods(ProductPrice,ProductName) values (@price,@name)";
@@ -23,7 +23,6 @@ namespace Pages.DatabaseStuff
         private readonly string addrangetestresultsquery = "";
         private readonly string deletetestresultquery = "";
         #endregion
-        SqlConnection connection;
         #endregion
         #region MsSql Products table methods
         public void Add(AliGoods product)
@@ -78,19 +77,7 @@ namespace Pages.DatabaseStuff
         {
             this.Dispose();
         }
-        #region Constructor and Destructor
-        public void Dispose()
-        {
-            connection.Close();
-        }
 
-        public MsSql()
-        {
-            connection = new SqlConnection();
-            connection.ConnectionString = amazonconnectionstring;
-            connection.Open();
-        }
-        #endregion
         #endregion
         #region MsSql TestResult table methods
         public void AddTestResult(TestResults test)
@@ -109,6 +96,18 @@ namespace Pages.DatabaseStuff
 
         }
         #endregion
+        #region Constructor and Destructor
+        public void Dispose()
+        {
+            connection.Close();
+        }
 
+        public MsSql()
+        {
+            connection = new SqlConnection();
+            connection.ConnectionString = amazonconnectionstring;
+            connection.Open();
+        }
+        #endregion
     }
 }
