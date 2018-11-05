@@ -5,13 +5,13 @@ using System.Runtime.Serialization.Json;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
 using System.Threading;
+using Pages.HelpClass;
 
 namespace Pages
 {
     public abstract class SuperPage
     {
         #region Custom Methods
-        protected string[,] Phones = new string[144,2];
         /// <summary>
         /// <para>Custome method for clicking on element</para>
         /// <para>In param send WebElement, in which u whant to click</para>
@@ -20,7 +20,7 @@ namespace Pages
         protected virtual void Click(IWebElement element)
         {
             element.Click();
-            Thread.Sleep(3000);
+            Thread.Sleep(5000);
         }
         /// <summary>
         /// <para>Custome method for sending text in WebElements</para>
@@ -86,11 +86,14 @@ namespace Pages
         protected IWebDriver driver;
         protected Actions actionshandler;//For extra actions
         protected IAlert alerthandler;
+        protected Phone[] phones;
+        protected int countPhone;
         #endregion
         protected SuperPage(IWebDriver driver)
         {
             actionshandler = new Actions(driver);
             this.driver = driver;
+            phones = new Phone[144];
         }
     }
 }

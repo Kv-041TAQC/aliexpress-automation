@@ -21,23 +21,23 @@ namespace Pages.TopSaling
 
         #region WebElements
         private IWebElement CloseAdvertising => driver.FindElement(By.CssSelector(selectorCloseAdvertising));
-        private IWebElement btnCategories => driver.FindElement(By.CssSelector(CssSelectorbtnCategories));
-        private IWebElement btnCellphoens => driver.FindElement(By.CssSelector(CssSelectorbtnCellphones));
-        private IWebElement buttonLanguage => driver.FindElement(By.CssSelector(CssSelectorEnglishWeb));
+        private IWebElement BtnCategories => driver.FindElement(By.CssSelector(CssSelectorbtnCategories));
+        private IWebElement BtnCellphoens => driver.FindElement(By.CssSelector(CssSelectorbtnCellphones));
+        private IWebElement ButtonLanguage => driver.FindElement(By.CssSelector(CssSelectorEnglishWeb));
 
         #endregion
 
         #region Methods
 
-        public SearchPage1 GoTotheSearchPhones()
+        public SearchPage1 GoToTheSearchPhones()
         {
             driver.Manage().Window.FullScreen();
             NavigateToUrl(urlAliexpress);
             if (CloseAdvertising.Displayed)
                 Click(CloseAdvertising);
-            Click(buttonLanguage);
-            Click(btnCategories);
-            Click(btnCellphoens);
+            Click(ButtonLanguage);
+            Click(BtnCategories);
+            Click(BtnCellphoens);
             return new SearchPage1(driver);
         }
 
