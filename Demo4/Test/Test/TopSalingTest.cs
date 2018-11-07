@@ -20,13 +20,9 @@ namespace Test
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory()))
             {
                 dr.Navigate().GoToUrl("http://www.google.com");
-                MsSql MsSql = new MsSql();
-                MsSql.Add(new AliGoods() {Price = 1234, Name = "Iphone" });
-                MsSql.AddRange(new AliGoods[] {new AliGoods(){ Price = 999, Name = "Samsung" }, new AliGoods() { Price = 750, Name = "Iphone XR" } , new AliGoods() { Price = 1500, Name = "IPhone XS MAX" } });
-                MsSql.Delete(2);
-                //MsSql.ClearTable();
-                //MsSql.AddTestResult(new TestResults() { Name = "TopSallingsTest", Time = "03.11.2018", Result = "Passed", IsRunned = true });
-                MsSql.CloseAllConnections();
+                MsSql ms = new MsSql();
+                ms.Add(new TestResults() {TestName ="Super Yura test",TestResult = "Passed", TestRunnigTime = $"07.11.2018",TestErrorMessage = "Yura error" });
+                ms.CloseAllConnections();
                 Thread.Sleep(3000);
 
             }

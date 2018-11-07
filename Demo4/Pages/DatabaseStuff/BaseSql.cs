@@ -8,7 +8,7 @@ namespace Pages.DatabaseStuff
     {
         void Add(T x);
         void AddRange(T[] arr);
-        void Delete(int id);
+        void Delete(int id,string table);
         List<T> GetAll();
     }
 }
