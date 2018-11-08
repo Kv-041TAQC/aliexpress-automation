@@ -7,6 +7,7 @@ namespace Pages.DatabaseStuff
         void Add(T x);
         void AddRange(T[] arr);
         void Delete(int id,string table);
-        ArrayList GetAll(string table);
+        ArrayList GetAll(string tablename);
+        ArrayList GetOne(int id, string tablename);
     }
 }

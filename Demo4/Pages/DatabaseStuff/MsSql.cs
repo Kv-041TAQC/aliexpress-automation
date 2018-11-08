@@ -8,8 +8,7 @@ namespace Pages.DatabaseStuff
 {
     public class MsSql : BaseSql<AliGoods>, IDisposable
     {
-        #region Queries and Connection strings
-        private readonly string localconnection = "Server=(localdb)\\MSSQLLocalDB;Database=AliGoods;Trusted_Connection=True;";
+        #region Queries and Connection string
         SqlConnection connection;
         private readonly string amazonconnectionstring = "Server=alitestdb.c0i3it1m9rox.us-east-2.rds.amazonaws.com;Database=AliGoods;User Id=devmaster;pwd=Gavras123321;";
         #region Products table Queries
@@ -27,6 +26,51 @@ namespace Pages.DatabaseStuff
         #endregion
         #endregion
         #region MsSql methods for communication with database
+        public ArrayList GetOne(int id, string tablename)
+        {
+            string name = tablename.ToLower();
+            if (id > 0 && name == "aligoods")
+            {
+                ArrayList array = new ArrayList();
+                AliGoods local = new AliGoods();
+                SqlCommand command = new SqlCommand($"Select * from AliGoods where id = {id}", connection);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        local.Id = reader.GetInt32(0);
+                        local.Name = reader.GetString(1);
+                        local.Price = reader.GetDecimal(2);
+                    }
+                }
+                array.Add(local);
+                return array;
+            }
+            else if (id > 0 && name == "testresults")
+            {
+                ArrayList array = new ArrayList();
+                TestResults local = new TestResults();
+                SqlCommand command = new SqlCommand($"Select * from TestResults where id = {id}", connection);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        local.Id = reader.GetInt32(0);
+                        local.TestName = reader.GetString(1);
+                        local.TestResult = reader.GetString(2);
+                        local.TestErrorMessage = reader.GetString(3);
+                        local.TestRunnigTime = reader.GetString(4);
+                    }
+                }
+                array.Add(local);
+                return array;
+            }
+            else
+                throw new Exception("Wrong id or table name!");
+        }
+
         public void Add(AliGoods product)
         {
             AliGoods localali = product;
@@ -61,16 +105,16 @@ namespace Pages.DatabaseStuff
             for (int i = 0; i < arr.Length; i++)
                 Add(arr[i]);
         }
-
+        
         public void Delete(int id,string TableName)
         {
             string name = TableName.ToLower();
-            if (name == "aligoods") {
+            if (id > 0 && name == "aligoods") {
                 string deletequery = $"Delete AliGoods where id = {id} ";
                 SqlCommand deletecommand = new SqlCommand(deletequery, connection);
                 deletecommand.ExecuteNonQuery();
             }
-            else if(name == "testresults")
+            else if(id > 0 && name == "testresults")
             {
                 string deletequery = $"Delete testresults where id = {id} ";
                 SqlCommand deletecommand = new SqlCommand(deletequery, connection);
@@ -79,7 +123,11 @@ namespace Pages.DatabaseStuff
             else
                 throw new Exception("There is no such table, friend!!!");
         }
-
+        /// <summary>
+        /// This method returns u an array with needed data, according to the param (NAME OF THE TABLE)
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
         public ArrayList GetAll(string table)
         {
             string name = table.ToLower();
@@ -123,10 +171,8 @@ namespace Pages.DatabaseStuff
                 }
                 return array;
             }
-            else
-            {
-                return new ArrayList() { "Wrong table name" };
-            }
+                else
+                throw new Exception("Wrong id or table name!");
         }
         public void ClearTable(string tabletame)
         {
@@ -155,12 +201,13 @@ namespace Pages.DatabaseStuff
         }
 
         #endregion
-        #region Constructor and Destructor
+        #region Constructor and Disponse
         public void Dispose()
         {
             connection.Close();
         }
 
+        
         public MsSql()
         {
             connection = new SqlConnection();

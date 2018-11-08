@@ -25,8 +25,7 @@ namespace Test
                 MsSql ms = new MsSql();
                 ms.ClearTable("testresults");
                 ArrayList list = new ArrayList();
-                list.AddRange(ms.GetAll("aligoods"));
-
+                list.AddRange(ms.GetOne(-1,"sadsdad"));
                 Thread.Sleep(3000);
             }
 
