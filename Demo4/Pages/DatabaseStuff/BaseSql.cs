@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections;
 
 namespace Pages.DatabaseStuff
 {
@@ -9,6 +7,6 @@ namespace Pages.DatabaseStuff
         void Add(T x);
         void AddRange(T[] arr);
         void Delete(int id,string table);
-        List<T> GetAll();
+        ArrayList GetAll(string table);
     }
 }

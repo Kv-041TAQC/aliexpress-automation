@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Pages.DatabaseStuff
 {
-    public class AliGoods
+    public class AliGoods : MainTable
     {
         public decimal Price { get; set; }
         public string Name { get; set; }

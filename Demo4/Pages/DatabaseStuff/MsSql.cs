@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -14,7 +15,8 @@ namespace Pages.DatabaseStuff
         #region Products table Queries
         private readonly string addproductquery = "Insert into aliGoods(ProductPrice,ProductName) values (@price,@name)";
         private readonly string addtestresultquery = "Insert into TestResults(TestName,TestRunningTime,TestResult,TestErrors) Values(@name,@time,@result,@errors)";
-        private readonly string getall = "select * from AliGoods";
+        private readonly string getallaligoods = "select * from AliGoods";
+        private readonly string getalltestresults = "select * from Testresults";
         private readonly string clearquery = "Delete AliGoods where id between 1 and 1000";
         #endregion
         #region TestResult table Queries
@@ -75,30 +77,75 @@ namespace Pages.DatabaseStuff
                 deletecommand.ExecuteNonQuery();
             }
             else
-                throw new Exception("There is no such table, RETARD!!!");
+                throw new Exception("There is no such table, friend!!!");
         }
 
-        public List<AliGoods> GetAll()
+        public ArrayList GetAll(string table)
         {
-            List<AliGoods> array = new List<AliGoods>();
-            SqlCommand getallcommand = new SqlCommand(getall, connection);
-            SqlDataReader reader = getallcommand.ExecuteReader();
-            if (reader.HasRows)
+            string name = table.ToLower();
+            if (name == "aligoods")
             {
-                while (reader.Read())
+                ArrayList array = new ArrayList();
+                SqlCommand getallcommand = new SqlCommand(getallaligoods, connection);
+                SqlDataReader reader = getallcommand.ExecuteReader();
+                if (reader.HasRows)
                 {
-                    AliGoods local = new AliGoods();
-                    local.Id = reader.GetInt32(0);
-                    local.Price = reader.GetDecimal(1);
-                    local.Name = reader.GetString(2);
-                    array.Add(local);
+                    while (reader.Read())
+                    {
+                        AliGoods local = new AliGoods();
+                        local.Id = reader.GetInt32(0);
+                        local.Price = reader.GetDecimal(1);
+                        local.Name = reader.GetString(2);
+                        array.Add(local);
+                    }
+                    reader.Close();
                 }
-                reader.Close();
+                return array;
             }
-            return array;
+            else if(name == "testresults")
+            {
+                ArrayList array = new ArrayList();
+                SqlCommand getallcommand = new SqlCommand(getalltestresults, connection);
+                SqlDataReader reader = getallcommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        TestResults local = new TestResults();
+                        local.Id = reader.GetInt32(0);
+                        local.TestName = reader.GetString(1);
+                        local.TestResult = reader.GetString(2);
+                        local.TestErrorMessage = reader.GetString(3);
+                        local.TestRunnigTime = reader.GetString(4);
+                        array.Add(local);
+                    }
+                    reader.Close();
+                }
+                return array;
+            }
+            else
+            {
+                return new ArrayList() { "Wrong table name" };
+            }
         }
-        public void ClearTable()
+        public void ClearTable(string tabletame)
         {
+
+            string name = tabletame.ToLower();
+            if (name == "aligoods")
+            {
+                string query = "Delete aligoods where id between 0 and 1000";
+                SqlCommand command = new SqlCommand(query,connection);
+                command.ExecuteNonQuery();
+            }
+            else if (name == "testresults")
+            {
+                string query = "Delete testresults where id between 0 and 1000";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+            }
+            else
+                throw new Exception("There is no such table, RETARD!!!");
             SqlCommand clearcommand = new SqlCommand(clearquery,connection);
             clearcommand.ExecuteNonQuery();
         }

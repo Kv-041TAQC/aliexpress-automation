@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Pages.DatabaseStuff
 {
-    public class TestResults
+    public class TestResults : MainTable
     {
         public int Id { get; set; }
         public string TestRunnigTime { get; set; }

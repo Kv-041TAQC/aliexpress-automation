@@ -7,6 +7,8 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using Pages.TopSaling;
 using Pages.DatabaseStuff;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace Test
 {
@@ -21,10 +23,11 @@ namespace Test
             {
                 dr.Navigate().GoToUrl("http://www.google.com");
                 MsSql ms = new MsSql();
-                ms.Add(new TestResults() {TestName ="Super Yura test",TestResult = "Passed", TestRunnigTime = $"07.11.2018",TestErrorMessage = "Yura error" });
-                ms.CloseAllConnections();
-                Thread.Sleep(3000);
+                ms.ClearTable("testresults");
+                ArrayList list = new ArrayList();
+                list.AddRange(ms.GetAll("aligoods"));
 
+                Thread.Sleep(3000);
             }
 
         }
