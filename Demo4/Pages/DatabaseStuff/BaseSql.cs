@@ -2,7 +2,8 @@
 
 namespace Pages.DatabaseStuff
 {
-    interface BaseSql<T> where T:class
+    interface BaseSql<T> 
+        where T:class
     {
         void Add(T x);
         void AddRange(T[] arr);

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Pages.DatabaseStuff
+﻿namespace Pages.DatabaseStuff
 {
-    public class TestResults : MainTable
+    public class TestResults
     {
         public int Id { get; set; }
         public string TestRunnigTime { get; set; }
