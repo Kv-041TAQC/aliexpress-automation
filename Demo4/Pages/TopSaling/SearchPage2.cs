@@ -21,9 +21,9 @@ namespace Pages.TopSaling
 
         #region Methods
        
-        public SearchPage3 WriteTopPhonesAndGoToThirdPage()
+        public SearchPage3 GoToThirdPage()
         {
-            FindAndWriteTopPhones();
+            //FindAndWriteTopPhones();
             Click(ButtonThirdPage);
             return new SearchPage3(driver);
         }

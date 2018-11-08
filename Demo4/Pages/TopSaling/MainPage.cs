@@ -3,41 +3,51 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using OpenQA.Selenium;
+using Pages.HelpClass;
 
 namespace Pages.TopSaling
 {
     public class MainPage : SuperPage
     {
-        public MainPage(IWebDriver driver) : base(driver) { }
-
-        #region Constants
-        private readonly string urlAliexpress = "https://ru.aliexpress.com";
-        private readonly string selectorCloseAdvertising = "body > div.ui-window.ui-window-normal.ui-window-transition.ui-newuser-layer-dialog > div > div > a";
-        private readonly string CssSelectorbtnCategories = "#home-firstscreen > div > div > div.categories > div > div.categories-content-title > span.site-categories-title";
-        private readonly string CssSelectorbtnCellphones = "#home-firstscreen > div > div > div.categories > div > div.categories-list-box > dl.cl-item.cl-item-phones > dt > span > a:nth-child(1)";
-        private readonly string CssSelectorEnglishWeb = "#nav-global > div.ng-item.ng-goto-globalsite > a";
+        #region ConstantsForMainPage
+        public readonly string urlAliexpress = "https://ru.aliexpress.com";
+        public readonly string selectorCloseAdvertising = "body > div.ui-window.ui-window-normal.ui-window-transition.ui-newuser-layer-dialog > div > div > a";
+        public readonly string CssSelectorbtnCategories = "#home-firstscreen > div > div > div.categories > div > div.categories-content-title > span.site-categories-title";
+        public readonly string CssSelectorbtnCellphones = "#home-firstscreen > div > div > div.categories > div > div.categories-list-box > dl.cl-item.cl-item-phones > dt > span > a:nth-child(1)";
+        public readonly string CssSelectorEnglishWeb = "#nav-global > div.ng-item.ng-goto-globalsite > a";
 
         #endregion
 
+
+        public MainPage(IWebDriver driver) : base(driver) { }
+
         #region WebElements
         private IWebElement CloseAdvertising => driver.FindElement(By.CssSelector(selectorCloseAdvertising));
-        private IWebElement BtnCategories => driver.FindElement(By.CssSelector(CssSelectorbtnCategories));
-        private IWebElement BtnCellphoens => driver.FindElement(By.CssSelector(CssSelectorbtnCellphones));
+        private IWebElement ButtonCategories => driver.FindElement(By.CssSelector(CssSelectorbtnCategories));
+        private IWebElement ButtonCellphoens => driver.FindElement(By.CssSelector(CssSelectorbtnCellphones));
         private IWebElement ButtonLanguage => driver.FindElement(By.CssSelector(CssSelectorEnglishWeb));
 
         #endregion
 
         #region Methods
-
-        public SearchPage1 GoToTheSearchPhones()
+        public void GoToEnglishMainPage()
         {
             driver.Manage().Window.FullScreen();
             NavigateToUrl(urlAliexpress);
+        }
+
+        public void CloseAdvertasing()
+        {
             if (CloseAdvertising.Displayed)
                 Click(CloseAdvertising);
+        }
+
+
+        public SearchPage1 GoToTheSearchPhones()
+        {
             Click(ButtonLanguage);
-            Click(BtnCategories);
-            Click(BtnCellphoens);
+            Click(ButtonCategories);
+            Click(ButtonCellphoens);
             return new SearchPage1(driver);
         }
 

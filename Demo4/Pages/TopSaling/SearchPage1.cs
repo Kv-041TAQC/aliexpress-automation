@@ -55,7 +55,7 @@ namespace Pages.TopSaling
             return Convert.ToInt32(parseOrder);
         }
 
-        protected void FindAndWriteTopPhones()
+        public void FindAndWriteTopPhones()
         {
                 var firstNameElement = SearchWebElements(cssFirstGoodName);
                 var firstPriceElement = SearchWebElements(cssFirstGoodPrice);
@@ -84,9 +84,9 @@ namespace Pages.TopSaling
             }
         }
 
-        public SearchPage2 WriteTopPhonesAndGoToSecondPage()
+        public SearchPage2 GoToSecondPage()
         {
-            FindAndWriteTopPhones();
+            //FindAndWriteTopPhones();
             Click(ButtonSecondPage);
             return new SearchPage2(driver);
         }

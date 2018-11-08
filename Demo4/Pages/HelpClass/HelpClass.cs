@@ -6,5 +6,7 @@ namespace Pages.HelpClass
 {
     public class HelpClass
     {
+
+ 
     }
 }

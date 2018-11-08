@@ -10,11 +10,9 @@ namespace Pages.TopSaling
     {
         public SearchPage3(IWebDriver driver) : base(driver) { }
 
-        private IWebElement ButtonThirdPage => driver.FindElement(By.CssSelector("yura_loh"));
         public void WriteTopPhones()
         {
             FindAndWriteTopPhones();
-            Click(ButtonThirdPage);
         }
     }
 }

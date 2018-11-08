@@ -21,9 +21,16 @@ namespace Test
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
             {
                 var mainPage = new MainPage(dr);
+                mainPage.GoToEnglishMainPage();
+                mainPage.CloseAdvertasing();
+
                 var searchPage1 = mainPage.GoToTheSearchPhones();
-                var searchPage2 = searchPage1.WriteTopPhonesAndGoToSecondPage();
-                var searchPage3 = searchPage2.WriteTopPhonesAndGoToThirdPage();
+                searchPage1.FindAndWriteTopPhones();  
+                
+                var searchPage2 = searchPage1.GoToSecondPage();
+                searchPage2.FindAndWriteTopPhones();
+
+                var searchPage3 = searchPage2.GoToThirdPage();
                 searchPage3.WriteTopPhones();
 
             }
