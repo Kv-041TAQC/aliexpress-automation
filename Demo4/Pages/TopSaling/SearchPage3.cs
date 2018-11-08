@@ -8,17 +8,13 @@ namespace Pages.TopSaling
 {
     public class SearchPage3 : SearchPage1
     {
-        private string test = "# search-key";
-        private IWebElement Test => driver.FindElement(By.CssSelector(test));
-
-
         public SearchPage3(IWebDriver driver) : base(driver) { }
 
+        private IWebElement ButtonThirdPage => driver.FindElement(By.CssSelector("yura_loh"));
         public void WriteTopPhones()
         {
             FindAndWriteTopPhones();
-            SendText(Test, Convert.ToString(countPhone));
-            Thread.Sleep(3000);
+            Click(ButtonThirdPage);
         }
     }
 }

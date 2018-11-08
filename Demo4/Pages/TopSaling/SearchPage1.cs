@@ -16,7 +16,7 @@ namespace Pages.TopSaling
         private string cssFirstGoodPrice = "#list-items > li.list-item.list-item-first.util-clearfix.list-item-180 > div.right-block.util-clearfix > div > div.info.infoprice > span > span.value";
         private string cssFirstGoodOrders = "#list-items > li.list-item.list-item-first.util-clearfix.list-item-180 > div.right-block.util-clearfix > div > div.info.infoprice > div.rate-history > span.order-num > a > em";
         private string cssButtonSecondPage = "#pagination-bottom > div.ui-pagination-navi.util-left > span";
-        private string firstHalfCss = "# list-items > li:nth-child(";
+        private string firstHalfCss = "#list-items > li:nth-child(";
 
 
 
@@ -32,9 +32,9 @@ namespace Pages.TopSaling
         #endregion
 
         #region WebElements
-        protected IWebElement SearchWebElements(string xpath)
+        protected IWebElement SearchWebElements(string css)
         {
-            return driver.FindElement(By.CssSelector(xpath));
+            return driver.FindElement(By.CssSelector(css));
         }
         private IWebElement ButtonSecondPage => driver.FindElement(By.CssSelector(cssButtonSecondPage));
 
@@ -66,15 +66,15 @@ namespace Pages.TopSaling
 
             for (int i = 2; i <= maxPhonesOnPages; i++)
             {
-                string ordersXpath = firstHalfCss + i + secondHalfCssOrders;
-                var ordersElement = SearchWebElements(ordersXpath);
+                string ordersCss = firstHalfCss + Convert.ToString(i) + secondHalfCssOrders;
+                var ordersElement = SearchWebElements(ordersCss);
                 int orders = ParseOrders(ordersElement.Text);
                 if (orders > minimumForTopSaling)
                 {
-                    string nameXpath = firstHalfCss + i + secondHalfCssName;
-                    var nameElement = SearchWebElements(nameXpath);
-                    string priceXpath = firstHalfCss + i + secondHalfCssPrice;
-                    var priceElement = SearchWebElements(priceXpath);
+                    string nameCss = firstHalfCss + Convert.ToString(i) + secondHalfCssName;
+                    var nameElement = SearchWebElements(nameCss);
+                    string priceCss = firstHalfCss + Convert.ToString(i) + secondHalfCssPrice;
+                    var priceElement = SearchWebElements(priceCss);
                     phones[countPhone].name = nameElement.Text;
                     phones[countPhone].price = priceElement.Text;
                     phones[countPhone].orders = orders;
