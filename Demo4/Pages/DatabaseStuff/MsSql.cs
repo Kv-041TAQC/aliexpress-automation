@@ -26,6 +26,13 @@ namespace Pages.DatabaseStuff
         #endregion
         #endregion
         #region MsSql methods for communication with database
+        /// <summary>
+        /// <para>This method returns a single object from any table (valid)</para>
+        /// <para>as an ArrayList collection where it is contained</para>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="tablename"></param>
+        /// <returns></returns>
         public ArrayList GetOne(int id, string tablename)
         {
             string name = tablename.ToLower();
@@ -70,7 +77,10 @@ namespace Pages.DatabaseStuff
             else
                 throw new Exception("Wrong id or table name!");
         }
-
+        /// <summary>
+        /// <para>This method adds the object (AliGoods) passed as parameters to the valid table (AliGoods)</para>
+        /// </summary>
+        /// <param name="product"></param>
         public void Add(AliGoods product)
         {
             AliGoods localali = product;
@@ -81,6 +91,10 @@ namespace Pages.DatabaseStuff
             isertcommand.Parameters.Add(nameparam);
             isertcommand.ExecuteNonQuery();            
         }
+        /// <summary>
+        /// <para>This method adds the object (TestResult) passed as parameters to the valid table (TestResults)</para>
+        /// </summary>
+        /// <param name="product"></param>
         public void Add(TestResults testresults)
         {
             TestResults localtestresult = testresults;
@@ -92,20 +106,31 @@ namespace Pages.DatabaseStuff
             isertcommand.Parameters.AddRange(new SqlParameter[] {resultparam,nameparam,errormessageparam,testtimeparam });
             isertcommand.ExecuteNonQuery();
         }
-
+        /// <summary>
+        /// Using this method, you can add an array of objects (AliGoods) to an existing table.
+        /// </summary>
+        /// <param name="arr"></param>
         public void AddRange(AliGoods[] arr)
         {
             AliGoods[] localali = arr;
             for (int i = 0; i < arr.Length; i++)
                 Add(arr[i]);
         }
+        /// <summary>
+        /// Using this method, you can add an array of objects (TestResults) to an existing table.
+        /// </summary>
+        /// <param name="arr"></param>
         public void AddRange(TestResults[] arr)
         {
             TestResults[] localali = arr;
             for (int i = 0; i < arr.Length; i++)
                 Add(arr[i]);
         }
-        
+        /// <summary>
+        /// This method deletes an object in any table (VALID) using ID and name of the table (where u want to delete)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="TableName"></param>
         public void Delete(int id,string TableName)
         {
             string name = TableName.ToLower();
@@ -174,6 +199,11 @@ namespace Pages.DatabaseStuff
                 else
                 throw new Exception("Wrong id or table name!");
         }
+        /// <summary>
+        /// <para>Using this method u can clear the table (Needed when you created a lot of trash there )</para>
+        /// <para>Just send in param Name of the table, where u want to make clear</para>
+        /// </summary>
+        /// <param name="tabletame"></param>
         public void ClearTable(string tabletame)
         {
 
@@ -202,12 +232,16 @@ namespace Pages.DatabaseStuff
 
         #endregion
         #region Constructor and Disponse
+        /// <summary>
+        /// Closes all connections to database
+        /// </summary>
         public void Dispose()
         {
             connection.Close();
         }
-
-        
+        /// <summary>
+        /// Just call me. No extra actions!!!
+        /// </summary>
         public MsSql()
         {
             connection = new SqlConnection();
