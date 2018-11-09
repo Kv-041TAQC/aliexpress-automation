@@ -13,7 +13,14 @@
     <PackageReference Include="Selenium.Support" Version="3.14.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.14.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="2.42.0.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
     <PackageReference Include="System.Runtime.Serialization.Json" Version="4.3.0" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Compile Remove="DatabaseStuff\MainTable.cs" />
+    <Compile Remove="DatabaseStuff\NoSql.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DatabaseStuff\Tables\" />
+  </ItemGroup>
 </Project>
