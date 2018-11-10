@@ -91,14 +91,14 @@ namespace Pages
         protected IWebDriver driver;
         protected Actions actionshandler; //For extra actions
         protected IAlert alerthandler;
-        public Phone[] phones;
+        public static Phone[] phones;
         public static int countPhone;
         #endregion
         protected SuperPage(IWebDriver driver)
         {
             actionshandler = new Actions(driver);
             this.driver = driver;
-            phones = new Phone[144];
+            
         }
     }
 }

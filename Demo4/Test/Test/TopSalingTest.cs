@@ -8,6 +8,7 @@ using System;
 using Pages.TopSaling;
 using Pages.DatabaseStuff;
 using Pages;
+using Pages.HelpClass;
 
 namespace Test
 {
@@ -22,6 +23,8 @@ namespace Test
             options.PageLoadStrategy = PageLoadStrategy.None;
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
             {
+                 SuperPage.phones = new Phone[144];
+
                 var mainPage = new MainPage(dr);
                 mainPage.GoToEnglishMainPage();
                 mainPage.CloseAdvertasing();
@@ -33,8 +36,9 @@ namespace Test
                 searchPage2.FindAndWriteTopPhones();
 
                 var searchPage3 = searchPage2.GoToThirdPage();
-                searchPage3.WriteTopPhones();
+                searchPage3.FindAndWriteTopPhones();
 
+                SuperPage.phones.Clone();  
                 //MsSql msSql = new MsSql();
                 //msSql.ClearTable("aligoods");
                 //AliGoods[] arr = new AliGoods[SuperPage.countPhone];

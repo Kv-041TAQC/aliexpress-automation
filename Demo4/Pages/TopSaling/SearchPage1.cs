@@ -65,17 +65,18 @@ namespace Pages.TopSaling
                     continue;
                 else if(symbol == ',')
                 {
-                    price += '.';
+                    price += ',';
                     continue;
                 }
-                else if (symbol == '-')
+                else if (symbol == '-' || symbol == 'р')
                     break;
                 else
                     price += symbol;
 
             }
-            
-            return Convert.ToDouble(price);
+            double result;
+            double.TryParse(price, out result);
+            return result;
         }
 
         public void FindAndWriteTopPhones()
@@ -83,9 +84,14 @@ namespace Pages.TopSaling
                 var firstNameElement = SearchWebElements(cssFirstGoodName);
                 var firstPriceElement = SearchWebElements(cssFirstGoodPrice);
                 var firstOrdersElement = SearchWebElements(cssFirstGoodOrders);
-                phones[0].name = firstNameElement.Text;
-                phones[0].price = (decimal)ParsePrice(firstPriceElement.Text);
-                phones[0].orders = ParseOrders(firstOrdersElement.Text);
+                int firstOrders = ParseOrders(firstOrdersElement.Text);
+            if (firstOrders > minimumForTopSaling)
+            {
+                phones[countPhone].name = firstNameElement.Text;
+                phones[countPhone].price = (decimal)ParsePrice(firstPriceElement.Text);
+                phones[countPhone].orders = ParseOrders(firstOrdersElement.Text);
+                countPhone++;
+            }
 
             for (int i = 2; i <= maxPhonesOnPages; i++)
             {
