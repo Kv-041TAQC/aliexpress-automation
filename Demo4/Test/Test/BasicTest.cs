@@ -16,7 +16,8 @@ namespace Tests.Test
             {
                 dr.Navigate().GoToUrl("http://www.google.com");
                 MsSql ms = new MsSql();
-                ms.Add(new AliGoods() {Name = "Suka_Rabotaet",Price = 9999,Orders = 3 });
+                //ms.Add(new AliGoods() {Name = "Suka_Rabotaet",Price = 9999,Orders = 3 });
+                ms.Add(new TestResults() { TestResult = "VSE_BLA_RABOTAET", TestName = "Yura_TI_RAK", TestErrorMessage = "AAAAAAAAAAAAA!!!", TestRunnigTime = "SEGODNA!" });
                 ms.CloseAllConnections();
             }
         }

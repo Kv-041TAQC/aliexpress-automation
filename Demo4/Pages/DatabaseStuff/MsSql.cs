@@ -13,7 +13,7 @@ namespace Pages.DatabaseStuff
         private readonly string amazonconnectionstring = "Server=alitestdb.c0i3it1m9rox.us-east-2.rds.amazonaws.com;Database=AliGoods;User Id=devmaster;pwd=Gavras123321;";
         #region Products table Queries
         private readonly string addproductquery = "Insert into aliGoods(ProductPrice,ProductName,Orders) values (@price,@name,@orders)";
-        private readonly string addtestresultquery = "Insert into TestResults(TestName,TestRunningTime,TestResult,TestErrors) Values(@name,@time,@result,@errors)";
+        private readonly string addtestresultquery = "Insert into TestResults(TestName,TestResult,TestErrors,TestRunningTime) Values(@name,@time,@result,@errors)";
         private readonly string getallaligoods = "select * from AliGoods";
         private readonly string getalltestresults = "select * from Testresults";
         private readonly string clearquery = "Delete AliGoods where id between 1 and 1000";
