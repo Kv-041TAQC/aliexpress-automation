@@ -15,7 +15,7 @@ namespace Pages.TopSaling
         #endregion
 
         #region WebElements
-        private IWebElement ButtonThirdPage => driver.FindElement(By.CssSelector(cssButtonThirdPage));
+        //private IWebElement ButtonThirdPage => driver.FindElement(By.CssSelector(cssButtonThirdPage));
 
         #endregion
 
@@ -24,7 +24,7 @@ namespace Pages.TopSaling
         public SearchPage3 GoToThirdPage()
         {
             //FindAndWriteTopPhones();
-            Click(ButtonThirdPage);
+            Click(CssSearchWebElements(cssButtonThirdPage));
             return new SearchPage3(driver);
         }
 

@@ -17,26 +17,18 @@ namespace Pages.TopSaling
         private string cssFirstGoodOrders = "#list-items > li.list-item.list-item-first.util-clearfix.list-item-180 > div.right-block.util-clearfix > div > div.info.infoprice > div.rate-history > span.order-num > a > em";
         private string cssButtonSecondPage = "#pagination-bottom > div.ui-pagination-navi.util-left > span";
         private string firstHalfCss = "#list-items > li:nth-child(";
-
-
-
-        //private string firstHalfXpathPrice = "//*[@id='list-items']/li[";
         private string secondHalfCssPrice = ") > div.right-block.util-clearfix > div > div.info.infoprice > span > span.value";
-
-        //private string firstHalfXpathName = "//*[@id='list-items']/li[";
         private string secondHalfCssName = ") > div.right-block.util-clearfix > div > div.detail > h3 > a > span";
-
-        //private string firstHalfXpathOrders = "//*[@id='list-items']/li[";
         private string secondHalfCssOrders = ") > div.right-block.util-clearfix > div > div.info.infoprice > div.rate-history > span.order-num > a > em";
-
+        private char symbolSpace= ' ';
+        private char symbolComa = ',';
+        private char symbolHyphen = '-';
+        private char symbolRusR = 'р';
         #endregion
 
         #region WebElements
-        protected IWebElement SearchWebElements(string css)
-        {
-            return driver.FindElement(By.CssSelector(css));
-        }
-        private IWebElement ButtonSecondPage => driver.FindElement(By.CssSelector(cssButtonSecondPage));
+
+        //private IWebElement ButtonSecondPage => driver.FindElement(By.CssSelector(cssButtonSecondPage));
 
         #endregion
 
@@ -61,14 +53,14 @@ namespace Pages.TopSaling
             price = "";
             foreach(char symbol in priceChars)
             {
-                if (symbol == ' ')
+                if (symbol == symbolSpace)
                     continue;
-                else if(symbol == ',')
+                else if(symbol == symbolComa)
                 {
-                    price += ',';
+                    price += symbolComa;
                     continue;
                 }
-                else if (symbol == '-' || symbol == 'р')
+                else if (symbol == symbolHyphen || symbol == symbolRusR)
                     break;
                 else
                     price += symbol;
@@ -81,17 +73,23 @@ namespace Pages.TopSaling
 
         public void FindAndWriteTopPhones()
         {
-                var firstNameElement = SearchWebElements(cssFirstGoodName);
-                var firstPriceElement = SearchWebElements(cssFirstGoodPrice);
-                var firstOrdersElement = SearchWebElements(cssFirstGoodOrders);
-                int firstOrders = ParseOrders(firstOrdersElement.Text);
-            if (firstOrders > minimumForTopSaling)
+            try
             {
-                phones[countPhone].name = firstNameElement.Text;
-                phones[countPhone].price = ParsePrice(firstPriceElement.Text);
-                phones[countPhone].orders = ParseOrders(firstOrdersElement.Text);
-                countPhone++;
+                var firstNameElement = CssSearchWebElements(cssFirstGoodName);
+                var firstPriceElement = CssSearchWebElements(cssFirstGoodPrice);
+                var firstOrdersElement = CssSearchWebElements(cssFirstGoodOrders);
+                int firstOrders = ParseOrders(firstOrdersElement.Text);
+                if (firstOrders > minimumForTopSaling)
+                {
+                    phones[countPhone].name = firstNameElement.Text;
+                    phones[countPhone].price = ParsePrice(firstPriceElement.Text);
+                    phones[countPhone].orders = ParseOrders(firstOrdersElement.Text);
+                    countPhone++;
+                }
             }
+
+            catch { }
+ 
 
             for (int i = 2; i <= maxPhonesOnPages; i++)
             {
@@ -99,7 +97,7 @@ namespace Pages.TopSaling
                 int orders = 0;
                 try
                 {
-                    var ordersElement = SearchWebElements(ordersCss);
+                    var ordersElement = CssSearchWebElements(ordersCss);
                     orders = ParseOrders(ordersElement.Text);
                 }
                 catch (NoSuchElementException)
@@ -108,9 +106,9 @@ namespace Pages.TopSaling
                 if (orders > minimumForTopSaling)
                 {
                     string nameCss = firstHalfCss + Convert.ToString(i) + secondHalfCssName;
-                    var nameElement = SearchWebElements(nameCss);
+                    var nameElement = CssSearchWebElements(nameCss);
                     string priceCss = firstHalfCss + Convert.ToString(i) + secondHalfCssPrice;
-                    var priceElement = SearchWebElements(priceCss);
+                    var priceElement = CssSearchWebElements(priceCss);
 
                     phones[countPhone].name = nameElement.Text;
                     phones[countPhone].price = ParsePrice(priceElement.Text);
@@ -124,7 +122,7 @@ namespace Pages.TopSaling
         public SearchPage2 GoToSecondPage()
         {
             //FindAndWriteTopPhones();
-            Click(ButtonSecondPage);
+            Click(CssSearchWebElements(cssButtonSecondPage));
             return new SearchPage2(driver);
         }
 

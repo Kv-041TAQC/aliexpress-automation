@@ -15,12 +15,15 @@ namespace Pages
     public abstract class SuperPage
     {
         #region Custom Methods
+        protected IWebElement CssSearchWebElements(string css)
+        {
+            return driver.FindElement(By.CssSelector(css));
+        }
         /// <summary>
         /// <para>Custome method for clicking on element</para>
         /// <para>In param send WebElement, in which u whant to click</para>
         /// </summary>
         /// <param name="element">Element.</param>
-
         protected virtual void Click(IWebElement element) {
             element.Click();
             Thread.Sleep(5000);

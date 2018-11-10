@@ -22,11 +22,11 @@ namespace Pages.TopSaling
         public MainPage(IWebDriver driver) : base(driver) { }
 
         #region WebElements
-        private IWebElement CloseAdvertising => driver.FindElement(By.CssSelector(selectorCloseAdvertising));
-        private IWebElement ButtonCategories => driver.FindElement(By.CssSelector(CssSelectorbtnCategories));
-        private IWebElement ButtonCellphoens => driver.FindElement(By.CssSelector(CssSelectorbtnCellphones));
-        private IWebElement ButtonLanguage => driver.FindElement(By.CssSelector(CssSelectorEnglishWeb));
-
+        /* private IWebElement CloseAdvertising => driver.FindElement(By.CssSelector(selectorCloseAdvertising));
+         private IWebElement ButtonCategories => driver.FindElement(By.CssSelector(CssSelectorbtnCategories));
+         private IWebElement ButtonCellphoens => driver.FindElement(By.CssSelector(CssSelectorbtnCellphones));
+         private IWebElement ButtonLanguage => driver.FindElement(By.CssSelector(CssSelectorEnglishWeb));
+         **/
         #endregion
 
         #region Methods
@@ -38,19 +38,17 @@ namespace Pages.TopSaling
 
         public void CloseAdvertasing()
         {
-            if (CloseAdvertising.Displayed)
-                Click(CloseAdvertising);
+                Click(CssSearchWebElements(selectorCloseAdvertising));
         }
 
 
         public SearchPage1 GoToTheSearchPhones()
         {
-            Click(ButtonLanguage);
-            Click(ButtonCategories);
-            Click(ButtonCellphoens);
+            Click(CssSearchWebElements(CssSelectorEnglishWeb));
+            Click(CssSearchWebElements(CssSelectorbtnCategories));
+            Click(CssSearchWebElements(CssSelectorbtnCellphones));
             return new SearchPage1(driver);
         }
-
         #endregion
     }
 }
