@@ -12,7 +12,7 @@ namespace Pages.DatabaseStuff
         SqlConnection connection;
         private readonly string amazonconnectionstring = "Server=alitestdb.c0i3it1m9rox.us-east-2.rds.amazonaws.com;Database=AliGoods;User Id=devmaster;pwd=Gavras123321;";
         #region Products table Queries
-        private readonly string addproductquery = "Insert into aliGoods(ProductPrice,ProductName) values (@price,@name)";
+        private readonly string addproductquery = "Insert into aliGoods(ProductPrice,ProductName,Orders) values (@price,@name,@orders)";
         private readonly string addtestresultquery = "Insert into TestResults(TestName,TestRunningTime,TestResult,TestErrors) Values(@name,@time,@result,@errors)";
         private readonly string getallaligoods = "select * from AliGoods";
         private readonly string getalltestresults = "select * from Testresults";
@@ -49,6 +49,7 @@ namespace Pages.DatabaseStuff
                         local.Id = reader.GetInt32(0);
                         local.Name = reader.GetString(1);
                         local.Price = reader.GetDecimal(2);
+                        local.Orders = reader.GetInt32(3);
                     }
                 }
                 array.Add(local);
@@ -86,9 +87,11 @@ namespace Pages.DatabaseStuff
             AliGoods localali = product;
             SqlParameter priceparam = new SqlParameter("@price", localali.Price);
             SqlParameter nameparam = new SqlParameter("@name", localali.Name);
+            SqlParameter ordersparameter = new SqlParameter("@orders", localali.Orders);
             SqlCommand isertcommand = new SqlCommand(addproductquery, connection);
             isertcommand.Parameters.Add(priceparam);
             isertcommand.Parameters.Add(nameparam);
+            isertcommand.Parameters.Add(ordersparameter);
             isertcommand.ExecuteNonQuery();            
         }
         /// <summary>
@@ -169,6 +172,7 @@ namespace Pages.DatabaseStuff
                         local.Id = reader.GetInt32(0);
                         local.Price = reader.GetDecimal(1);
                         local.Name = reader.GetString(2);
+                        local.Orders = reader.GetInt32(3);
                         array.Add(local);
                     }
                     reader.Close();
