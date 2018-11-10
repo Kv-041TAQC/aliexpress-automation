@@ -5,10 +5,11 @@ using System.Text;
 
 namespace Pages.TopSaling
 {
+    /// <summary>
+    /// <para>Class of first search page with goods in Aliexpress website</para>
+    /// </summary>
     public class SearchPage1 : SuperPage
     {
-        public SearchPage1(IWebDriver driver) : base(driver) { }
-
         #region Constants
         protected int minimumForTopSaling = 1000;
         protected int maxPhonesOnPages = 48;
@@ -25,14 +26,18 @@ namespace Pages.TopSaling
         private char symbolHyphen = '-';
         private char symbolRusR = 'р';
         #endregion
-
-        #region WebElements
-
-        //private IWebElement ButtonSecondPage => driver.FindElement(By.CssSelector(cssButtonSecondPage));
-
-        #endregion
-
+        
         #region Methods
+        /// <summary>
+        /// <para>Method for go to main page Aliexpress</para>
+        /// </summary>
+        /// <param name="driver">Web Driver.</param>
+        public SearchPage1(IWebDriver driver) : base(driver) { }
+
+        /// <summary>
+        /// <para>Method for parse orders</para>
+        /// </summary>
+        /// <param name="notParseOrder">String for parse orders.</param>
         protected int ParseOrders(string notParseOrder)
         {
             string parseOrder = "";
@@ -46,7 +51,10 @@ namespace Pages.TopSaling
             }
             return Convert.ToInt32(parseOrder);
         }
-
+        /// <summary>
+        /// <para>Method for parse price</para>
+        /// </summary>
+        /// <param name="price">String for parse price.</param>
         protected decimal ParsePrice(string price)
         {
             char[] priceChars = price.ToCharArray();
@@ -71,6 +79,10 @@ namespace Pages.TopSaling
             return result;
         }
 
+
+        /// <summary>
+        /// <para>Method for adding Top goods in array</para>
+        /// </summary>
         public void FindAndWriteTopPhones()
         {
             try
@@ -103,6 +115,7 @@ namespace Pages.TopSaling
                 catch (NoSuchElementException)
                 {                  
                 }
+
                 if (orders > minimumForTopSaling)
                 {
                     string nameCss = firstHalfCss + Convert.ToString(i) + secondHalfCssName;
@@ -119,9 +132,11 @@ namespace Pages.TopSaling
             }
         }
 
+        /// <summary>
+        /// <para>Method for go to next page of goods</para>
+        /// </summary>
         public SearchPage2 GoToSecondPage()
         {
-            //FindAndWriteTopPhones();
             Click(CssSearchWebElements(cssButtonSecondPage));
             return new SearchPage2(driver);
         }

@@ -15,9 +15,15 @@ namespace Test
 {
     [TestFixture]
     [Parallelizable]
+    /// <summary>
+    /// <para>Test of *Find Top Phones and add it to data base* </para>
+    /// </summary>
     public class TopSallingTest
     {
         [Test]
+        /// <summary>
+        /// <para>Top saling test</para>
+        /// </summary>
         public void TopSalling()
         {
             ChromeOptions options = new ChromeOptions();
@@ -28,7 +34,7 @@ namespace Test
                 HelpClass helper = new HelpClass();
                 
                 var mainPage = new MainPage(dr);
-                mainPage.GoToEnglishMainPage();
+                mainPage.GoToMainPage();
                 try
                 {
                     mainPage.CloseAdvertasing();

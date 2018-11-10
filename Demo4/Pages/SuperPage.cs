@@ -4,20 +4,68 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
-
 using System.Threading;
 using Pages.HelpClass;
 
-
-
 namespace Pages
 {
+    /// <summary>
+    /// <para>Abstract class with needed some methods and constants for testing Aliexpress</para>
+    /// </summary>
     public abstract class SuperPage
     {
+        #region Constants
+        protected IWebDriver driver;
+        protected Actions actionshandler;
+        protected IAlert alerthandler;
+
+        public static Phone[] phones;
+        public static int countPhone;
+        #endregion
+
         #region Custom Methods
+        /// <summary>
+        /// <para>Constructor with driver</para>
+        /// </summary>
+        /// <param name="driver">driver.</param>
+        protected SuperPage(IWebDriver driver)
+        {
+            actionshandler = new Actions(driver);
+            this.driver = driver;
+
+        }
+
+        /// <summary>
+        /// <para>Custome method for finding element by css</para>
+        /// </summary>
+        /// <param name="css">Css.</param>
         protected IWebElement CssSearchWebElements(string css)
         {
             return driver.FindElement(By.CssSelector(css));
+        }
+        /// <summary>
+        /// <para>Custome method for finding element by id</para>
+        /// </summary>
+        /// <param name="id">ID.</param>
+        protected IWebElement IDSearchWebElements(string id)
+        {
+            return driver.FindElement(By.Id(id));
+        }
+        /// <summary>
+        /// <para>Custome method for finding element by xpath</para>
+        /// </summary>
+        /// <param name="xpath">Xpath.</param>
+        protected IWebElement XpathSearchWebElements(string xpath)
+        {
+            return driver.FindElement(By.XPath(xpath));
+        }
+        /// <summary>
+        /// <para>Custome method for finding element by className</para>
+        /// </summary>
+        /// <param name="className">ClassName.</param>
+        protected IWebElement ClassNameSearchWebElements(string className)
+        {
+            return driver.FindElement(By.ClassName(className));
         }
         /// <summary>
         /// <para>Custome method for clicking on element</para>
@@ -26,7 +74,7 @@ namespace Pages
         /// <param name="element">Element.</param>
         protected virtual void Click(IWebElement element) {
             element.Click();
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
         }
         /// <summary>
         /// <para>Custome method for sending text in WebElements</para>
@@ -47,7 +95,7 @@ namespace Pages
         /// <param name="url">URL.</param>
         protected void NavigateToUrl(string url) {
 			driver.Navigate().GoToUrl(url);
-			Thread.Sleep(8000);
+			Thread.Sleep(5000);
         }
 		/// <summary>
         /// Maximizes the window.
@@ -77,28 +125,6 @@ namespace Pages
         {
             driver.Navigate().Back();
         }
-        
-        /// <summary>
-        /// <para>Custom method for taking screenshot</para>
-        /// </summary>
-        public void TakeScreenShot()
-        {
-            var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
-            screenshot.SaveAsFile($"..\\..\\..\\ScreenShots\\ScreenShot.png", ScreenshotImageFormat.Png);
-        }
         #endregion
-        #region Constants
-        protected IWebDriver driver;
-        protected Actions actionshandler; //For extra actions
-        protected IAlert alerthandler;
-        public static Phone[] phones;
-        public static int countPhone;
-        #endregion
-        protected SuperPage(IWebDriver driver)
-        {
-            actionshandler = new Actions(driver);
-            this.driver = driver;
-            
-        }
     }
 }
