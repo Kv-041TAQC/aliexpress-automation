@@ -21,13 +21,10 @@ namespace Pages
         /// </summary>
         /// <param name="element">Element.</param>
 
-        protected virtual void Click(IWebElement element)
-        {
+        protected virtual void Click(IWebElement element) {
             element.Click();
             Thread.Sleep(5000);
         }
-
-        
         /// <summary>
         /// <para>Custome method for sending text in WebElements</para>
         /// </summary>

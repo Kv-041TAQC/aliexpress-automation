@@ -23,8 +23,9 @@ namespace Test
             options.PageLoadStrategy = PageLoadStrategy.None;
             using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
             {
-                 SuperPage.phones = new Phone[144];
-
+                SuperPage.phones = new Phone[144];
+                HelpClass helper = new HelpClass();
+                
                 var mainPage = new MainPage(dr);
                 mainPage.GoToEnglishMainPage();
                 mainPage.CloseAdvertasing();
@@ -38,17 +39,12 @@ namespace Test
                 var searchPage3 = searchPage2.GoToThirdPage();
                 searchPage3.FindAndWriteTopPhones();
 
-                SuperPage.phones.Clone();  
-                //MsSql msSql = new MsSql();
-                //msSql.ClearTable("aligoods");
-                //AliGoods[] arr = new AliGoods[SuperPage.countPhone];
-                //for (int i = 0; i < SuperPage.countPhone; i++)
-                //{
-                    
-                //}                   
-                //msSql.AddRange(arr);
-
-
+                AliGoods[] aliGoods = new AliGoods[SuperPage.countPhone];
+                helper.ConverterStructGoodsToClass(aliGoods);
+                aliGoods.Clone();
+                MsSql msSql = new MsSql();
+                msSql.ClearTable("aligoods");
+                msSql.AddRange(aliGoods);
             }
         }
     }

@@ -55,7 +55,7 @@ namespace Pages.TopSaling
             return Convert.ToInt32(parseOrder);
         }
 
-        protected double ParsePrice(string price)
+        protected decimal ParsePrice(string price)
         {
             char[] priceChars = price.ToCharArray();
             price = "";
@@ -74,8 +74,8 @@ namespace Pages.TopSaling
                     price += symbol;
 
             }
-            double result;
-            double.TryParse(price, out result);
+            decimal result;
+            decimal.TryParse(price, out result);
             return result;
         }
 
@@ -88,7 +88,7 @@ namespace Pages.TopSaling
             if (firstOrders > minimumForTopSaling)
             {
                 phones[countPhone].name = firstNameElement.Text;
-                phones[countPhone].price = (decimal)ParsePrice(firstPriceElement.Text);
+                phones[countPhone].price = ParsePrice(firstPriceElement.Text);
                 phones[countPhone].orders = ParseOrders(firstOrdersElement.Text);
                 countPhone++;
             }
@@ -96,8 +96,15 @@ namespace Pages.TopSaling
             for (int i = 2; i <= maxPhonesOnPages; i++)
             {
                 string ordersCss = firstHalfCss + Convert.ToString(i) + secondHalfCssOrders;
-                var ordersElement = SearchWebElements(ordersCss);
-                int orders = ParseOrders(ordersElement.Text);
+                int orders = 0;
+                try
+                {
+                    var ordersElement = SearchWebElements(ordersCss);
+                    orders = ParseOrders(ordersElement.Text);
+                }
+                catch (NoSuchElementException)
+                {                  
+                }
                 if (orders > minimumForTopSaling)
                 {
                     string nameCss = firstHalfCss + Convert.ToString(i) + secondHalfCssName;
@@ -106,7 +113,7 @@ namespace Pages.TopSaling
                     var priceElement = SearchWebElements(priceCss);
 
                     phones[countPhone].name = nameElement.Text;
-                    phones[countPhone].price = (decimal)ParsePrice(priceElement.Text);
+                    phones[countPhone].price = ParsePrice(priceElement.Text);
                     phones[countPhone].orders = orders;
                     countPhone++;
                 }
