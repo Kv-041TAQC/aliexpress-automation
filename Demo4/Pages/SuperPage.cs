@@ -89,10 +89,10 @@ namespace Pages
         #endregion
         #region Constants
         protected IWebDriver driver;
-        protected Actions actionshandler;//For extra actions
+        protected Actions actionshandler; //For extra actions
         protected IAlert alerthandler;
-        protected Phone[] phones;
-        protected int countPhone;
+        public Phone[] phones;
+        public static int countPhone;
         #endregion
         protected SuperPage(IWebDriver driver)
         {

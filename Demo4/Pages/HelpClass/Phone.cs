@@ -8,7 +8,7 @@ namespace Pages.HelpClass
     {
         public string name;
 
-        public string price;
+        public decimal price;
 
         public int orders;
     }
