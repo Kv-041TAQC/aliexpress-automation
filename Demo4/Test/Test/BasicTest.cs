@@ -18,6 +18,7 @@ namespace Tests.Test
                 MsSql ms = new MsSql();
                 ms.Add(new AliGoods() {Name = "random1",Price = 100,Orders = 3 });
                 ms.AddRange(new AliGoods[] { new AliGoods() { Name = "random1", Price = 100, Orders = 3 }, new AliGoods() { Name = "random1", Price = 100, Orders = 3 }, new AliGoods() { Name = "random1", Price = 100, Orders = 3 } });
+                ms.Add(new TestResults() {TestErrorMessage = "VseRabotaet",TestName = "Ya zhe govoril",TestResult = "" });
             }
         }
     }
