@@ -85,6 +85,7 @@ namespace Pages.DatabaseStuff
         public void Add(AliGoods product)
         {
             AliGoods localali = product;
+            SqlParameter sqlParameter = new SqlParameter();
             SqlParameter priceparam = new SqlParameter("@price", localali.Price);
             SqlParameter nameparam = new SqlParameter("@name", localali.Name);
             SqlParameter ordersparameter = new SqlParameter("@orders", localali.Orders);
@@ -171,8 +172,8 @@ namespace Pages.DatabaseStuff
                         AliGoods local = new AliGoods();
                         local.Id = reader.GetInt32(0);
                         local.Price = reader.GetDecimal(1);
-                        local.Name = reader.GetString(2);
-                        local.Orders = reader.GetInt32(3);
+                        local.Name = reader.GetString(3);
+                        local.Orders = reader.GetInt32(2);
                         array.Add(local);
                     }
                     reader.Close();
