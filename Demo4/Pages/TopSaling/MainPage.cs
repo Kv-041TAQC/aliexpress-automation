@@ -52,7 +52,7 @@ namespace Pages.TopSaling
         public SearchPage1 GoToTheSearchPhones()
         {
             Click(CssSearchWebElements(CssSelectorEnglishWeb));
-            Click(CssSearchWebElements(CssSelectorbtnCategories));
+            // Click(CssSearchWebElements(CssSelectorbtnCategories));
             Click(CssSearchWebElements(CssSelectorbtnCellphones));
             return new SearchPage1(driver);
         }

@@ -10,6 +10,7 @@ using Pages.DatabaseStuff;
 using Pages;
 using Pages.HelpClass;
 using NUnit.Framework.Interfaces;
+using System.Collections;
 
 namespace Test
 {
@@ -52,31 +53,40 @@ namespace Test
                 AliGoods[] aliGoods = new AliGoods[SuperPage.countPhone];
                 helper.ConverterStructGoodsToClass(aliGoods);
                 aliGoods.Clone();
-                //MsSql msSql = new MsSql();
-                //msSql.ClearTable("aligoods");
-                //msSql.AddRange(aliGoods);
+                MsSql msSql = new MsSql();
+                msSql.ClearTable("aligoods");
+                msSql.AddRange(aliGoods);
 
-                //TestResults testResults = new TestResults();
-                //DateTime nowTime = new DateTime();
-                //nowTime = DateTime.Now;
-                //string nowTimeStr = nowTime.ToLongDateString();
-                //testResults.TestName = "test" + nowTimeStr;
-                //testResults.TestRunnigTime = nowTimeStr;
+                TestResults testResults = new TestResults();
+                DateTime nowTime = new DateTime();
+                nowTime = DateTime.Now;
+                string nowTimeStr = nowTime.ToLongDateString();
+                testResults.TestName = "Test " + nowTimeStr;
+                testResults.TestRunnigTime = nowTimeStr;
 
-                ////Asserts
+                
+                ArrayList getsFromDataBase = new ArrayList();
+                getsFromDataBase = msSql.GetAll("aliGoods");
+                int countForEquals = 0;
+                foreach(AliGoods element in getsFromDataBase)
+                {
+                    Assert.AreEqual(element, aliGoods[countForEquals++]);
+                }
 
-                //if (TestContext.CurrentContext.Result.Outcome.Status.Equals(TestStatus.Failed))
-                //{
-                //    testResults.TestResult = "Failed";
-                //    testResults.TestErrorMessage = TestContext.CurrentContext.Result.Message;
-                //}
-                //else
-                //{
-                //    testResults.TestResult = "Passed";
-                //    testResults.TestErrorMessage = "Test Passed";
-                //}
 
-                //msSql.Add(testResults);
+                if (TestContext.CurrentContext.Result.Outcome.Status.Equals(TestStatus.Failed))
+                {
+                    testResults.TestResult = "Failed";
+                    testResults.TestErrorMessage = TestContext.CurrentContext.Result.Message;
+                }
+                else
+                {
+                    testResults.TestResult = "Passed";
+                    testResults.TestErrorMessage = "Test Passed";
+                }
+
+                msSql.Add(testResults);
+                msSql.CloseAllConnections();
             }
         }
     }
