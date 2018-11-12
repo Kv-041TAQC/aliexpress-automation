@@ -6,5 +6,10 @@
         public string Name { get; set; }
         public int Id { get; set; }
         public int Orders { get; set; }
+
+        public bool EqualsGoods(AliGoods aliGoods)
+        {
+            return this.Orders == aliGoods.Orders;
+        }
     }
 }
