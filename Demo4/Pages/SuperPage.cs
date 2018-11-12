@@ -32,7 +32,6 @@ namespace Pages
         {
             actionshandler = new Actions(driver);
             this.driver = driver;
-
         }
 
         /// <summary>
@@ -72,11 +71,7 @@ namespace Pages
         /// <para>In param send WebElement, in which u whant to click</para>
         /// </summary>
         /// <param name="element">Element.</param>
-        protected virtual void Click(IWebElement element) {
-           Thread.Sleep(10000);
-	   element.Click();
-           Thread.Sleep(10000);
-        }
+        protected virtual void Click(IWebElement element) {element.Click();Thread.Sleep(3000);}
         /// <summary>
         /// <para>Custome method for sending text in WebElements</para>
         /// </summary>
@@ -94,10 +89,7 @@ namespace Pages
         /// Navigates to URL.
         /// </summary>
         /// <param name="url">URL.</param>
-        protected void NavigateToUrl(string url) {
-			driver.Navigate().GoToUrl(url);
-			Thread.Sleep(5000);
-        }
+        protected void NavigateToUrl(string url) {driver.Navigate().GoToUrl(url);Thread.Sleep(5000);}
 		/// <summary>
         /// Maximizes the window.
         /// </summary>
