@@ -226,8 +226,7 @@ namespace Pages.DatabaseStuff
             }
             else
                 throw new Exception("There is no such table, RETARD!!!");
-            SqlCommand clearcommand = new SqlCommand(clearquery,connection);
-            clearcommand.ExecuteNonQuery();
+            
         }
         public void CloseAllConnections()
         {
