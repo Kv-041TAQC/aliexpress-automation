@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.IO;
 using Allure.Commons;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
@@ -40,7 +41,7 @@ namespace Test
         {
             ChromeOptions options = new ChromeOptions();
             options.PageLoadStrategy = PageLoadStrategy.None;
-            using (RemoteWebDriver dr = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), options))
+            using (ChromeDriver dr = new ChromeDriver(Directory.GetCurrentDirectory(), options))
             {
                 SuperPage.phones = new Phone[144];
                 HelpClass helper = new HelpClass();
