@@ -73,9 +73,9 @@ namespace Pages
         /// </summary>
         /// <param name="element">Element.</param>
         protected virtual void Click(IWebElement element) {
-           Thread.Sleep(5000);
+           Thread.Sleep(10000);
 	   element.Click();
-           Thread.Sleep(5000);
+           Thread.Sleep(10000);
         }
         /// <summary>
         /// <para>Custome method for sending text in WebElements</para>
