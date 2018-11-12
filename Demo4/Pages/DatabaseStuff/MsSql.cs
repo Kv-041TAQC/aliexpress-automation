@@ -215,18 +215,18 @@ namespace Pages.DatabaseStuff
             string name = tabletame.ToLower();
             if (name == "aligoods")
             {
-                string query = "Delete aligoods where id between 0 and 1000";
+                string query = "Delete aligoods where id between 0 and 10000";
                 SqlCommand command = new SqlCommand(query,connection);
                 command.ExecuteNonQuery();
             }
             else if (name == "testresults")
             {
-                string query = "Delete testresults where id between 0 and 1000";
+                string query = "Delete testresults where id between 0 and 10000";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.ExecuteNonQuery();
             }
             else
-                throw new Exception("There is no such table, RETARD!!!");
+                throw new Exception("There is no such table, Friend!!!");
             
         }
         public void CloseAllConnections()
