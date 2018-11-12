@@ -32,6 +32,7 @@ namespace Pages.HelpClass
                 aliGoods[i].Orders = SuperPage.phones[i].orders;
             }
         }
+
         #endregion
     }
 }

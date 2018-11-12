@@ -57,37 +57,45 @@ namespace Test
                 msSql.ClearTable("aligoods");
                 msSql.AddRange(aliGoods);
 
-                TestResults testResults = new TestResults();
-                DateTime nowTime = new DateTime();
-                nowTime = DateTime.Now;
-                string nowTimeStr = nowTime.ToLongDateString();
-                testResults.TestName = "Test " + nowTimeStr;
-                testResults.TestRunnigTime = nowTimeStr;
-
-                
                 ArrayList getsFromDataBase = new ArrayList();
                 getsFromDataBase = msSql.GetAll("aliGoods");
-                int countForEquals = 0;
+                
+                int countphone = 0;
                 foreach(AliGoods element in getsFromDataBase)
                 {
-                    Assert.AreEqual(element, aliGoods[countForEquals++]);
+                    Assert.IsTrue(element.EqualsGoods(aliGoods[countphone++]));
                 }
-
-
-                if (TestContext.CurrentContext.Result.Outcome.Status.Equals(TestStatus.Failed))
-                {
-                    testResults.TestResult = "Failed";
-                    testResults.TestErrorMessage = TestContext.CurrentContext.Result.Message;
-                }
-                else
-                {
-                    testResults.TestResult = "Passed";
-                    testResults.TestErrorMessage = "Test Passed";
-                }
-
-                msSql.Add(testResults);
                 msSql.CloseAllConnections();
             }
+
+        }
+        /// <summary>
+        /// <para>TearDown top saling test</para>
+        /// </summary>
+        public void tearDown()
+        {
+            MsSql msSql = new MsSql();
+            TestResults testResults = new TestResults();
+            DateTime nowTime = new DateTime();
+            nowTime = DateTime.Now;
+            string nowTimeStr = nowTime.ToLongDateString();
+            testResults.TestName = "Test " + nowTimeStr;
+            testResults.TestRunnigTime = nowTimeStr;
+
+
+            if (TestContext.CurrentContext.Result.Outcome.Status.Equals(TestStatus.Failed))
+            {
+                testResults.TestResult = "Failed";
+                testResults.TestErrorMessage = TestContext.CurrentContext.Result.Message;
+            }
+            else
+            {
+                testResults.TestResult = "Passed";
+                testResults.TestErrorMessage = "Test Passed";
+            }
+
+            msSql.Add(testResults);
+            msSql.CloseAllConnections();
         }
     }
 }
