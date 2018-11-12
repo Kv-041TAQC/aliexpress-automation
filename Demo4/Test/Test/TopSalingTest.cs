@@ -15,7 +15,6 @@ using System.Collections;
 namespace Test
 {
     [TestFixture]
-    [Parallelizable]
     /// <summary>
     /// <para>Test of *Find Top Phones and add it to data base* </para>
     /// </summary>
@@ -72,6 +71,7 @@ namespace Test
         /// <summary>
         /// <para>TearDown top saling test</para>
         /// </summary>
+        [TearDown]
         public void tearDown()
         {
             MsSql msSql = new MsSql();
